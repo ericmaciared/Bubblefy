@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Bubblefy</string>
+    <string name="subtitle">Welcome to Bubblefy!</string>
 </resources>
