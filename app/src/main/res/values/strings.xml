@@ -12,12 +12,12 @@
     <string name="submit">Submit</string>
     <string name="enter_key">Enter Key</string>
     <string name="key_message">The one we sent to your email</string>
-    <string name="terms">Accept Terms & Conditions</string>
+    <string name="terms">Accept Terms and Conditions</string>
     <string name="new_pass_message">Make sure to remember it this time</string>
     <string name="new_password">New Password</string>
     <string name="change_password">Change Password</string>
     <string name="reset_password">Reset Password</string>
-    <string name="email_recovery_message">It's OK, no one is perfect.</string>
+    <string name="email_recovery_message">It\'s OK, no one is perfect.</string>
     <string name="send_key">Send key</string>
 
 
