@@ -11,12 +11,12 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/BubblefyLogo"
+        android:src="@drawable/bubblefy_logo"
         android:layout_marginBottom="20dp"></ImageView>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:src="@drawable/BubblefyTextColor"></ImageView>
+        android:src="@drawable/bubblefy_text_color"></ImageView>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"></LinearLayout>
@@ -35,6 +35,7 @@
     <EditText
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:inputType="textPassword"
         android:hint="@string/password"
         android:textColor="@color/colorTextPrimary"
         android:textColorHint="@color/colorTextPrimary"/>
@@ -46,7 +47,8 @@
         android:layout_marginLeft="110dp"
         android:text="@string/forgot_pass"
         android:textSize="11dp"
-        android:textColor="@color/colorTextPrimary"
+        android:id="@+id/forgotPasswordLink"
+        android:textColor="@color/colorAccent"
         android:clickable="true"/>
     <LinearLayout
         android:layout_width="wrap_content"

@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
 
     private Button loginButton;
     private Button signupButton;
+    private TextView forgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,14 @@ public class LoginActivity extends AppCompatActivity {
                 loadSignUpPageActivity();
             }
         });
+
+        forgotPassword = (TextView) findViewById(R.id.forgotPasswordLink);
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadForgotPasswordActivity();
+            }
+        });
     }
 
     protected void loadHomePageActivity(){
@@ -41,6 +51,11 @@ public class LoginActivity extends AppCompatActivity {
 
     protected void loadSignUpPageActivity(){
         Intent intent = new Intent(this, SignUpActivity.class);
+        startActivity(intent);
+    }
+
+    protected void loadForgotPasswordActivity(){
+        Intent intent = new Intent(this, RecoveryEmail.class);
         startActivity(intent);
     }
 
