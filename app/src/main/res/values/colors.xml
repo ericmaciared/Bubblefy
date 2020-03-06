@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ffffff</color>
-    <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="colorLoginButton">#00CBFF</color>
-    <color name="colorSignUpButton">#CD0404</color>
-    <color name="white">#FFFFFF</color>
+    <color name="colorBackground">#191414</color>
+    <color name="colorPrimary">#D82D65</color>
+    <color name="colorSecondary">#FF2965</color>
+    <color name="colorAccent">#F56A0E</color>
+    <color name="colorTextPrimary">#FFFFFF</color>
+
     <color name="yellow">#FFFF00</color>
     <color name="fuchsia">#FF00FF</color>
     <color name="red">#FF0000</color>
