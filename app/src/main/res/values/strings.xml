@@ -3,8 +3,8 @@
     <string name="subtitle">Welcome to Bubblefy!</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="sign_in">Log in</string>
-    <string name="sign_up">Sign up</string>
+    <string name="sign_in">Log In</string>
+    <string name="sign_up">Sign Up</string>
     <string name="username">Username</string>
     <string name="rep_email">Repeat Email</string>
     <string name="rep_pass">Repeat Password</string>
@@ -13,12 +13,12 @@
     <string name="enter_key">Enter Key</string>
     <string name="key_message">The one we sent to your email</string>
     <string name="terms">Accept Terms and Conditions</string>
-    <string name="new_pass_message">Make sure to remember it this time</string>
+    <string name="new_pass_message">Make sure to remember it this time ;)</string>
     <string name="new_password">New Password</string>
     <string name="change_password">Change Password</string>
     <string name="reset_password">Reset Password</string>
     <string name="email_recovery_message">It\'s OK, no one is perfect.</string>
-    <string name="send_key">Send key</string>
+    <string name="send_key">Send Key</string>
 
 
 
