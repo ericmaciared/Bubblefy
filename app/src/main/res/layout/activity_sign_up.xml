@@ -8,20 +8,20 @@
     tools:context=".SignUpActivity"
     android:background="@color/colorBackground">
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginBottom="30dp">
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    android:layout_marginBottom="30dp">
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/bubblefy_logo"></ImageView>
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bubblefy_logo"></ImageView>
 
-        <ImageView
-            android:layout_width="238dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/bubblefy_text_color"></ImageView>
-    </LinearLayout>
+    <ImageView
+        android:layout_width="238dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bubblefy_text_color"></ImageView>
+</LinearLayout>
     <TextView
         android:text="@string/sign_up"
         android:layout_width="wrap_content"

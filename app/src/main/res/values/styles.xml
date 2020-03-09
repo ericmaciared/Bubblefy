@@ -9,4 +9,12 @@
         <item name="colorSecondary">@color/colorSecondary</item>
     </style>
 
+    <style name="AppTheme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorBackground</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+    </style>
+
 </resources>
