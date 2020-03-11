@@ -12,23 +12,27 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/bubblefy_logo"
-        android:layout_marginBottom="20dp"></ImageView>
+        android:layout_marginBottom="20dp" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:src="@drawable/bubblefy_text_color"></ImageView>
+        android:src="@drawable/bubblefy_text_color" />
+
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></LinearLayout>
+        android:layout_height="wrap_content" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/subtitle"
+        android:textSize="@dimen/text_size_medium"
         android:textColor="@color/colorTextPrimary"/>
     <EditText
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:hint="@string/username"
+        android:textSize="@dimen/text_size_medium"
         android:id="@+id/usernameText"
         android:layout_marginTop="30dp"
         android:textColor="@color/colorTextPrimary"
@@ -38,20 +42,22 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:hint="@string/password"
+        android:textSize="@dimen/text_size_medium"
         android:id="@+id/passwordText"
         android:textColor="@color/colorTextPrimary"
         android:textColorHint="@color/colorTextPrimary"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
+        android:layout_gravity="start"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="110dp"
+        android:layout_marginStart="110dp"
         android:text="@string/forgot_pass"
-        android:textSize="11dp"
+        android:textSize="@dimen/text_size_small"
         android:id="@+id/forgotPasswordLink"
         android:textColor="@color/colorAccent"
-        android:clickable="true"/>
+        android:clickable="true"
+        android:focusable="true" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,6 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sign_in"
+            android:textSize="@dimen/text_size_small"
             android:textColor="@color/colorTextPrimary"
             android:background="@color/colorSecondary"
             android:layout_margin="20dp"
@@ -70,6 +77,7 @@
             android:text="@string/sign_up"
             android:textColor="@color/colorTextPrimary"
             android:background="@color/colorAccent"
+            android:textSize="@dimen/text_size_small"
             android:layout_margin="20dp"
             android:id="@+id/SignUpButton"/>
     </LinearLayout>
