@@ -17,6 +17,7 @@ public interface UserService {
 
     @GET("users")
     Call<List<User>> getAllUsers(@Header("Authorization") String token);
+
     /*@GET("register")
     Call<ResponseBody> registerUser(@Body UserRegister user);*/
 

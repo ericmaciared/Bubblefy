@@ -10,12 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97a12188-3dce-46c6-bb20-f90b641f8550" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/callback/FailureCallback.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/callback/UserCallback.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/service/UserTokenService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/Controller/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/Controller/LoginActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/manager/UserManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/service/UserService.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,8 +37,8 @@
       <list>
         <option value="valueResourceFile" />
         <option value="resourceFile" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -256,7 +252,21 @@
       <option name="project" value="LOCAL" />
       <updated>1583947795973</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="usertoken.java&#10;userlogin.java&#10;constants.java &#10;created">
+      <created>1583949470228</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1583949470228</updated>
+    </task>
+    <task id="LOCAL-00014" summary="update del restapi interfaces">
+      <created>1583949506459</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1583949506459</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -299,7 +309,8 @@
     <MESSAGE value="commit user.java" />
     <MESSAGE value="user.java class finished" />
     <MESSAGE value="usertoken.java&#10;userlogin.java&#10;constants.java &#10;created" />
-    <option name="LAST_COMMIT_MESSAGE" value="usertoken.java&#10;userlogin.java&#10;constants.java &#10;created" />
+    <MESSAGE value="update del restapi interfaces" />
+    <option name="LAST_COMMIT_MESSAGE" value="update del restapi interfaces" />
   </component>
   <component name="masterDetails">
     <states>
