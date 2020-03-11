@@ -10,34 +10,37 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import edu.url.salle.eric.macia.bubblefy.Model.User;
+import edu.url.salle.eric.macia.bubblefy.Model.UserToken;
 import edu.url.salle.eric.macia.bubblefy.R;
+import edu.url.salle.eric.macia.bubblefy.restapi.callback.UserCallback;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements UserCallback {
 
     private final int INCORRECT_CREDENTIALS = 1;
 
-    private Button loginButton;
-    private Button signupButton;
-    private TextView forgotPassword;
-    private EditText usernameText;
-    private EditText passwordText;
+    private Button btnLogin;
+    private Button btnSignUp;
+    private TextView tvForgotPassword;
+    private EditText etUsername;
+    private EditText etPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        loginButton = (Button) findViewById(R.id.LoginButton);
-        signupButton = (Button) findViewById(R.id.SignUpButton);
-        forgotPassword = (TextView) findViewById(R.id.forgotPasswordLink);
-        usernameText = (EditText) findViewById(R.id.usernameText);
-        passwordText = (EditText) findViewById(R.id.passwordText);
+        btnLogin = (Button) findViewById(R.id.LoginButton);
+        btnSignUp = (Button) findViewById(R.id.SignUpButton);
+        tvForgotPassword = (TextView) findViewById(R.id.forgotPasswordLink);
+        etUsername = (EditText) findViewById(R.id.usernameText);
+        etPassword = (EditText) findViewById(R.id.passwordText);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean login = checkLogin(String.valueOf(usernameText.getText()),
-                        String.valueOf(passwordText.getText()));
+                boolean login = checkLogin(String.valueOf(etUsername.getText()),
+                        String.valueOf(etPassword.getText()));
                 if (login){
                     loadHomePageActivity();
                 }
@@ -48,14 +51,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        signupButton.setOnClickListener(new View.OnClickListener() {
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadSignUpPageActivity();
             }
         });
 
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
+        tvForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadForgotPasswordActivity();
@@ -70,8 +73,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void resetButtonFields(){
-        usernameText.setText("");
-        passwordText.setText("");
+        etUsername.setText("");
+        etPassword.setText("");
     }
 
     protected void loadHomePageActivity(){
@@ -103,4 +106,33 @@ public class LoginActivity extends AppCompatActivity {
         toast.show();
     }
 
+    @Override
+    public void onLoginSuccess(UserToken userToken) {
+
+    }
+
+    @Override
+    public void onLoginFailure(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onRegisterSuccess() {
+
+    }
+
+    @Override
+    public void onRegisterFailure(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onUserInfoReceiver(User userData) {
+
+    }
+
+    @Override
+    public void onFailure(Throwable throwable) {
+
+    }
 }
