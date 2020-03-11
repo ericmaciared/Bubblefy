@@ -9,18 +9,18 @@
         android:roundIcon="@mipmap/bubblefy_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity">
+        <activity android:name=".Controller.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RecoveryEmail" />
-        <activity android:name=".NewPassword" />
-        <activity android:name=".RecoverKey" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Controller.RecoveryEmail" />
+        <activity android:name=".Controller.NewPassword" />
+        <activity android:name=".Controller.RecoverKey" />
+        <activity android:name=".Controller.SignUpActivity" />
+        <activity android:name=".Controller.LoginActivity"></activity>
+        <activity android:name=".Controller.MainActivity" />
     </application>
 
 </manifest>

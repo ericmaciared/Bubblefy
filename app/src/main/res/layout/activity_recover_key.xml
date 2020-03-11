@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".RecoverKey">
+    tools:context=".Controller.RecoverKey">
     <TextView
         android:text="@string/app_name"
         android:layout_width="wrap_content"

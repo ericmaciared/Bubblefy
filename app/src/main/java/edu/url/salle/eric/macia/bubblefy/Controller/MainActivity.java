@@ -1,14 +1,16 @@
-package edu.url.salle.eric.macia.bubblefy;
+package edu.url.salle.eric.macia.bubblefy.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class NewPassword extends AppCompatActivity {
+import edu.url.salle.eric.macia.bubblefy.R;
+
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_password);
+        setContentView(R.layout.activity_main);
     }
 }

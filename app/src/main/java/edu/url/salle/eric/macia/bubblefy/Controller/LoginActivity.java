@@ -1,4 +1,4 @@
-package edu.url.salle.eric.macia.bubblefy;
+package edu.url.salle.eric.macia.bubblefy.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import edu.url.salle.eric.macia.bubblefy.R;
 
 public class LoginActivity extends AppCompatActivity {
 

@@ -1,10 +1,12 @@
-package edu.url.salle.eric.macia.bubblefy;
+package edu.url.salle.eric.macia.bubblefy.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import edu.url.salle.eric.macia.bubblefy.R;
 
 public class SplashActivity extends AppCompatActivity {
 
