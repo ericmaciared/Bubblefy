@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.UserManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,15 +40,8 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean login = checkLogin(String.valueOf(etUsername.getText()),
+                checkLogin(String.valueOf(etUsername.getText()),
                         String.valueOf(etPassword.getText()));
-                if (login){
-                    loadHomePageActivity();
-                }
-                else{
-                    toast(INCORRECT_CREDENTIALS);
-                    resetButtonFields();
-                }
             }
         });
 
@@ -66,10 +60,10 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
         });
     }
 
-    private boolean checkLogin(String username, String password){
-        boolean correct = false;
+    private void checkLogin(String username, String password){
         //To be implemented with API
-        return correct;
+        UserManager.getInstance(getApplicationContext())
+                .loginAttempt(username, password, LoginActivity.this);
     }
 
     private void resetButtonFields(){
