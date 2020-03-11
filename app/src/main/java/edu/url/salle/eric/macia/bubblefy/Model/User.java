@@ -57,4 +57,163 @@ public class User implements Serializable {
 
     @SerializedName("tracks")
     private Integer tracks;
+
+    public User(Boolean activated, List<String> authorities, String createdBy, String createdDate,
+                String email, String firstName, Integer followers, Integer following, Integer id,
+                String imageUrl, String langKey, String lastModifiedBy, String lastModifiedDate,
+                String lastName, String login, Integer playlists, Integer tracks) {
+        this.activated = activated;
+        this.authorities = authorities;
+        this.createdBy = createdBy;
+        this.createdDate = createdDate;
+        this.email = email;
+        this.firstName = firstName;
+        this.followers = followers;
+        this.following = following;
+        this.id = id;
+        this.imageUrl = imageUrl;
+        this.langKey = langKey;
+        this.lastModifiedBy = lastModifiedBy;
+        this.lastModifiedDate = lastModifiedDate;
+        this.lastName = lastName;
+        this.login = login;
+        this.playlists = playlists;
+        this.tracks = tracks;
+    }
+
+    public Boolean getActivated() {
+        return activated;
+    }
+
+    public void setActivated(Boolean activated) {
+        this.activated = activated;
+    }
+
+    public List<String> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(List<String> authorities) {
+        this.authorities = authorities;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public Integer getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(Integer followers) {
+        this.followers = followers;
+    }
+
+    public Integer getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(Integer following) {
+        this.following = following;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getLangKey() {
+        return langKey;
+    }
+
+    public void setLangKey(String langKey) {
+        this.langKey = langKey;
+    }
+
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
+
+    public String getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(String lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public Integer getPlaylists() {
+        return playlists;
+    }
+
+    public void setPlaylists(Integer playlists) {
+        this.playlists = playlists;
+    }
+
+    public Integer getTracks() {
+        return tracks;
+    }
+
+    public void setTracks(Integer tracks) {
+        this.tracks = tracks;
+    }
 }
