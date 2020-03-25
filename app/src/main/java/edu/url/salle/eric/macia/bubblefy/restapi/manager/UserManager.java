@@ -5,17 +5,21 @@ import android.util.Log;
 
 import java.io.IOException;
 
-import edu.url.salle.eric.macia.bubblefy.Model.UserLogin;
-import edu.url.salle.eric.macia.bubblefy.Model.UserToken;
-import edu.url.salle.eric.macia.bubblefy.Utils.Constants;
-import edu.url.salle.eric.macia.bubblefy.restapi.callback.UserCallback;
-import edu.url.salle.eric.macia.bubblefy.restapi.service.UserService;
-import edu.url.salle.eric.macia.bubblefy.restapi.service.UserTokenService;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import edu.url.salle.eric.macia.bubblefy.model.User;
+import edu.url.salle.eric.macia.bubblefy.model.UserLogin;
+import edu.url.salle.eric.macia.bubblefy.model.UserRegister;
+import edu.url.salle.eric.macia.bubblefy.model.UserToken;
+import edu.url.salle.eric.macia.bubblefy.restapi.callback.UserCallback;
+import edu.url.salle.eric.macia.bubblefy.restapi.service.UserService;
+import edu.url.salle.eric.macia.bubblefy.restapi.service.UserTokenService;
+import edu.url.salle.eric.macia.bubblefy.utils.Constants;
+import edu.url.salle.eric.macia.bubblefy.utils.Session;
 
 public class UserManager {
 
@@ -28,51 +32,50 @@ public class UserManager {
     private UserService mService;
     private UserTokenService mTokenService;
 
-    public static UserManager getInstance(Context context){
-        if (sUserManager == null){
+    public static UserManager getInstance(Context context) {
+        if (sUserManager == null) {
             sUserManager = new UserManager(context);
         }
         return sUserManager;
     }
 
-    public UserManager(Context cntxt) {
+    private UserManager(Context cntxt) {
         mContext = cntxt;
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(Constants.NETWORK.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
         mService = mRetrofit.create(UserService.class);
         mTokenService = mRetrofit.create(UserTokenService.class);
     }
 
-    /***************************   LOGIN   ***************************/
+
+    /********************   LOGIN    ********************/
     public synchronized void loginAttempt (String username, String password,
-                                           final UserCallback userCallback){
+                                           final UserCallback userCallback) {
+
         Call<UserToken> call = mTokenService.loginUser(new UserLogin(username, password,
                 true));
 
         call.enqueue(new Callback<UserToken>() {
-            //Case where server provides response
             @Override
             public void onResponse(Call<UserToken> call, Response<UserToken> response) {
-                int code = response.code(); //HTTP status code
-                UserToken userToken = response.body(); //HTTP status explanation
+                int code = response.code();
+                UserToken userToken = response.body();
 
-                if (response.isSuccessful()){
-                    //We get a token for the user
+                if (response.isSuccessful()) {
                     userCallback.onLoginSuccess(userToken);
                 } else {
                     Log.d(TAG, "Error: " + code);
-                    try{
-                        userCallback.onLoginFailure(new Throwable("ERROR "+ code + ", " +
-                                response.errorBody().string()));
+                    try {
+                        userCallback.onLoginFailure(new Throwable("ERROR " + code + ", " + response.errorBody().string()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             }
 
-            //Case where server is not responding
             @Override
             public void onFailure(Call<UserToken> call, Throwable t) {
                 Log.d(TAG, "Error: " + t.getMessage());
@@ -80,5 +83,68 @@ public class UserManager {
             }
         });
     }
+
+    /********************   USER INFO    ********************/
+    public synchronized void getUserData (String login, final UserCallback userCallback) {
+        UserToken userToken = Session.getInstance(mContext).getUserToken();
+        Call<User> call = mService.getUserById(login, "Bearer " + userToken.getIdToken());
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+
+                int code = response.code();
+                if (response.isSuccessful()) {
+                    userCallback.onUserInfoReceived(response.body());
+                } else {
+                    Log.d(TAG, "Error NOT SUCCESSFUL: " + response.toString());
+                    try {
+                        userCallback.onFailure(new Throwable("ERROR " + code + ", " + response.errorBody().string()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.d(TAG, "Error: " + t.getMessage());
+                userCallback.onFailure(new Throwable("ERROR " + t.getStackTrace()));
+            }
+        });
+    }
+
+    /********************   REGISTRATION    ********************/
+    public synchronized void registerAttempt (String email, String username, String password,
+                                              final UserCallback userCallback) {
+
+        Call<ResponseBody> call = mService.registerUser(new UserRegister(email, username, password));
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                int code = response.code();
+                if (response.isSuccessful()) {
+                    userCallback.onRegisterSuccess();
+                } else {
+                    try {
+                        userCallback.onRegisterFailure(new Throwable("ERROR " + code + ", " +
+                                response.errorBody().string()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                userCallback.onFailure(t);
+            }
+        });
+    }
+
+
+    /********************   GETTERS / SETTERS    ********************/
+
 
 }

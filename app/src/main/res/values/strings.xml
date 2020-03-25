@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Bubblefy</string>
+
     <string name="subtitle">Welcome to Bubblefy!</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -19,6 +20,13 @@
     <string name="reset_password">Reset Password</string>
     <string name="email_recovery_message">It\'s OK, no one is perfect.</string>
     <string name="send_key">Send Key</string>
+
+    <string name="track_list">List</string>
+
+
+    <!-- DEFAULT TRACK -->
+    <string name="default_track_title">Título canción</string>
+    <string name="default_track_author">Autor/a</string>
 
 
 </resources>

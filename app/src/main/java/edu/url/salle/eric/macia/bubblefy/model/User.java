@@ -1,4 +1,4 @@
-package edu.url.salle.eric.macia.bubblefy.Model;
+package edu.url.salle.eric.macia.bubblefy.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -25,12 +25,6 @@ public class User implements Serializable {
     @SerializedName("firstName")
     private String firstName;
 
-    @SerializedName("followers")
-    private Integer followers;
-
-    @SerializedName("following")
-    private Integer following;
-
     @SerializedName("id")
     private Integer id;
 
@@ -42,15 +36,12 @@ public class User implements Serializable {
 
     @SerializedName("lastModifiedBy")
     private String lastModifiedBy;
-    
+
     @SerializedName("lastModifiedDate")
     private String lastModifiedDate;
 
     @SerializedName("lastName")
     private String lastName;
-
-    @SerializedName("login")
-    private String login;
 
     @SerializedName("playlists")
     private Integer playlists;
@@ -58,27 +49,36 @@ public class User implements Serializable {
     @SerializedName("tracks")
     private Integer tracks;
 
-    public User(Boolean activated, List<String> authorities, String createdBy, String createdDate,
-                String email, String firstName, Integer followers, Integer following, Integer id,
-                String imageUrl, String langKey, String lastModifiedBy, String lastModifiedDate,
-                String lastName, String login, Integer playlists, Integer tracks) {
+    @SerializedName("followers")
+    private Integer followers;
+
+    @SerializedName("following")
+    private Integer following;
+
+    @SerializedName("login")
+    private String login;
+
+    public User() {
+    }
+
+    public User(Boolean activated, List<String> authorities, String createdBy, String createdDate, String email, String firstName, Integer id, String imageUrl, String langKey, String lastModifiedBy, String lastModifiedDate, String lastName, Integer playlists, Integer tracks, Integer followers, Integer following, String login) {
         this.activated = activated;
         this.authorities = authorities;
         this.createdBy = createdBy;
         this.createdDate = createdDate;
         this.email = email;
         this.firstName = firstName;
-        this.followers = followers;
-        this.following = following;
         this.id = id;
         this.imageUrl = imageUrl;
         this.langKey = langKey;
         this.lastModifiedBy = lastModifiedBy;
         this.lastModifiedDate = lastModifiedDate;
         this.lastName = lastName;
-        this.login = login;
         this.playlists = playlists;
         this.tracks = tracks;
+        this.followers = followers;
+        this.following = following;
+        this.login = login;
     }
 
     public Boolean getActivated() {
@@ -129,22 +129,6 @@ public class User implements Serializable {
         this.firstName = firstName;
     }
 
-    public Integer getFollowers() {
-        return followers;
-    }
-
-    public void setFollowers(Integer followers) {
-        this.followers = followers;
-    }
-
-    public Integer getFollowing() {
-        return following;
-    }
-
-    public void setFollowing(Integer following) {
-        this.following = following;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -193,14 +177,6 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     public Integer getPlaylists() {
         return playlists;
     }
@@ -215,5 +191,29 @@ public class User implements Serializable {
 
     public void setTracks(Integer tracks) {
         this.tracks = tracks;
+    }
+
+    public Integer getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(Integer followers) {
+        this.followers = followers;
+    }
+
+    public Integer getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(Integer following) {
+        this.following = following;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 }

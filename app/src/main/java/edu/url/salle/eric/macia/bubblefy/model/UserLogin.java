@@ -1,28 +1,28 @@
-package edu.url.salle.eric.macia.bubblefy.Model;
+package edu.url.salle.eric.macia.bubblefy.model;
 
 import com.google.gson.annotations.SerializedName;
 
 public class UserLogin {
 
     @SerializedName("username")
-    private String username;
+    private String userName;
     @SerializedName("password")
     private String password;
     @SerializedName("rememberMe")
     private boolean rememberMe;
 
-    public UserLogin(String username, String password, boolean rememberMe) {
-        this.username = username;
+    public UserLogin(String userName, String password, boolean rememberMe) {
+        this.userName = userName;
         this.password = password;
         this.rememberMe = rememberMe;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -41,3 +41,4 @@ public class UserLogin {
         this.rememberMe = rememberMe;
     }
 }
+

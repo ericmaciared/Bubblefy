@@ -1,7 +1,7 @@
 package edu.url.salle.eric.macia.bubblefy.restapi.service;
 
-import edu.url.salle.eric.macia.bubblefy.Model.UserLogin;
-import edu.url.salle.eric.macia.bubblefy.Model.UserToken;
+import edu.url.salle.eric.macia.bubblefy.model.UserLogin;
+import edu.url.salle.eric.macia.bubblefy.model.UserToken;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

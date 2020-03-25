@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".Controller.SignUpActivity"
+    tools:context="edu.url.salle.eric.macia.bubblefy.controller.activity.RegisterActivity"
     android:background="@color/colorBackground">
     <LinearLayout
     android:layout_width="wrap_content"
@@ -34,30 +34,35 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorTextPrimary"
         android:textColorHint="@color/colorTextPrimary"
+        android:id="@+id/usernameText"
         android:hint="@string/username"/>
     <EditText
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:textColor="@color/colorTextPrimary"
         android:textColorHint="@color/colorTextPrimary"
+        android:id="@+id/emailText"
         android:hint="@string/email"/>
     <EditText
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:textColor="@color/colorTextPrimary"
         android:textColorHint="@color/colorTextPrimary"
+        android:id="@+id/repeatEmailText"
         android:hint="@string/rep_email"/>
     <EditText
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:textColor="@color/colorTextPrimary"
         android:textColorHint="@color/colorTextPrimary"
+        android:id="@+id/passwordText"
         android:hint="@string/password"/>
     <EditText
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:textColor="@color/colorTextPrimary"
         android:textColorHint="@color/colorTextPrimary"
+        android:id="@+id/repeatPasswordText"
         android:hint="@string/rep_pass"/>
     <CheckBox
         android:layout_width="wrap_content"

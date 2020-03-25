@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".Controller.RecoveryEmail"
+    tools:context="edu.url.salle.eric.macia.bubblefy.controller.activity.RecoveryEmail"
     android:background="@color/colorBackground">
     <LinearLayout
         android:layout_width="wrap_content"

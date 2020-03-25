@@ -1,4 +1,4 @@
-package edu.url.salle.eric.macia.bubblefy.Controller;
+package edu.url.salle.eric.macia.bubblefy.controller.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import edu.url.salle.eric.macia.bubblefy.R;
 
-public class SignUpActivity extends AppCompatActivity {
+public class RecoverKey extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_recover_key);
     }
 }

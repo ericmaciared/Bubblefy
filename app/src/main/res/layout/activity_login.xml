@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".Controller.LoginActivity"
+    tools:context="edu.url.salle.eric.macia.bubblefy.controller.activity.LoginActivity"
     android:background="@color/colorBackground">
 
     <ImageView

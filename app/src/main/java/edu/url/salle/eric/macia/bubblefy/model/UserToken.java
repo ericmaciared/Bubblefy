@@ -1,8 +1,9 @@
-package edu.url.salle.eric.macia.bubblefy.Model;
+package edu.url.salle.eric.macia.bubblefy.model;
 
 import com.google.gson.annotations.SerializedName;
 
 public class UserToken {
+
     @SerializedName("id_token")
     private String idToken;
 
@@ -20,7 +21,7 @@ public class UserToken {
 
     @Override
     public String toString() {
-        return "UserToken{" +
+        return "UserTokenService{" +
                 "idToken='" + idToken + '\'' +
                 '}';
     }

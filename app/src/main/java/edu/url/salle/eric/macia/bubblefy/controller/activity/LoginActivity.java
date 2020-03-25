@@ -1,18 +1,19 @@
-package edu.url.salle.eric.macia.bubblefy.Controller;
+package edu.url.salle.eric.macia.bubblefy.controller.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.UserManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import edu.url.salle.eric.macia.bubblefy.Model.User;
-import edu.url.salle.eric.macia.bubblefy.Model.UserToken;
+import edu.url.salle.eric.macia.bubblefy.model.User;
+import edu.url.salle.eric.macia.bubblefy.model.UserToken;
+import edu.url.salle.eric.macia.bubblefy.utils.Session;
+import edu.url.salle.eric.macia.bubblefy.restapi.manager.UserManager;
 import edu.url.salle.eric.macia.bubblefy.R;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.UserCallback;
 
@@ -40,7 +41,7 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkLogin(String.valueOf(etUsername.getText()),
+                doLogin(String.valueOf(etUsername.getText()),
                         String.valueOf(etPassword.getText()));
             }
         });
@@ -60,8 +61,7 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
         });
     }
 
-    private void checkLogin(String username, String password){
-        //To be implemented with API
+    private void doLogin(String username, String password){
         UserManager.getInstance(getApplicationContext())
                 .loginAttempt(username, password, LoginActivity.this);
     }
@@ -71,13 +71,8 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
         etPassword.setText("");
     }
 
-    protected void loadHomePageActivity(){
-        /*Intent intent = new Intent(this, null.class);
-        startActivity(intent);*/
-    }
-
     protected void loadSignUpPageActivity(){
-        Intent intent = new Intent(this, SignUpActivity.class);
+        Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
 
@@ -102,12 +97,16 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
 
     @Override
     public void onLoginSuccess(UserToken userToken) {
-
+        Session.getInstance(getApplicationContext())
+                .setUserToken(userToken);
+        Intent intent = new Intent(this, ListActivity.class);
+        startActivity(intent);
     }
 
     @Override
     public void onLoginFailure(Throwable throwable) {
-
+        toast(INCORRECT_CREDENTIALS);
+        resetButtonFields();
     }
 
     @Override
@@ -121,7 +120,7 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
     }
 
     @Override
-    public void onUserInfoReceiver(User userData) {
+    public void onUserInfoReceived(User userData) {
 
     }
 

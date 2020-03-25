@@ -1,4 +1,4 @@
-package edu.url.salle.eric.macia.bubblefy.Controller;
+package edu.url.salle.eric.macia.bubblefy.controller.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
