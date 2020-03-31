@@ -24,9 +24,10 @@
             android:hint="Search"
             android:textSize="@dimen/text_size_medium"
             android:id="@+id/search_text"
-            android:textColor="@color/colorTextPrimary"
-            android:textColorHint="@color/colorTextPrimary"/>
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"/>
         <Button
+            android:id="@+id/search_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Search"
@@ -34,7 +35,7 @@
             android:textColor="@color/colorTextPrimary"
             android:background="@color/colorAccent"
             android:textSize="@dimen/text_size_small"
-            android:id="@+id/search_button"/>
+            />
     </LinearLayout>
         <RadioGroup
             android:id="@+id/group_buttons"
@@ -65,4 +66,10 @@
         android:layout_marginTop="60dp"
         android:textColor="@color/colorPrimary"
         android:textSize="70sp"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"/>
+
 </LinearLayout>
