@@ -1,7 +1,5 @@
 package edu.url.salle.eric.macia.bubblefy.controller.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,12 +8,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import edu.url.salle.eric.macia.bubblefy.R;
 import edu.url.salle.eric.macia.bubblefy.model.User;
 import edu.url.salle.eric.macia.bubblefy.model.UserToken;
-import edu.url.salle.eric.macia.bubblefy.utils.Session;
-import edu.url.salle.eric.macia.bubblefy.restapi.manager.UserManager;
-import edu.url.salle.eric.macia.bubblefy.R;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.UserCallback;
+import edu.url.salle.eric.macia.bubblefy.restapi.manager.UserManager;
+import edu.url.salle.eric.macia.bubblefy.utils.Session;
 
 public class LoginActivity extends AppCompatActivity implements UserCallback {
 
@@ -99,7 +99,7 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
     public void onLoginSuccess(UserToken userToken) {
         Session.getInstance(getApplicationContext())
                 .setUserToken(userToken);
-        Intent intent = new Intent(this, ListActivity.class);
+        Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
     }
 
