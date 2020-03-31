@@ -12,12 +12,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97a12188-3dce-46c6-bb20-f90b641f8550" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/activity/SearchActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/model/Search.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/callback/SearchCallback.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/manager/SearchManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/service/SearchService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" afterDir="false" />
@@ -28,11 +22,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/activity/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/activity/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/callback/PlaylistCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/callback/PlaylistCallback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/activity/SearchActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/activity/SearchActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -305,7 +297,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583949961661</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Retrofit on search activity implemented">
+      <created>1585674890477</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1585674890477</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -350,7 +349,9 @@
     <MESSAGE value="usertoken.java&#10;userlogin.java&#10;constants.java &#10;created" />
     <MESSAGE value="update del restapi interfaces" />
     <MESSAGE value="usermanager implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="usermanager implemented" />
+    <MESSAGE value="Retrofit on search button implemented" />
+    <MESSAGE value="Retrofit on search activity implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Retrofit on search activity implemented" />
   </component>
   <component name="masterDetails">
     <states>
