@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,7 +18,9 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import edu.url.salle.eric.macia.bubblefy.R;
+import edu.url.salle.eric.macia.bubblefy.controller.callbacks.TrackListCallback;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
+
 
 public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.ViewHolder> {
 
@@ -25,7 +28,9 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
     private OnItemClickedListener mListener;
     private static final String TAG = "TrackListAdapter";
     private ArrayList<Track> mTracks;
+    private TrackListCallback mCallback;
     private Context mContext;
+    private int NUM_VIEWHOLDERS = 0;
 
     public interface OnItemClickedListener{
         void onItemClicked(int position);
@@ -39,6 +44,8 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
     public TrackListAdapter(Context context, ArrayList<Track> tracks) {
         mContext = context;
         mTracks = tracks;
+        mContext = context;
+        mCallback = callback;
     }
 
     @NonNull
@@ -73,6 +80,7 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        LinearLayout mLayout;
         TextView tvTitle;
         TextView tvAuthor;
         ImageView ivPicture;
@@ -80,6 +88,7 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
 
         public ViewHolder(@NonNull View itemView, final OnItemClickedListener listener) {
             super(itemView);
+            mLayout = itemView.findViewById(R.id.track_item_layout);
             tvTitle = (TextView) itemView.findViewById(R.id.track_title);
             tvAuthor = (TextView) itemView.findViewById(R.id.track_author);
             ivPicture = (ImageView) itemView.findViewById(R.id.track_img);
