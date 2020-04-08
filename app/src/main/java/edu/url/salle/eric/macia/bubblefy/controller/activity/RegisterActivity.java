@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -22,8 +23,11 @@ public class RegisterActivity extends AppCompatActivity
         implements UserCallback{
 
     private EditText etEmail;
+    private EditText etREmail;
     private EditText etLogin;
     private EditText etPassword;
+    private EditText etRPassword;
+    private CheckBox cbBox;
     private Button btnRegister;
 
     @Override
@@ -34,8 +38,11 @@ public class RegisterActivity extends AppCompatActivity
         etEmail = (EditText) findViewById(R.id.emailText);
         etLogin = (EditText) findViewById(R.id.usernameText);
         etPassword = (EditText) findViewById(R.id.passwordText);
+        etREmail = (EditText) findViewById(R.id.repeatEmailText);
+        etRPassword = (EditText) findViewById(R.id.repeatPasswordText);
+        cbBox = (CheckBox) findViewById(R.id.checkbox);
 
-        btnRegister = (Button) findViewById(R.id.proceedSignUpButton);
+        btnRegister = (Button) findViewById(R.id.btnSignUp);
         btnRegister.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -43,12 +50,44 @@ public class RegisterActivity extends AppCompatActivity
                 String login = etLogin.getText().toString();
                 String password = etPassword.getText().toString();
                 String email = etEmail.getText().toString();
-                Session.getInstance(getApplicationContext()).setUserRegister(
-                        new UserRegister(email, login, password));
-                UserManager.getInstance(getApplicationContext()).registerAttempt(email,
-                        login, password, RegisterActivity.this);
+                String rPassword = etRPassword.getText().toString();
+                String rEmail = etREmail.getText().toString();
+                if (checkData(email, rEmail, password, rPassword)){
+                    Session.getInstance(getApplicationContext()).setUserRegister(
+                            new UserRegister(email, login, password));
+                    UserManager.getInstance(getApplicationContext()).registerAttempt(email,
+                            login, password, RegisterActivity.this);
+                }
             }
         });
+    }
+
+    private boolean checkData(String email, String rEmail, String password, String rPassword) {
+        boolean valid = true;
+        if (!email.equals(rEmail)) {
+            valid = false;
+            Toast.makeText(getApplicationContext(), "Email doesn't match",
+                    Toast.LENGTH_LONG).show();
+        } else if (!password.equals(rPassword)){
+            valid = false;
+            Toast.makeText(getApplicationContext(), "Password doesn't match",
+                    Toast.LENGTH_LONG).show();
+        } else if (!cbBox.isChecked()){
+            valid = false;
+            Toast.makeText(getApplicationContext(), "Terms and Conditions not accepted",
+                    Toast.LENGTH_LONG).show();
+        }
+        resetFields();
+        return valid;
+    }
+
+    private void resetFields() {
+        etEmail.setText("");
+        etLogin.setText("");
+        etPassword.setText("");
+        etREmail.setText("");
+        etRPassword.setText("");
+        return;
     }
 
     private void doLogin(String username, String password){

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,12 +8,17 @@
     android:orientation="vertical"
     tools:context="edu.url.salle.eric.macia.bubblefy.controller.activity.SplashActivity"
     android:background="@color/colorBackground">
+
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="175dp"
+        android:layout_height="150dp"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="20dp"
         android:src="@drawable/bubblefy_logo"></ImageView>
+
     <ImageView
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:src="@drawable/bubblefy_text_color"></ImageView>
+        android:id="@+id/imageView"
+        android:layout_width="261dp"
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/ic_bubblefy_text" />
 </LinearLayout>

@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".controller.activity.SearchActivity"></activity>
+        <activity android:name=".controller.activity.StartActivity"></activity>
+        <activity android:name=".controller.activity.SearchActivity" />
         <activity android:name=".controller.activity.ListActivity" />
         <activity
             android:name=".controller.activity.SplashActivity"
@@ -30,6 +31,10 @@
         <activity android:name=".controller.activity.RegisterActivity" />
         <activity android:name=".controller.activity.LoginActivity" />
         <activity android:name=".controller.activity.MainActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -33,8 +33,6 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
         setContentView(R.layout.activity_login);
 
         btnLogin = (Button) findViewById(R.id.LoginButton);
-        btnSignUp = (Button) findViewById(R.id.SignUpButton);
-        tvForgotPassword = (TextView) findViewById(R.id.forgotPasswordLink);
         etUsername = (EditText) findViewById(R.id.usernameText);
         etPassword = (EditText) findViewById(R.id.passwordText);
 
@@ -46,19 +44,6 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
             }
         });
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadSignUpPageActivity();
-            }
-        });
-
-        tvForgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadForgotPasswordActivity();
-            }
-        });
     }
 
     private void doLogin(String username, String password){
@@ -69,16 +54,6 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
     private void resetButtonFields(){
         etUsername.setText("");
         etPassword.setText("");
-    }
-
-    protected void loadSignUpPageActivity(){
-        Intent intent = new Intent(this, RegisterActivity.class);
-        startActivity(intent);
-    }
-
-    protected void loadForgotPasswordActivity(){
-        Intent intent = new Intent(this, RecoveryEmail.class);
-        startActivity(intent);
     }
 
     private void toast(int toastCode){

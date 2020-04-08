@@ -28,63 +28,54 @@
             app:srcCompat="@drawable/ic_bubblefy_text_white" />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="@string/subtitle"
-        android:layout_below="@+id/layout1"
-        android:layout_marginTop="120dp"
-        android:textColor="@color/colorTextPrimary"
-        android:textSize="@dimen/text_size_big" />
-
     <LinearLayout
-        android:id="@+id/layout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/usernameText"
-            android:layout_width="300dp"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/open_sans_light"
-            android:hint="@string/username"
+            android:fontFamily="@font/open_sans"
+            android:text="Your bubble."
             android:textColor="@color/colorTextPrimary"
-            android:textColorHint="@color/colorTextPrimary"
-            android:textSize="@dimen/text_size_medium" />
-
-        <EditText
-            android:id="@+id/passwordText"
-            android:layout_width="300dp"
+            android:textSize="@dimen/text_size_big" />
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:fontFamily="@font/open_sans_light"
+            android:fontFamily="@font/open_sans_bold"
+            android:text="Everywhere."
             android:textColor="@color/colorTextPrimary"
-            android:textColorHint="@color/colorTextPrimary"
-            android:layout_marginTop="10dp"
-            android:textSize="@dimen/text_size_medium" />
+            android:textSize="@dimen/text_size_big" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:gravity="center">
 
         <Button
-            android:id="@+id/LoginButton"
+            android:id="@+id/btnSignUp"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:background="@drawable/round_button"
-            android:text="@string/sign_in"
+            android:text="@string/sign_up"
             android:fontFamily="@font/open_sans"
             android:textColor="@color/colorTextPrimary"
             android:textSize="@dimen/text_size_smallmedium" />
+        <Button
+            android:id="@+id/btnLogIn"
+            android:layout_width="wrap_content"
+            android:background="#0000"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_in"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/text_size_smallmedium"
+            android:layout_marginTop="10dp"/>
 
     </LinearLayout>
 

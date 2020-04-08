@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Bubblefy</string>
 
-    <string name="subtitle">Welcome to Bubblefy!</string>
+    <string name="subtitle">Welcome back!</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="sign_in">Log In</string>

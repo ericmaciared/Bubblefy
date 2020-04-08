@@ -17,10 +17,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/bubblefy_logo"></ImageView>
 
-        <ImageView
-            android:layout_width="238dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/bubblefy_text_color"></ImageView>
+
     </LinearLayout>
     <TextView
         android:text="@string/forgot_pass"
