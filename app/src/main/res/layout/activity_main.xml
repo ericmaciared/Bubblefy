@@ -63,15 +63,23 @@
         android:paddingBottom="20dp"
         android:textSize="@dimen/text_size_smallmedium" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
+    <FrameLayout
+        android:layout_below="@id/tag2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tag2"
-        android:background="@color/colorTextPrimary"
-        android:orientation="vertical" />
+        android:layout_margin="1dp"
+        android:layout_height="match_parent"
+        android:layout_above="@id/navbar">
+
+        <com.igalata.bubblepicker.rendering.BubblePicker
+            android:id="@+id/picker"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:backgroundColor="#0000" />
+
+    </FrameLayout>
 
     <LinearLayout
+        android:id="@+id/navbar"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
