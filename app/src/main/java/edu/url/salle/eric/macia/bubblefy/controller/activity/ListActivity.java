@@ -15,14 +15,14 @@ import edu.url.salle.eric.macia.bubblefy.R;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.TrackListAdapter;
 import edu.url.salle.eric.macia.bubblefy.model.Playlist;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
+import edu.url.salle.eric.macia.bubblefy.restapi.callback.ListCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.PlaylistCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.TrackCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.PlaylistManager;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.TrackManager;
 
 
-public class ListActivity extends AppCompatActivity
-        implements TrackCallback, PlaylistCallback {
+public class ListActivity extends AppCompatActivity implements TrackCallback, ListCallback, PlaylistCallback {
 
     private RecyclerView mRecyclerView;
     private ArrayList<Track> mTracks;
@@ -39,7 +39,7 @@ public class ListActivity extends AppCompatActivity
     private void initViews() {
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        TrackListAdapter adapter = new TrackListAdapter(this, null);
+        TrackListAdapter adapter = new TrackListAdapter(this, this, null);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);
     }
@@ -52,7 +52,7 @@ public class ListActivity extends AppCompatActivity
     @Override
     public void onTracksReceived(List<Track> tracks) {
         mTracks = (ArrayList) tracks;
-        TrackListAdapter adapter = new TrackListAdapter(this, mTracks);
+        TrackListAdapter adapter = new TrackListAdapter(this, this, mTracks);
         mRecyclerView.setAdapter(adapter);
 
         Playlist playlist = new Playlist();
@@ -79,13 +79,29 @@ public class ListActivity extends AppCompatActivity
     }
 
     @Override
+    public void onCreateTrack() {
+
+    }
+
+    @Override
     public void onFailure(Throwable throwable) {
+
+    }
+
+
+    @Override
+    public void onTrackSelected(Track track) {
+
+    }
+
+    @Override
+    public void onTrackSelected(int index) {
 
     }
 
     @Override
     public void onPlaylistCreated(Playlist playlist) {
-        Toast.makeText(this, "PlaylistCallback here!\n Playlist name:" + playlist.getName(), Toast.LENGTH_LONG).show();
+
     }
 
     @Override

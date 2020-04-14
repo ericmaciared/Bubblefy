@@ -54,7 +54,7 @@
             android:layout_height="40dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:backgroundTint="@color/colorWhite"
+            android:backgroundTint="@color/white"
             android:progressBackgroundTint="@color/white" />
 
         <LinearLayout
@@ -83,7 +83,7 @@
                     android:singleLine="true"
                     android:text="@string/default_track_title"
                     android:textAlignment="center"
-                    android:textColor="@color/colorWhite"
+                    android:textColor="@color/white"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 

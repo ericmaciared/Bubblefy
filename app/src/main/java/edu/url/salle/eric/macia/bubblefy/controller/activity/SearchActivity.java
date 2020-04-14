@@ -19,13 +19,14 @@ import edu.url.salle.eric.macia.bubblefy.controller.adapters.TrackListAdapter;
 import edu.url.salle.eric.macia.bubblefy.model.Playlist;
 import edu.url.salle.eric.macia.bubblefy.model.Search;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
+import edu.url.salle.eric.macia.bubblefy.restapi.callback.ListCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.PlaylistCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.SearchCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.PlaylistManager;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.SearchManager;
 
 
-public class SearchActivity extends AppCompatActivity implements SearchCallback, RadioGroup.OnCheckedChangeListener, PlaylistCallback {
+public class SearchActivity extends AppCompatActivity implements SearchCallback, RadioGroup.OnCheckedChangeListener, PlaylistCallback, ListCallback {
 
     RadioGroup radioGroup;
     RadioButton radioButton1;
@@ -67,7 +68,7 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
     @Override
     public void onSearchReceived(Search search) {
         mTracks = (ArrayList) search.getTracks();
-        TrackListAdapter adapter = new TrackListAdapter(this, mTracks);
+        TrackListAdapter adapter = new TrackListAdapter( this, this, mTracks);
         mRecyclerView.setAdapter(adapter);
 
         Playlist playlist = new Playlist();
@@ -81,7 +82,7 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
     private void initViews() {
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        TrackListAdapter adapter = new TrackListAdapter(this, null);
+        TrackListAdapter adapter = new TrackListAdapter(this, this, null);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);
     }
@@ -113,6 +114,16 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
 
     @Override
     public void onPlaylistFailure(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onTrackSelected(Track track) {
+
+    }
+
+    @Override
+    public void onTrackSelected(int index) {
 
     }
 }

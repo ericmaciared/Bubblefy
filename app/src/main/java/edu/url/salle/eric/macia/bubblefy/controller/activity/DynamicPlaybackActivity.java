@@ -1,5 +1,6 @@
 package edu.url.salle.eric.macia.bubblefy.controller.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -27,6 +28,7 @@ import edu.url.salle.eric.macia.bubblefy.model.Track;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.ListCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.TrackCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.TrackManager;
+import edu.url.salle.eric.macia.bubblefy.R;
 
 
 public class DynamicPlaybackActivity extends Activity implements TrackCallback, ListCallback {
