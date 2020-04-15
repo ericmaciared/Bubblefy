@@ -10,7 +10,7 @@ import edu.url.salle.eric.macia.bubblefy.R;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private long splashTime = 3000; //3 SECONDS
+    private long time = 3000; //3 SECONDS
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,6 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, splashTime);
+        }, time);
     }
 }
