@@ -5,15 +5,17 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:background="@drawable/gradient"
     tools:context=".controller.activity.SearchActivity">
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:text="@string/track_list"
-        android:textColor="@color/colorPrimary"
-        android:textSize="70sp"/>
+        android:text="Find anything you want"
+        android:fontFamily="@font/open_sans_bold"
+        android:textSize="@dimen/text_size_medium"
+        android:textColor="@color/colorTextPrimary"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,55 +23,58 @@
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:hint="Search"
+            android:hint="Search..."
             android:textSize="@dimen/text_size_medium"
             android:id="@+id/search_text"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"/>
+            android:textColor="@color/colorTextPrimary"
+            android:textColorHint="@color/colorTextPrimary"/>
         <Button
             android:id="@+id/search_button"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="Search"
             android:layout_marginLeft="20dp"
+            android:background="@drawable/round_button"
+            android:fontFamily="@font/open_sans"
             android:textColor="@color/colorTextPrimary"
-            android:background="@color/colorAccent"
-            android:textSize="@dimen/text_size_small"
+            android:textSize="@dimen/text_size_medium"
             />
     </LinearLayout>
         <RadioGroup
             android:id="@+id/group_buttons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="17dp"
             android:orientation="horizontal">
                 <RadioButton
                 android:id="@+id/radio_song"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/white"
+                android:textColor="@color/colorTextPrimary"
                 android:text="Songs"
                 android:checked="true"/>
                 <RadioButton
                 android:id="@+id/radio_playlists"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/white"
+                android:textColor="@color/colorTextPrimary"
                 android:text="Playlists"/>
                 <RadioButton
                 android:id="@+id/radio_users"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/white"
+                android:textColor="@color/colorTextPrimary"
                 android:text="Users"/>
         </RadioGroup>
-    <TextView
-        android:id="@+id/textprova"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:textColor="@color/colorPrimary"
-        android:textSize="70sp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="35dp"
         android:orientation="vertical"/>
 
 </LinearLayout>

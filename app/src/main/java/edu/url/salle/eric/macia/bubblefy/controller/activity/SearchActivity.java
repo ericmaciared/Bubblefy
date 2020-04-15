@@ -11,14 +11,18 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import edu.url.salle.eric.macia.bubblefy.R;
+import edu.url.salle.eric.macia.bubblefy.controller.adapters.PlaylistListAdapter;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.TrackListAdapter;
+import edu.url.salle.eric.macia.bubblefy.controller.adapters.UserListAdapter;
 import edu.url.salle.eric.macia.bubblefy.model.Playlist;
 import edu.url.salle.eric.macia.bubblefy.model.Search;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
+import edu.url.salle.eric.macia.bubblefy.model.User;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.PlaylistCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.SearchCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.PlaylistManager;
@@ -34,8 +38,11 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
     TextView textToShow;
     private RecyclerView mRecyclerView;
     private ArrayList<Track> mTracks;
+    private ArrayList<Playlist> mPlay;
+    private ArrayList<User> mUsers;
     private Button buttonLogin;
     private EditText searchText;
+    private boolean searchPerformed = false;
 
 
     @Override
@@ -46,7 +53,6 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
         radioButton1 = findViewById(R.id.radio_song);
         radioButton2 = findViewById(R.id.radio_playlists);
         radioButton3 = findViewById(R.id.radio_users);
-        textToShow = findViewById(R.id.textprova);
         buttonLogin = findViewById(R.id.search_button);
         radioGroup.setOnCheckedChangeListener(this);
         searchText = findViewById(R.id.search_text);
@@ -67,18 +73,60 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
     @Override
     public void onSearchReceived(Search search) {
         mTracks = (ArrayList) search.getTracks();
-        TrackListAdapter adapter = new TrackListAdapter(this, mTracks);
-        mRecyclerView.setAdapter(adapter);
+        mPlay = (ArrayList) search.getPlaylists();
+        mUsers = (ArrayList) search.getUsers();
+        searchPerformed = true;
+        String text;
 
-        Playlist playlist = new Playlist();
-        playlist.setName("Playlist");
-        playlist.setPublicAccessible(true);
-        PlaylistManager manager = new PlaylistManager(this);
-        manager.createPlaylist(playlist, this);
+        if(radioButton1.isChecked()){
+            if(!mTracks.isEmpty()) {
+                TrackListAdapter adapter = new TrackListAdapter(this, mTracks);
+                mRecyclerView.setAdapter(adapter);
+            }
+            else{
+                TrackListAdapter adapter = new TrackListAdapter(this, null);
+                mRecyclerView.setAdapter(adapter);
+                text = "No songs found";
+                if(!searchPerformed) text = "No search done";
+                Toast toast =  Toast.makeText(SearchActivity.this, text, Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
+        else if(radioButton2.isChecked()){
+            if(!mPlay.isEmpty()) {
+                PlaylistListAdapter adapter = new PlaylistListAdapter(this, mPlay);
+                mRecyclerView.setAdapter(adapter);
+            }
+            else{
+                PlaylistListAdapter adapter = new PlaylistListAdapter(this, null);
+                mRecyclerView.setAdapter(adapter);
+                text = "No playlists found";
+                if(!searchPerformed) text = "No search done";
+                Toast toast =  Toast.makeText(SearchActivity.this, text, Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
+        else{
+            if(!mUsers.isEmpty()) {
+                UserListAdapter adapter = new UserListAdapter(this, mUsers);
+                mRecyclerView.setAdapter(adapter);
+            }
+            else{
+                UserListAdapter adapter = new UserListAdapter(null, mUsers);
+                mRecyclerView.setAdapter(adapter);
+                text = "No users found";
+                if(!searchPerformed) text = "No search done";
+                Toast toast =  Toast.makeText(SearchActivity.this, text, Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
     }
 
 
     private void initViews() {
+        mTracks = new ArrayList<>();
+        mPlay = new ArrayList<>();
+        mUsers = new ArrayList<>();
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         TrackListAdapter adapter = new TrackListAdapter(this, null);
@@ -98,12 +146,50 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
+        String text;
+
         if(radioButton1.isChecked()){
-            textToShow.setText("hola");}
+            if(!mTracks.isEmpty()) {
+                TrackListAdapter adapter = new TrackListAdapter(this, mTracks);
+                mRecyclerView.setAdapter(adapter);
+            }
+            else{
+                TrackListAdapter adapter = new TrackListAdapter(this, null);
+                mRecyclerView.setAdapter(adapter);
+                text = "No songs found";
+                if(!searchPerformed) text = "No search done";
+                Toast toast =  Toast.makeText(SearchActivity.this, text, Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
         else if(radioButton2.isChecked()){
-            textToShow.setText("fina ara");}
-        else
-            textToShow.setText("adeu");
+            if(!mPlay.isEmpty()) {
+                PlaylistListAdapter adapter = new PlaylistListAdapter(this, mPlay);
+                mRecyclerView.setAdapter(adapter);
+            }
+            else{
+                PlaylistListAdapter adapter = new PlaylistListAdapter(this, null);
+                mRecyclerView.setAdapter(adapter);
+                text = "No playlists found";
+                if(!searchPerformed) text = "No search done";
+                Toast toast =  Toast.makeText(SearchActivity.this, text, Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
+        else{
+            if(!mUsers.isEmpty()) {
+                UserListAdapter adapter = new UserListAdapter(this, mUsers);
+                mRecyclerView.setAdapter(adapter);
+            }
+            else{
+                UserListAdapter adapter = new UserListAdapter(null, mUsers);
+                mRecyclerView.setAdapter(adapter);
+                text = "No users found";
+                if(!searchPerformed) text = "No search done";
+                Toast toast =  Toast.makeText(SearchActivity.this, text, Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
     }
 
     @Override
