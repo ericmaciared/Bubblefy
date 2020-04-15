@@ -97,7 +97,12 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         });
-
+        ibtnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                loadPlaybackScreen();
+            }
+        });
         ibtnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +113,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadSearchScreen() {
         Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
+    }
+
+    private void loadPlaybackScreen() {
+        Intent intent = new Intent(this, DynamicPlaybackActivity.class);
         startActivity(intent);
     }
 

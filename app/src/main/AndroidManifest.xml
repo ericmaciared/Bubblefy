@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".controller.activity.DynamicPlaybackActivity"/>
         <activity android:name=".controller.activity.StartActivity"></activity>
         <activity android:name=".controller.activity.SearchActivity" />
         <activity android:name=".controller.activity.ListActivity" />
