@@ -1,11 +1,11 @@
 package edu.url.salle.eric.macia.bubblefy.controller.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -17,13 +17,16 @@ import com.igalata.bubblepicker.rendering.BubblePicker;
 
 import org.jetbrains.annotations.NotNull;
 
-
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.url.salle.eric.macia.bubblefy.R;
+import edu.url.salle.eric.macia.bubblefy.controller.adapters.BubbleTrackListAdapter;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
+import edu.url.salle.eric.macia.bubblefy.restapi.callback.TrackCallback;
+import edu.url.salle.eric.macia.bubblefy.restapi.manager.TrackManager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TrackCallback {
 
     private BubblePicker bubblePicker;
 
@@ -46,15 +49,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ibtnHome = (ImageButton) findViewById(R.id.home_button);
-        ibtnSearch = (ImageButton) findViewById(R.id.search_button);
-        ibtnProfile = (ImageButton) findViewById(R.id.profile_button);
-
         initViews();
+        initListenAgain();
         initBubblePicker();
 
-        bubblePicker.setCenterImmediately(true);
-        bubblePicker.setKeepScreenOn(true);
+    }
+
+    private void initListenAgain() {
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+        LinearLayoutManager manager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL,
+                false);
+        BubbleTrackListAdapter adapter = new BubbleTrackListAdapter(this, null);
+
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(adapter);
+
+        TrackManager.getInstance(this).getUserLikedTracks(this);
     }
 
     private void initBubblePicker() {
@@ -76,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 //item.setOverlayAlpha(1);
                 return item;
             }
+
         });
 
         bubblePicker.setListener(new BubblePickerListener() {
@@ -83,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
             public void onBubbleSelected(@NotNull PickerItem pickerItem) {
                 Toast.makeText(MainActivity.this, "You have clicked "+
                         pickerItem.getTitle(), Toast.LENGTH_SHORT);
+                if (pickerItem.isSelected()){
+                    pickerItem.setTitle("TEST");
+                }
             }
 
             @Override
@@ -90,9 +105,15 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        bubblePicker.setCenterImmediately(true);
     }
 
     private void initViews(){
+        ibtnHome = (ImageButton) findViewById(R.id.home_button);
+        ibtnSearch = (ImageButton) findViewById(R.id.search_button);
+        ibtnProfile = (ImageButton) findViewById(R.id.profile_button);
+
         ibtnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,5 +144,39 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         bubblePicker.onPause();
+    }
+
+    @Override
+    public void onTracksReceived(List<Track> tracks) {
+
+    }
+
+    @Override
+    public void onNoTracks(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onPersonalTracksReceived(List<Track> tracks) {
+
+    }
+
+    @Override
+    public void onUserTracksReceived(List<Track> tracks) {
+
+    }
+
+    @Override
+    public void onUserLikedTracksReceived(List<Track> tracks) {
+        ArrayList<Track> mTracks = new ArrayList<Track>();
+        mTracks = (ArrayList<Track>) tracks;
+
+        BubbleTrackListAdapter adapter = new BubbleTrackListAdapter(this, mTracks);
+        recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onFailure(Throwable throwable) {
+
     }
 }

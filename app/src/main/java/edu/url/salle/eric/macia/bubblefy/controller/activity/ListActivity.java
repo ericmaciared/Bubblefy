@@ -79,6 +79,11 @@ public class ListActivity extends AppCompatActivity
     }
 
     @Override
+    public void onUserLikedTracksReceived(List<Track> tracks) {
+
+    }
+
+    @Override
     public void onFailure(Throwable throwable) {
 
     }

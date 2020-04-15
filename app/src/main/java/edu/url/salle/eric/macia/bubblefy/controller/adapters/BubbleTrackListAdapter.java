@@ -18,26 +18,26 @@ import java.util.ArrayList;
 import edu.url.salle.eric.macia.bubblefy.R;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
 
-public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.ViewHolder> {
+public class BubbleTrackListAdapter extends RecyclerView.Adapter<BubbleTrackListAdapter.ViewHolder> {
 
     private static final String TAG = "TrackListAdapter";
     private ArrayList<Track> mTracks;
     private Context mContext;
 
-    public TrackListAdapter(Context context, ArrayList<Track> tracks) {
+    public BubbleTrackListAdapter(Context context, ArrayList<Track> tracks) {
         mContext = context;
         mTracks = tracks;
     }
 
     @NonNull
     @Override
-    public TrackListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BubbleTrackListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.d(TAG, "onCreateViewHolder: called.");
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.track_item, parent, false);
-        return new TrackListAdapter.ViewHolder(itemView);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.track_item_round, parent, false);
+        return new BubbleTrackListAdapter.ViewHolder(itemView);
     }
 
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull BubbleTrackListAdapter.ViewHolder holder, final int position) {
         holder.tvTitle.setText(mTracks.get(position).getName());
         holder.tvAuthor.setText(mTracks.get(position).getUserLogin());
         if (mTracks.get(position).getThumbnail() != null) {
