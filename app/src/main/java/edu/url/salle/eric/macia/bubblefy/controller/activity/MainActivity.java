@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements TrackCallback {
             public PickerItem getItem(int i) {
                 PickerItem item = new PickerItem();
                 //item.setColor(120);
-                //item.setTitle(name[i]);
+                item.setTitle(name[i]);
                 //item.setTextColor(255);
                 //item.setOverlayAlpha(1);
                 return item;
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements TrackCallback {
             @Override
             public void onBubbleSelected(@NotNull PickerItem pickerItem) {
                 Toast.makeText(MainActivity.this, "You have clicked "+
-                        pickerItem.getTitle(), Toast.LENGTH_SHORT);
+                        pickerItem.getTitle(), Toast.LENGTH_SHORT).show();
                 if (pickerItem.isSelected()){
                     pickerItem.setTitle("TEST");
                 }
