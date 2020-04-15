@@ -14,9 +14,12 @@ public interface TrackService {
     Call<List<Track>> getAllTracks(@Header("Authorization") String token);
 
     @GET("me/tracks")
-     Call<List<Track>> getOwnTracks(@Header("Authorization") String token);
+    Call<List<Track>> getOwnTracks(@Header("Authorization") String token);
 
     @GET("users/{login}/tracks")
     Call<List<Track>> getUserTracks(@Path("login") String login, @Header("Authorization") String token);
+
+    @GET("me/tracks/liked")
+    Call<List<Track>> getUserLikedTracks(@Header("Authorization") String token);
 
 }

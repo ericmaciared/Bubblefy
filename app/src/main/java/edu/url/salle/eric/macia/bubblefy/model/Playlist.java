@@ -98,6 +98,10 @@ public class Playlist implements Serializable {
         user.setLogin(userLogin);
     }
 
+    public int countTracks() {
+        return tracks.size();
+    }
+
     public List<Track> getTracks() {
         return tracks;
     }
