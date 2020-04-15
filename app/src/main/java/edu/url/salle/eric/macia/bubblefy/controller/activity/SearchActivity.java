@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -43,6 +45,9 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
     private Button buttonLogin;
     private EditText searchText;
     private boolean searchPerformed = false;
+    private ImageButton ibtnHome;
+    private ImageButton ibtnSearch;
+    private ImageButton ibtnProfile;
 
 
     @Override
@@ -127,11 +132,35 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
         mTracks = new ArrayList<>();
         mPlay = new ArrayList<>();
         mUsers = new ArrayList<>();
+
+        ibtnHome = (ImageButton) findViewById(R.id.home_button);
+        ibtnSearch = (ImageButton) findViewById(R.id.search_button_down);
+        ibtnProfile = (ImageButton) findViewById(R.id.profile_button);
+
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         TrackListAdapter adapter = new TrackListAdapter(this, null);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);
+
+        ibtnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                return;
+            }
+        });
+
+        ibtnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadMainScreen();
+            }
+        });
+    }
+
+    private void loadMainScreen() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     @Override

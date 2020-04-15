@@ -22,14 +22,14 @@ import edu.url.salle.eric.macia.bubblefy.model.Track;
 public class PlaylistListAdapter extends RecyclerView.Adapter<PlaylistListAdapter.ViewHolder> {
 
     private static final String TAG = "TrackListAdapter";
-    private ArrayList<Playlist> mTracks;
+    private ArrayList<Playlist> mPlaylists;
     private Context mContext;
 
-    public PlaylistListAdapter(Context context, ArrayList<Playlist> tracks) {
+    public PlaylistListAdapter(Context context, ArrayList<Playlist> playlists) {
         mContext = context;
-        mTracks = tracks;
+        mPlaylists = playlists;
     }
-
+    
     @NonNull
     @Override
     public PlaylistListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,37 +39,37 @@ public class PlaylistListAdapter extends RecyclerView.Adapter<PlaylistListAdapte
     }
 
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.tvTitle.setText(mTracks.get(position).getName());
-        holder.tvAuthor.setText(mTracks.get(position).getUserLogin());
-        if (mTracks.get(position).getThumbnail() != null) {
+        holder.tvTitle.setText(mPlaylists.get(position).getName());
+        holder.tvDescription.setText("By: " + mPlaylists.get(position).getUserLogin() + "  -  " + mPlaylists.get(position).countTracks() + " tracks");
+        if (mPlaylists.get(position).getThumbnail() != null) {
             Glide.with(mContext)
                     .asBitmap()
                     .placeholder(R.drawable.ic_audiotrack)
-                    .load(mTracks.get(position).getThumbnail())
+                    .load(mPlaylists.get(position).getThumbnail())
                     .into(holder.ivPicture);
         }
     }
 
     @Override
     public int getItemCount() {
-        return mTracks != null ? mTracks.size():0;
+        return mPlaylists != null ? mPlaylists.size():0;
     }
 
     public void updateTrackLikeStateIcon(int position, boolean isLiked) {
-        mTracks.get(position).setFollowed(isLiked);
+        mPlaylists.get(position).setFollowed(isLiked);
         notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvTitle;
-        TextView tvAuthor;
+        TextView tvDescription;
         ImageView ivPicture;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = (TextView) itemView.findViewById(R.id.track_title);
-            tvAuthor = (TextView) itemView.findViewById(R.id.track_author);
+            tvDescription = (TextView) itemView.findViewById(R.id.track_author);
             ivPicture = (ImageView) itemView.findViewById(R.id.track_img);
         }
     }

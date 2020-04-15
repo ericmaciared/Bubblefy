@@ -39,7 +39,7 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
 
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.tvTitle.setText(mTracks.get(position).getName());
-        holder.tvAuthor.setText(mTracks.get(position).getUserLogin());
+        holder.tvAuthor.setText("By " + mTracks.get(position).getUserLogin());
         if (mTracks.get(position).getThumbnail() != null) {
             Glide.with(mContext)
                     .asBitmap()
