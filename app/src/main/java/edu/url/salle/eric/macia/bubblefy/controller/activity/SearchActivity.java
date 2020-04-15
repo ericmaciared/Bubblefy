@@ -159,7 +159,7 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
     }
 
     private void loadMainScreen() {
-        Intent intent = new Intent(this, StartActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
