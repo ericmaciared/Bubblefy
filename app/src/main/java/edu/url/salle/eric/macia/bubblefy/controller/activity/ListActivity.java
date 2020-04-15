@@ -1,4 +1,3 @@
-
 package edu.url.salle.eric.macia.bubblefy.controller.activity;
 
 import android.os.Bundle;
@@ -80,7 +79,7 @@ public class ListActivity extends AppCompatActivity
     }
 
     @Override
-    public void onUserLikedTracksReceived(List<Track> tracks) {
+    public void onCreateTrack() {
 
     }
 
@@ -99,3 +98,4 @@ public class ListActivity extends AppCompatActivity
 
     }
 }
+
