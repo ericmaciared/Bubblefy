@@ -1,3 +1,4 @@
+
 package edu.url.salle.eric.macia.bubblefy.controller.activity;
 
 import android.os.Bundle;
@@ -98,4 +99,3 @@ public class ListActivity extends AppCompatActivity
 
     }
 }
-
