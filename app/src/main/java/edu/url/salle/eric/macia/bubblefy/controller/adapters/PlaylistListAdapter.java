@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,13 +18,23 @@ import java.util.ArrayList;
 
 import edu.url.salle.eric.macia.bubblefy.R;
 import edu.url.salle.eric.macia.bubblefy.model.Playlist;
-import edu.url.salle.eric.macia.bubblefy.model.Track;
+
 
 public class PlaylistListAdapter extends RecyclerView.Adapter<PlaylistListAdapter.ViewHolder> {
 
+    private OnItemClickedListener mListener;
     private static final String TAG = "TrackListAdapter";
     private ArrayList<Playlist> mPlaylists;
     private Context mContext;
+
+    public interface OnItemClickedListener{
+        void onItemClicked(int position);
+        void onOptionsClicked(int position);
+    }
+
+    public void setItemClickedListener(OnItemClickedListener listener){
+        mListener = listener;
+    }
 
     public PlaylistListAdapter(Context context, ArrayList<Playlist> playlists) {
         mContext = context;
@@ -35,7 +46,7 @@ public class PlaylistListAdapter extends RecyclerView.Adapter<PlaylistListAdapte
     public PlaylistListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.d(TAG, "onCreateViewHolder: called.");
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.playlist_item_long, parent, false);
-        return new PlaylistListAdapter.ViewHolder(itemView);
+        return new PlaylistListAdapter.ViewHolder(itemView, mListener);
     }
 
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
@@ -65,12 +76,38 @@ public class PlaylistListAdapter extends RecyclerView.Adapter<PlaylistListAdapte
         TextView tvTitle;
         TextView tvDescription;
         ImageView ivPicture;
+        ImageButton btOptions;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, final OnItemClickedListener listener) {
             super(itemView);
             tvTitle = (TextView) itemView.findViewById(R.id.track_title);
             tvDescription = (TextView) itemView.findViewById(R.id.track_author);
             ivPicture = (ImageView) itemView.findViewById(R.id.track_img);
+            btOptions = (ImageButton) itemView.findViewById(R.id.option_button);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onItemClicked(position);
+                        }
+                    }
+                }
+            });
+
+            btOptions.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onOptionsClicked(position);
+                        }
+                    }
+                }
+            });
         }
     }
 }

@@ -37,7 +37,6 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
     RadioButton radioButton1;
     RadioButton radioButton2;
     RadioButton radioButton3;
-    TextView textToShow;
     private RecyclerView mRecyclerView;
     private ArrayList<Track> mTracks;
     private ArrayList<Playlist> mPlay;
@@ -87,6 +86,18 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
             if(!mTracks.isEmpty()) {
                 TrackListAdapter adapter = new TrackListAdapter(this, mTracks);
                 mRecyclerView.setAdapter(adapter);
+                adapter.setItemClickedListener(new TrackListAdapter.OnItemClickedListener() {
+                    @Override
+                    public void onItemClicked(int position) {
+                        trackClicked(position);
+                    }
+
+                    @Override
+                    public void onOptionsClicked(int position) {
+                        trackOptions(position);
+                    }
+
+                });
             }
             else{
                 TrackListAdapter adapter = new TrackListAdapter(this, null);
@@ -101,6 +112,17 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
             if(!mPlay.isEmpty()) {
                 PlaylistListAdapter adapter = new PlaylistListAdapter(this, mPlay);
                 mRecyclerView.setAdapter(adapter);
+                adapter.setItemClickedListener(new PlaylistListAdapter.OnItemClickedListener() {
+                    @Override
+                    public void onItemClicked(int position) {
+                        playlistClicked(position);
+                    }
+
+                    @Override
+                    public void onOptionsClicked(int position) {
+                        playlistOptions(position);
+                    }
+                });
             }
             else{
                 PlaylistListAdapter adapter = new PlaylistListAdapter(this, null);
@@ -115,6 +137,17 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
             if(!mUsers.isEmpty()) {
                 UserListAdapter adapter = new UserListAdapter(this, mUsers);
                 mRecyclerView.setAdapter(adapter);
+                adapter.setItemClickedListener(new UserListAdapter.OnItemClickedListener() {
+                    @Override
+                    public void onItemClicked(int position) {
+                        userClicked(position);
+                    }
+
+                    @Override
+                    public void onOptionsClicked(int position) {
+                        userOptions(position);
+                    }
+                });
             }
             else{
                 UserListAdapter adapter = new UserListAdapter(null, mUsers);
@@ -163,6 +196,30 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
         startActivity(intent);
     }
 
+    public void trackClicked(int position){
+        //IMPLEMENTAR
+    }
+
+    public void playlistClicked(int position){
+        //IMPLEMENTAR
+    }
+
+    public void userClicked(int position){
+        //IMPLEMENTAR
+    }
+
+    public void trackOptions(int position){
+        //IMPLEMENTAR
+    }
+
+    public void playlistOptions(int position){
+        //IMPLEMENTAR
+    }
+
+    public void userOptions(int position){
+        //IMPLEMENTAR
+    }
+
     @Override
     public void onNoSearch(Throwable throwable) {
 
@@ -181,6 +238,17 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
             if(!mTracks.isEmpty()) {
                 TrackListAdapter adapter = new TrackListAdapter(this, mTracks);
                 mRecyclerView.setAdapter(adapter);
+                adapter.setItemClickedListener(new TrackListAdapter.OnItemClickedListener() {
+                    @Override
+                    public void onItemClicked(int position) {
+                        trackClicked(position);
+                    }
+
+                    @Override
+                    public void onOptionsClicked(int position) {
+                        trackOptions(position);
+                    }
+                });
             }
             else{
                 TrackListAdapter adapter = new TrackListAdapter(this, null);
@@ -195,6 +263,17 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
             if(!mPlay.isEmpty()) {
                 PlaylistListAdapter adapter = new PlaylistListAdapter(this, mPlay);
                 mRecyclerView.setAdapter(adapter);
+                adapter.setItemClickedListener(new PlaylistListAdapter.OnItemClickedListener() {
+                    @Override
+                    public void onItemClicked(int position) {
+                        playlistClicked(position);
+                    }
+
+                    @Override
+                    public void onOptionsClicked(int position) {
+                        playlistOptions(position);
+                    }
+                });
             }
             else{
                 PlaylistListAdapter adapter = new PlaylistListAdapter(this, null);
@@ -209,6 +288,17 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
             if(!mUsers.isEmpty()) {
                 UserListAdapter adapter = new UserListAdapter(this, mUsers);
                 mRecyclerView.setAdapter(adapter);
+                adapter.setItemClickedListener(new UserListAdapter.OnItemClickedListener() {
+                    @Override
+                    public void onItemClicked(int position) {
+                        userClicked(position);
+                    }
+
+                    @Override
+                    public void onOptionsClicked(int position) {
+                        userOptions(position);
+                    }
+                });
             }
             else{
                 UserListAdapter adapter = new UserListAdapter(null, mUsers);
