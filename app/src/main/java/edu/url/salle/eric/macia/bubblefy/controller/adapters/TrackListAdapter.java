@@ -48,6 +48,11 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
         mCallback = callback;
     }
 
+    public TrackListAdapter(Context context, ArrayList<Track> tracks ) {
+        mTracks = tracks;
+        mContext = context;
+    }
+
     @NonNull
     @Override
     public TrackListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
