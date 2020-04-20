@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,8 +22,6 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
     private final int INCORRECT_CREDENTIALS = 1;
 
     private Button btnLogin;
-    private Button btnSignUp;
-    private TextView tvForgotPassword;
     private EditText etUsername;
     private EditText etPassword;
 
@@ -77,7 +74,6 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
             etUsername.setText(PreferenceUtils.getUser(this));
             etPassword.setText(PreferenceUtils.getPassword(this));
         }
-
     }
 
     private boolean checkExistingPreferences() {
@@ -85,14 +81,11 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
                 && PreferenceUtils.getPassword(this) != null;
     }
 
-
     //USER MANAGER
     private void doLogin(String username, String password){
         UserManager.getInstance(getApplicationContext())
                 .loginAttempt(username, password, LoginActivity.this);
     }
-
-
 
     //USER CALLBACK
     @Override
