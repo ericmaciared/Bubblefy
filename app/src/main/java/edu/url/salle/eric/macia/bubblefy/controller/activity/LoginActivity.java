@@ -15,6 +15,7 @@ import edu.url.salle.eric.macia.bubblefy.model.User;
 import edu.url.salle.eric.macia.bubblefy.model.UserToken;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.UserCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.UserManager;
+import edu.url.salle.eric.macia.bubblefy.utils.PreferenceUtils;
 import edu.url.salle.eric.macia.bubblefy.utils.Session;
 
 public class LoginActivity extends AppCompatActivity implements UserCallback {
@@ -32,6 +33,12 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        initViews();
+        checkSavedData();
+    }
+
+    //VIEW
+    private void initViews() {
         btnLogin = (Button) findViewById(R.id.LoginButton);
         etUsername = (EditText) findViewById(R.id.usernameText);
         etPassword = (EditText) findViewById(R.id.passwordText);
@@ -43,12 +50,6 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
                         String.valueOf(etPassword.getText()));
             }
         });
-
-    }
-
-    private void doLogin(String username, String password){
-        UserManager.getInstance(getApplicationContext())
-                .loginAttempt(username, password, LoginActivity.this);
     }
 
     private void resetButtonFields(){
@@ -70,11 +71,37 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
         toast.show();
     }
 
+    //LOCAL CREDENTIALS
+    private void checkSavedData(){
+        if (checkExistingPreferences()) {
+            etUsername.setText(PreferenceUtils.getUser(this));
+            etPassword.setText(PreferenceUtils.getPassword(this));
+        }
+
+    }
+
+    private boolean checkExistingPreferences() {
+        return PreferenceUtils.getUser(this) != null
+                && PreferenceUtils.getPassword(this) != null;
+    }
+
+
+    //USER MANAGER
+    private void doLogin(String username, String password){
+        UserManager.getInstance(getApplicationContext())
+                .loginAttempt(username, password, LoginActivity.this);
+    }
+
+
+
+    //USER CALLBACK
     @Override
     public void onLoginSuccess(UserToken userToken) {
         Session.getInstance(getApplicationContext())
                 .setUserToken(userToken);
         Intent intent = new Intent(this, MainActivity.class);
+        PreferenceUtils.saveUser(this, etUsername.getText().toString());
+        PreferenceUtils.savePassword(this, etPassword.getText().toString());
         startActivity(intent);
     }
 
@@ -104,3 +131,4 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
 
     }
 }
+
