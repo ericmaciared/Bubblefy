@@ -16,59 +16,60 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import edu.url.salle.eric.macia.bubblefy.R;
+import edu.url.salle.eric.macia.bubblefy.model.Playlist;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
 
-public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.ViewHolder> {
+public class PlaylistListAdapter extends RecyclerView.Adapter<PlaylistListAdapter.ViewHolder> {
 
     private static final String TAG = "TrackListAdapter";
-    private ArrayList<Track> mTracks;
+    private ArrayList<Playlist> mPlaylists;
     private Context mContext;
 
-    public TrackListAdapter(Context context, ArrayList<Track> tracks) {
+    public PlaylistListAdapter(Context context, ArrayList<Playlist> playlists) {
         mContext = context;
-        mTracks = tracks;
+        mPlaylists = playlists;
     }
-
+    
     @NonNull
     @Override
-    public TrackListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PlaylistListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.d(TAG, "onCreateViewHolder: called.");
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.track_item, parent, false);
-        return new TrackListAdapter.ViewHolder(itemView);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.playlist_item_long, parent, false);
+        return new PlaylistListAdapter.ViewHolder(itemView);
     }
 
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.tvTitle.setText(mTracks.get(position).getName());
-        holder.tvAuthor.setText("By " + mTracks.get(position).getUserLogin());
-        if (mTracks.get(position).getThumbnail() != null) {
+        holder.tvTitle.setText(mPlaylists.get(position).getName());
+        holder.tvDescription.setText("By: " + mPlaylists.get(position).getUserLogin() + "  -  " + mPlaylists.get(position).countTracks() + " tracks");
+        if (mPlaylists.get(position).getThumbnail() != null) {
             Glide.with(mContext)
                     .asBitmap()
                     .placeholder(R.drawable.ic_audiotrack)
-                    .load(mTracks.get(position).getThumbnail())
+                    .load(mPlaylists.get(position).getThumbnail())
                     .into(holder.ivPicture);
         }
     }
 
     @Override
     public int getItemCount() {
-        return mTracks != null ? mTracks.size():0;
+        return mPlaylists != null ? mPlaylists.size():0;
     }
 
     public void updateTrackLikeStateIcon(int position, boolean isLiked) {
-        mTracks.get(position).setLiked(isLiked);
+        mPlaylists.get(position).setFollowed(isLiked);
         notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvTitle;
-        TextView tvAuthor;
+        TextView tvDescription;
         ImageView ivPicture;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = (TextView) itemView.findViewById(R.id.track_title);
-            tvAuthor = (TextView) itemView.findViewById(R.id.track_author);
+            tvDescription = (TextView) itemView.findViewById(R.id.track_author);
             ivPicture = (ImageView) itemView.findViewById(R.id.track_img);
         }
     }
