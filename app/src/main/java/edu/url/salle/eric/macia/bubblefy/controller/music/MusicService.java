@@ -9,13 +9,22 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
+import java.util.ArrayList;
+
+import edu.url.salle.eric.macia.bubblefy.model.Track;
 import edu.url.salle.eric.macia.bubblefy.utils.Constants;
 
 public class MusicService extends Service {
+
     private MediaPlayer mediaPlayer;
     private final IBinder mBinder = new MusicBinder();
     private AudioManager audioManager;
     private boolean playingBeforeInterruption = false;
+
+    private ArrayList<Track> mTracks = new ArrayList<>();
+    int currentTrack = 0;
+
+    private MusicCallback mCallback;
 
     public class MusicBinder extends Binder {
         public MusicService getService(){
@@ -75,6 +84,12 @@ public class MusicService extends Service {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
                     mediaPlayer.start();
+                    System.out.println("Entering prepared");
+
+                    if (mCallback != null) {
+                        System.out.println("Entering the callback");
+                        mCallback.onMusicPlayerPrepared();
+                    }
                 }
             });
         } catch(Exception e) {
@@ -82,6 +97,54 @@ public class MusicService extends Service {
         }
 
     }
+
+    public void playStream(ArrayList<Track> tracks, int currentTrack) {
+
+        if (mediaPlayer != null) {
+            try {
+                mediaPlayer.stop();
+            } catch(Exception e) {
+            }
+            mediaPlayer = null;
+        }
+
+        mTracks = tracks;
+        this.currentTrack = currentTrack;
+        String url = mTracks.get(currentTrack).getUrl();
+
+        mediaPlayer = new MediaPlayer();
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                updateTrack(1);
+            }
+        });
+
+        try {
+            mediaPlayer.setDataSource(url);
+            mediaPlayer.prepare();
+            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mediaPlayer.start();
+                    mCallback.onMusicPlayerPrepared();
+
+                }
+            });
+        } catch(Exception e) {
+        }
+
+    }
+
+    public int getAudioSession() {
+        return mediaPlayer.getAudioSessionId();
+    }
+
+    public Track getCurrentTrack() {
+        return mTracks.size() > 0 ? mTracks.get(currentTrack):null;
+    }
+
 
     public void updateSessionMusicData(int offset) {
         /*int oldIndex = Session.getInstance(getApplicationContext()).getIndex();
@@ -93,8 +156,10 @@ public class MusicService extends Service {
     }
 
     public void updateTrack(int offset) {
-        updateSessionMusicData(offset);
-        String newUrl = "";//Session.getInstance(getApplicationContext()).getTrack().getUrl();
+        currentTrack = ((currentTrack+offset)%(mTracks.size()));
+        currentTrack = currentTrack >= mTracks.size() ? 0:currentTrack;
+
+        String newUrl = mTracks.get(currentTrack).getUrl();
         try {
             mediaPlayer.reset();
             mediaPlayer.setDataSource(newUrl);
@@ -103,7 +168,6 @@ public class MusicService extends Service {
         } catch(Exception e) {
         }
     }
-
 
     private void pausePlayer() {
         try {
@@ -138,6 +202,7 @@ public class MusicService extends Service {
     public boolean isPlaying() {
         return mediaPlayer != null && mediaPlayer.isPlaying();
     }
+
     // audio focus section
     public void getAudioFocusAndPlay () {
         audioManager = (AudioManager) this.getBaseContext().getSystemService(Context.AUDIO_SERVICE);
@@ -146,6 +211,10 @@ public class MusicService extends Service {
         if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
             mediaPlayer.start();
         }
+    }
+
+    public void setCallback(MusicCallback callback) {
+        mCallback = callback;
     }
 
     public void setCurrentDuration(int time) {
