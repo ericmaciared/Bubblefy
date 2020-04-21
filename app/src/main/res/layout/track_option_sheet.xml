@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:paddingTop="30dp"
+        android:paddingLeft="30dip"
+        android:text="Titulo canción"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textColor="@color/white"
+        android:background="@color/colorBackground"
+        android:fontFamily="@font/open_sans_bold"
+        android:textSize="@dimen/text_size_medium"/>
+
+    <Button
+        android:id="@+id/like_button"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_below="@+id/title"
+        android:gravity="left|center_vertical"
+        android:background="@color/colorBackground"
+        android:fontFamily="@font/open_sans_light"
+        android:paddingLeft="30dip"
+        android:drawableStart="@drawable/favourite_icon"
+        android:drawablePadding="18dp"
+        android:textAllCaps="false"
+        android:text="Like"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="17.5dp"/>
+
+        <Button
+        android:id="@+id/add_queue"
+        android:layout_below="@+id/like_button"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:gravity="left|center_vertical"
+        android:background="@color/colorBackground"
+        android:fontFamily="@font/open_sans_light"
+        android:paddingLeft="30dip"
+        android:drawableStart="@drawable/queue_music"
+        android:drawablePadding="18dp"
+        android:textAllCaps="false"
+        android:text="Add to Queue"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="17.5dp"/>
+
+    <Button
+        android:id="@+id/share"
+        android:layout_below="@+id/add_queue"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:gravity="left|center_vertical"
+        android:background="@color/colorBackground"
+        android:fontFamily="@font/open_sans_light"
+        android:paddingLeft="30dip"
+        android:drawableStart="@drawable/share"
+        android:drawablePadding="18dp"
+        android:textAllCaps="false"
+        android:text="Share"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="17.5dp"/>
+
+    <Button
+        android:id="@+id/add_to_playlist"
+        android:layout_below="@+id/share"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:gravity="left|center_vertical"
+        android:background="@color/colorBackground"
+        android:fontFamily="@font/open_sans_light"
+        android:paddingLeft="30dip"
+        android:drawableStart="@drawable/add_playlist"
+        android:drawablePadding="18dp"
+        android:textAllCaps="false"
+        android:text="Add to Playlist"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="17.5dp"/>
+
+    <Button
+        android:id="@+id/random_playback"
+        android:layout_below="@+id/add_to_playlist"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:gravity="left|center_vertical"
+        android:background="@color/colorBackground"
+        android:fontFamily="@font/open_sans_light"
+        android:paddingLeft="30dip"
+        android:drawableStart="@drawable/shuffle"
+        android:drawablePadding="18dp"
+        android:textAllCaps="false"
+        android:text="Random Playback"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="17.5dp"/>
+
+</RelativeLayout>

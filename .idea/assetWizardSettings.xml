@@ -151,8 +151,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="three_dots_horizontal" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/more_horiz-white-18dp.svg" />
+                            <entry key="outputName" value="shuffle" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/shuffle-white-18dp.svg" />
                           </map>
                         </option>
                       </PersistentState>

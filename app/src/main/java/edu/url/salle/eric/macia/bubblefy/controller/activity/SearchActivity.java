@@ -21,6 +21,7 @@ import edu.url.salle.eric.macia.bubblefy.R;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.PlaylistListAdapter;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.TrackListAdapter;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.UserListAdapter;
+import edu.url.salle.eric.macia.bubblefy.controller.fragments.BottomSheetDialog;
 import edu.url.salle.eric.macia.bubblefy.model.Playlist;
 import edu.url.salle.eric.macia.bubblefy.model.Search;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
@@ -31,7 +32,7 @@ import edu.url.salle.eric.macia.bubblefy.restapi.manager.PlaylistManager;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.SearchManager;
 
 
-public class SearchActivity extends AppCompatActivity implements SearchCallback, RadioGroup.OnCheckedChangeListener, PlaylistCallback {
+public class SearchActivity extends AppCompatActivity implements SearchCallback, RadioGroup.OnCheckedChangeListener, PlaylistCallback, BottomSheetDialog.BottomSheetListener {
 
     RadioGroup radioGroup;
     RadioButton radioButton1;
@@ -209,7 +210,8 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
     }
 
     public void trackOptions(int position){
-        //IMPLEMENTAR
+        BottomSheetDialog trackOptions = new BottomSheetDialog(mTracks.get(position).getName());
+        trackOptions.show(getSupportFragmentManager(), "trackBottomSheet");
     }
 
     public void playlistOptions(int position){
@@ -318,6 +320,11 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
 
     @Override
     public void onPlaylistFailure(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onButtonClicked(String text) {
 
     }
 }
