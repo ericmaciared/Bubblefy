@@ -2,16 +2,24 @@ package edu.url.salle.eric.macia.bubblefy.restapi.manager;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 
+import com.google.gson.JsonObject;
+import com.google.gson.internal.$Gson$Preconditions;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.url.salle.eric.macia.bubblefy.controller.fragments.BottomSheetDialog;
+import edu.url.salle.eric.macia.bubblefy.model.Confirmation;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
 import edu.url.salle.eric.macia.bubblefy.model.UserToken;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.TrackCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.service.TrackService;
 import edu.url.salle.eric.macia.bubblefy.utils.Constants;
 import edu.url.salle.eric.macia.bubblefy.utils.Session;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -145,4 +153,59 @@ public class TrackManager {
         });
     }
 
+    public synchronized void setTrackLike (int id, final TrackCallback trackCallback) {
+        UserToken userToken = Session.getInstance(mContext).getUserToken();
+        Call<Confirmation> call = mTrackService.setTrackLike(id, "Bearer " + userToken.getIdToken());
+        call.enqueue(new Callback<Confirmation>() {
+            @Override
+            public void onResponse(Call<Confirmation> call, Response<Confirmation> response) {
+
+                int code = response.code();
+                if (response.isSuccessful()) {
+                    Confirmation confirmation = response.body();
+                    trackCallback.onLikeOperationSuccess(confirmation);
+                } else {
+                    try {
+                        trackCallback.onLikeOperationFailure(new Throwable("ERROR " + code + ", " +
+                                response.errorBody().string()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Confirmation> call, Throwable t) {
+                trackCallback.onFailure(t);
+            }
+        });
+    }
+
+    public synchronized void getTrackLike (int id, final TrackCallback trackCallback) {
+        UserToken userToken = Session.getInstance(mContext).getUserToken();
+        Call<Confirmation> call = mTrackService.getTrackLike(id, "Bearer " + userToken.getIdToken());
+        call.enqueue(new Callback<Confirmation>() {
+            @Override
+            public void onResponse(Call<Confirmation> call, Response<Confirmation> response) {
+
+                int code = response.code();
+                if (response.isSuccessful()) {
+                    Confirmation confirmation = response.body();
+                    trackCallback.onReceiveLikeSuccess(confirmation);
+                } else {
+                    try {
+                        trackCallback.onReceiveLikeFailure(new Throwable("ERROR " + code + ", " +
+                                response.errorBody().string()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Confirmation> call, Throwable t) {
+                trackCallback.onFailure(t);
+            }
+        });
+    }
 }

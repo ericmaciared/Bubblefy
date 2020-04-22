@@ -2,6 +2,7 @@ package edu.url.salle.eric.macia.bubblefy.restapi.callback;
 
 import java.util.List;
 
+import edu.url.salle.eric.macia.bubblefy.model.Confirmation;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
 
 public interface TrackCallback extends FailureCallback {
@@ -10,4 +11,8 @@ public interface TrackCallback extends FailureCallback {
     void onPersonalTracksReceived(List<Track> tracks);
     void onUserTracksReceived(List<Track> tracks);
     void onUserLikedTracksReceived(List<Track> tracks);
+    void onLikeOperationSuccess(Confirmation confirmation);
+    void onLikeOperationFailure(Throwable throwable);
+    void onReceiveLikeSuccess(Confirmation confirmation);
+    void onReceiveLikeFailure(Throwable throwable);
 }

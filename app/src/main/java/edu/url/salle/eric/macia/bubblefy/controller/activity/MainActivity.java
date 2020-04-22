@@ -22,6 +22,7 @@ import java.util.List;
 
 import edu.url.salle.eric.macia.bubblefy.R;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.BubbleTrackListAdapter;
+import edu.url.salle.eric.macia.bubblefy.model.Confirmation;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.TrackCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.TrackManager;
@@ -173,6 +174,26 @@ public class MainActivity extends AppCompatActivity implements TrackCallback {
 
         BubbleTrackListAdapter adapter = new BubbleTrackListAdapter(this, mTracks);
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onLikeOperationSuccess(Confirmation confirmation) {
+
+    }
+
+    @Override
+    public void onLikeOperationFailure(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onReceiveLikeSuccess(Confirmation confirmation) {
+
+    }
+
+    @Override
+    public void onReceiveLikeFailure(Throwable throwable) {
+
     }
 
     @Override

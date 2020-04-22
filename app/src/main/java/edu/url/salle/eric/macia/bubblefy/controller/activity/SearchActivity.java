@@ -210,7 +210,7 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
     }
 
     public void trackOptions(int position){
-        BottomSheetDialog trackOptions = new BottomSheetDialog(mTracks.get(position).getName());
+        BottomSheetDialog trackOptions = new BottomSheetDialog(mTracks.get(position));
         trackOptions.show(getSupportFragmentManager(), "trackBottomSheet");
     }
 
