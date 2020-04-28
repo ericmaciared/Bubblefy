@@ -25,21 +25,11 @@ import edu.url.salle.eric.macia.bubblefy.model.Track;
 public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.ViewHolder> {
 
 
-    private OnItemClickedListener mListener;
     private static final String TAG = "TrackListAdapter";
     private ArrayList<Track> mTracks;
     private TrackListCallback mCallback;
     private Context mContext;
     private int NUM_VIEWHOLDERS = 0;
-
-    public interface OnItemClickedListener{
-        void onItemClicked(int position);
-        void onOptionsClicked(int position);
-    }
-
-    public void setItemClickedListener(OnItemClickedListener listener){
-        mListener = listener;
-    }
 
     public TrackListAdapter(TrackListCallback callback, Context context, ArrayList<Track> tracks ) {
         mTracks = tracks;
@@ -47,17 +37,15 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
         mCallback = callback;
     }
 
-    public TrackListAdapter(Context context, ArrayList<Track> tracks ) {
-        mTracks = tracks;
-        mContext = context;
-    }
-
     @NonNull
     @Override
-    public TrackListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.d(TAG, "onCreateViewHolder: called.");
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d(TAG, "onCreateViewHolder: called. Num viewHolders: " + NUM_VIEWHOLDERS++);
+
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.track_item, parent, false);
-        return new TrackListAdapter.ViewHolder(itemView, mListener);
+        ViewHolder vh = new TrackListAdapter.ViewHolder(itemView);
+        Log.d(TAG, "onCreateViewHolder: called. viewHolder hashCode: " + vh.hashCode());
+        return vh;
     }
 
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
