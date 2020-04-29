@@ -8,6 +8,7 @@
     android:background="@color/colorBackground"
     android:layout_centerVertical="true"
     tools:context=".controller.activity.SearchActivity">
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -18,6 +19,7 @@
         android:textSize="@dimen/text_size_medium"
         android:textColor="@color/colorTextPrimary"
         android:layout_centerHorizontal="true"/>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,37 +47,38 @@
             android:textSize="@dimen/text_size_medium"
             />
     </LinearLayout>
-        <RadioGroup
-            android:id="@+id/group_buttons"
+
+    <RadioGroup
+        android:id="@+id/group_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:paddingTop="17dp"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true">
+        <RadioButton
+            android:id="@+id/radio_song"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/linearLayout"
-            android:paddingTop="17dp"
-            android:orientation="horizontal"
-            android:layout_centerHorizontal="true">
-                <RadioButton
-                android:id="@+id/radio_song"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/white"
-                android:textColor="@color/colorTextPrimary"
-                android:text="Songs"
-                android:checked="true"/>
-                <RadioButton
-                android:id="@+id/radio_playlists"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/white"
-                android:textColor="@color/colorTextPrimary"
-                android:text="Playlists"/>
-                <RadioButton
-                android:id="@+id/radio_users"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/white"
-                android:textColor="@color/colorTextPrimary"
-                android:text="Users"/>
-        </RadioGroup>
+            android:buttonTint="@color/white"
+            android:textColor="@color/colorTextPrimary"
+            android:text="Songs"
+            android:checked="true"/>
+        <RadioButton
+            android:id="@+id/radio_playlists"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/white"
+            android:textColor="@color/colorTextPrimary"
+            android:text="Playlists"/>
+        <RadioButton
+            android:id="@+id/radio_users"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/white"
+            android:textColor="@color/colorTextPrimary"
+            android:text="Users"/>
+    </RadioGroup>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -86,9 +89,77 @@
         android:layout_below="@+id/group_buttons"
         android:layout_centerHorizontal="true"/>
 
+
     <RelativeLayout
+        android:id="@+id/playback"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/bottomnav"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical"
+            android:background="@color/black">
+
+            <ImageView
+                android:id="@+id/image_section"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2"
+                android:background="#0000"
+                android:layout_width="50dp" />
+
+            <LinearLayout
+                android:id="@+id/info_section"
+                android:layout_width="166dp"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:background="#0000"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/track_title"
+                    android:layout_width="wrap_content"
+                    android:maxWidth = "189dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/open_sans"
+                    android:singleLine="true"
+                    android:text="Colores"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="@dimen/text_size_medium" />
+
+                <TextView
+                    android:id="@+id/track_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/open_sans_light"
+                    android:text="J Balvin"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="@dimen/text_size_smallmedium" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/play_pause"
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="#0000"
+                android:src="@drawable/ic_play" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/bottomnav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -100,30 +171,30 @@
             android:layout_height="80dp"
             android:layout_centerHorizontal="true"
             android:background="@color/colorPrimary">
-        <ImageButton
-            android:id="@+id/home_button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_home_icon"
-            android:background="#0000"
-            />
 
-        <ImageButton
-            android:id="@+id/search_button_down"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_search_icon"
-            android:background="#0000"/>
+            <ImageButton
+                android:id="@+id/profile_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:src="@drawable/ic_profile_icon" />
 
-        <ImageButton
-            android:id="@+id/profile_button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_profile_icon"
-            android:background="#0000"/>
+            <ImageButton
+                android:id="@+id/home_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:src="@drawable/ic_home_icon" />
+
+            <ImageButton
+                android:id="@+id/search_button_down"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:src="@drawable/ic_search_icon" />
         </LinearLayout>
     </RelativeLayout>
 

@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements TrackCallback {
     }
 
     private void loadSearchScreen() {
-        Intent intent = new Intent(this, TestPlaybackActivity.class);
+        Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
     }
 
