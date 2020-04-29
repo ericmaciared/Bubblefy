@@ -24,12 +24,22 @@ import edu.url.salle.eric.macia.bubblefy.model.Track;
 
 public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.ViewHolder> {
 
-
     private static final String TAG = "TrackListAdapter";
+    public OnItemClickedListener mListener;
     private ArrayList<Track> mTracks;
-    private TrackListCallback mCallback;
     private Context mContext;
+    private TrackListCallback mCallback;
     private int NUM_VIEWHOLDERS = 0;
+
+    // On Item Clicked Listener
+    public interface OnItemClickedListener{
+        void onItemClicked(int position);
+        void onOptionsClicked(int position);
+    }
+
+    public void setItemClickedListener(OnItemClickedListener listener){
+        mListener = listener;
+    }
 
     public TrackListAdapter(TrackListCallback callback, Context context, ArrayList<Track> tracks ) {
         mTracks = tracks;
@@ -43,14 +53,23 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
         Log.d(TAG, "onCreateViewHolder: called. Num viewHolders: " + NUM_VIEWHOLDERS++);
 
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.track_item, parent, false);
-        ViewHolder vh = new TrackListAdapter.ViewHolder(itemView);
+        ViewHolder vh = new ViewHolder(itemView, mListener);
         Log.d(TAG, "onCreateViewHolder: called. viewHolder hashCode: " + vh.hashCode());
         return vh;
     }
 
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        Log.d(TAG, "onBindViewHolder: called. viewHolder hashcode: " + holder.hashCode());
+
+        holder.mLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCallback.onTrackSelected(position);
+            }
+        });
         holder.tvTitle.setText(mTracks.get(position).getName());
-        holder.tvAuthor.setText("By " + mTracks.get(position).getUserLogin());
+        holder.tvAuthor.setText(mTracks.get(position).getUserLogin());
+
         if (mTracks.get(position).getThumbnail() != null) {
             Glide.with(mContext)
                     .asBitmap()
@@ -112,3 +131,5 @@ public class TrackListAdapter extends RecyclerView.Adapter<TrackListAdapter.View
         }
     }
 }
+
+

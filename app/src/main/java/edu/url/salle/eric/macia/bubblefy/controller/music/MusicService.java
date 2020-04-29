@@ -98,45 +98,6 @@ public class MusicService extends Service {
 
     }
 
-    public void playStream(ArrayList<Track> tracks, int currentTrack) {
-
-        if (mediaPlayer != null) {
-            try {
-                mediaPlayer.stop();
-            } catch(Exception e) {
-            }
-            mediaPlayer = null;
-        }
-
-        mTracks = tracks;
-        this.currentTrack = currentTrack;
-        String url = mTracks.get(currentTrack).getUrl();
-
-        mediaPlayer = new MediaPlayer();
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                updateTrack(1);
-            }
-        });
-
-        try {
-            mediaPlayer.setDataSource(url);
-            mediaPlayer.prepare();
-            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-                    mediaPlayer.start();
-                    mCallback.onMusicPlayerPrepared();
-
-                }
-            });
-        } catch(Exception e) {
-        }
-
-    }
-
     public int getAudioSession() {
         return mediaPlayer.getAudioSessionId();
     }
@@ -156,10 +117,8 @@ public class MusicService extends Service {
     }
 
     public void updateTrack(int offset) {
-        currentTrack = ((currentTrack+offset)%(mTracks.size()));
-        currentTrack = currentTrack >= mTracks.size() ? 0:currentTrack;
-
-        String newUrl = mTracks.get(currentTrack).getUrl();
+        updateSessionMusicData(offset);
+        String newUrl = "";//Session.getInstance(getApplicationContext()).getTrack().getUrl();
         try {
             mediaPlayer.reset();
             mediaPlayer.setDataSource(newUrl);
@@ -211,10 +170,6 @@ public class MusicService extends Service {
         if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
             mediaPlayer.start();
         }
-    }
-
-    public void setCallback(MusicCallback callback) {
-        mCallback = callback;
     }
 
     public void setCurrentDuration(int time) {

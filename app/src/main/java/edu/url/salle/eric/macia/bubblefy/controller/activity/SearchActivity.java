@@ -21,6 +21,7 @@ import edu.url.salle.eric.macia.bubblefy.R;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.PlaylistListAdapter;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.TrackListAdapter;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.UserListAdapter;
+import edu.url.salle.eric.macia.bubblefy.controller.callbacks.TrackListCallback;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.BottomSheetDialog;
 import edu.url.salle.eric.macia.bubblefy.model.Playlist;
 import edu.url.salle.eric.macia.bubblefy.model.Search;
@@ -28,12 +29,13 @@ import edu.url.salle.eric.macia.bubblefy.model.Track;
 import edu.url.salle.eric.macia.bubblefy.model.User;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.PlaylistCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.SearchCallback;
+import edu.url.salle.eric.macia.bubblefy.restapi.callback.TrackCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.PlaylistManager;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.SearchManager;
 
 
-public class SearchActivity extends AppCompatActivity implements SearchCallback, RadioGroup.OnCheckedChangeListener, PlaylistCallback, BottomSheetDialog.BottomSheetListener {
-
+public class SearchActivity /*extends AppCompatActivity implements TrackCallback, TrackListCallback, SearchCallback, RadioGroup.OnCheckedChangeListener, PlaylistCallback, BottomSheetDialog.BottomSheetListener*/ {
+    /*
     RadioGroup radioGroup;
     RadioButton radioButton1;
     RadioButton radioButton2;
@@ -85,7 +87,7 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
 
         if(radioButton1.isChecked()){
             if(!mTracks.isEmpty()) {
-                TrackListAdapter adapter = new TrackListAdapter(this, mTracks);
+                TrackListAdapter adapter = new TrackListAdapter(this,this, mTracks);
                 mRecyclerView.setAdapter(adapter);
                 adapter.setItemClickedListener(new TrackListAdapter.OnItemClickedListener() {
                     @Override
@@ -101,7 +103,7 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
                 });
             }
             else{
-                TrackListAdapter adapter = new TrackListAdapter(this, null);
+                TrackListAdapter adapter = new TrackListAdapter(this,this, null);
                 mRecyclerView.setAdapter(adapter);
                 text = "No songs found";
                 if(!searchPerformed) text = "No search done";
@@ -327,4 +329,6 @@ public class SearchActivity extends AppCompatActivity implements SearchCallback,
     public void onButtonClicked(String text) {
 
     }
+
+    */
 }

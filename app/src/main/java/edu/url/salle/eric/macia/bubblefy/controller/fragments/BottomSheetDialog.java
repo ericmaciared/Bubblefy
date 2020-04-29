@@ -150,6 +150,11 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements Trac
     }
 
     @Override
+    public void onCreateTrack() {
+
+    }
+
+    @Override
     public void onFailure(Throwable throwable) {
 
     }

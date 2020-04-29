@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements TrackCallback {
     }
 
     private void loadSearchScreen() {
-        Intent intent = new Intent(this, SearchActivity.class);
+        Intent intent = new Intent(this, TestPlaybackActivity.class);
         startActivity(intent);
     }
 
@@ -193,6 +193,11 @@ public class MainActivity extends AppCompatActivity implements TrackCallback {
 
     @Override
     public void onReceiveLikeFailure(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onCreateTrack() {
 
     }
 

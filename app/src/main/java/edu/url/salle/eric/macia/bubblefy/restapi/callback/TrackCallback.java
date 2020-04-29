@@ -15,4 +15,5 @@ public interface TrackCallback extends FailureCallback {
     void onLikeOperationFailure(Throwable throwable);
     void onReceiveLikeSuccess(Confirmation confirmation);
     void onReceiveLikeFailure(Throwable throwable);
+    void onCreateTrack();
 }
