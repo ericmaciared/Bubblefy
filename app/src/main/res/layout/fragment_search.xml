@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:background="@color/colorBackground"
-    android:layout_centerVertical="true"
-    tools:context=".controller.activity.SearchActivity">
+    android:layout_centerVertical="true">
 
     <TextView
         android:id="@+id/textView"
@@ -96,7 +94,7 @@
         android:layout_height="wrap_content"
         android:background="@color/black"
         android:layout_centerHorizontal="true"
-        android:layout_above="@id/bottomnav"
+        android:layout_alignParentBottom="true"
         android:visibility="visible">
 
         <LinearLayout
@@ -153,48 +151,6 @@
                 android:layout_weight="3"
                 android:background="#0000"
                 android:src="@drawable/ic_play" />
-        </LinearLayout>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/bottomnav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        >
-
-        <LinearLayout
-            android:id="@+id/navbar"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_centerHorizontal="true"
-            android:background="@color/colorPrimary">
-
-            <ImageButton
-                android:id="@+id/profile_button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#0000"
-                android:src="@drawable/ic_profile_icon" />
-
-            <ImageButton
-                android:id="@+id/home_button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#0000"
-                android:src="@drawable/ic_home_icon" />
-
-            <ImageButton
-                android:id="@+id/search_button_down"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#0000"
-                android:src="@drawable/ic_search_icon" />
         </LinearLayout>
     </RelativeLayout>
 

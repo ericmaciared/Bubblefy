@@ -4,113 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
-    android:orientation="vertical"
-    tools:context="edu.url.salle.eric.macia.bubblefy.controller.activity.LoginActivity">
-
-    <LinearLayout
-        android:id="@+id/layout1"
-        android:layout_width="match_parent"
-        android:paddingTop="50dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:paddingBottom="20dp"
-        android:layout_height="wrap_content"
-        android:gravity="left">
-
-        <TextView
-            android:id="@+id/text1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Welcome back!"
-            android:fontFamily="@font/open_sans_bold"
-            android:textSize="@dimen/text_size_medium"
-            android:textColor="@color/colorTextPrimary"/>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tag1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/open_sans_light"
-        android:text="Listen again to..."
-        android:layout_below="@+id/layout1"
-        android:textColor="@color/colorTextPrimary"
-        android:paddingLeft="60dp"
-        android:paddingRight="60dp"
-        android:paddingBottom="10dp"
-        android:textSize="@dimen/text_size_smallmedium" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_below="@+id/tag1"
-        android:background="#0000"
-        android:orientation="horizontal" />
-
-    <TextView
-        android:id="@+id/tag2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/open_sans_light"
-        android:text="You might like..."
-        android:layout_below="@+id/recyclerView"
-        android:textColor="@color/colorTextPrimary"
-        android:paddingLeft="60dp"
-        android:paddingRight="60dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:textSize="@dimen/text_size_smallmedium" />
+    tools:context=".controller.activity.MainActivity">
 
     <FrameLayout
-        android:layout_below="@id/tag2"
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_margin="1dp"
         android:layout_height="match_parent"
-        android:layout_above="@id/navbar">
-
-        <com.igalata.bubblepicker.rendering.BubblePicker
-            android:id="@+id/picker"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:backgroundColor="#0000" />
-
-    </FrameLayout>
-
-    <LinearLayout
-        android:id="@+id/navbar"
+        android:layout_above="@+id/bottom_navigation"/>
+    
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="@color/colorPrimary">
-
-
-        <ImageButton
-            android:id="@+id/home_button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_home_icon"
-            android:background="#0000"
-            />
-
-        <ImageButton
-            android:id="@+id/search_button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_search_icon"
-            android:background="#0000"/>
-
-        <ImageButton
-            android:id="@+id/profile_button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_profile_icon"
-            android:background="#0000"/>
-    </LinearLayout>
-
+        app:menu="@menu/bottom_navigation"
+        app:itemIconTint="@color/white"
+        android:background="@color/colorPrimary"
+        app:labelVisibilityMode="unlabeled"/>
 </RelativeLayout>

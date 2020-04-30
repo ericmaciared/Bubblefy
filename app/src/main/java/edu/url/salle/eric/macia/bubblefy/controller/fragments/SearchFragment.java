@@ -1,15 +1,12 @@
-package edu.url.salle.eric.macia.bubblefy.controller.activity;
+package edu.url.salle.eric.macia.bubblefy.controller.fragments;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -18,6 +15,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,7 +31,6 @@ import edu.url.salle.eric.macia.bubblefy.controller.adapters.PlaylistListAdapter
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.TrackListAdapter;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.UserListAdapter;
 import edu.url.salle.eric.macia.bubblefy.controller.callbacks.TrackListCallback;
-import edu.url.salle.eric.macia.bubblefy.controller.fragments.BottomSheetDialog;
 import edu.url.salle.eric.macia.bubblefy.model.Confirmation;
 import edu.url.salle.eric.macia.bubblefy.model.Playlist;
 import edu.url.salle.eric.macia.bubblefy.model.Search;
@@ -40,7 +42,10 @@ import edu.url.salle.eric.macia.bubblefy.restapi.callback.TrackCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.SearchManager;
 
 
-public class SearchActivity extends AppCompatActivity implements TrackCallback, TrackListCallback, SearchCallback, RadioGroup.OnCheckedChangeListener, PlaylistCallback, BottomSheetDialog.BottomSheetListener {
+public class SearchFragment extends Fragment
+        implements TrackCallback, TrackListCallback, SearchCallback,
+        RadioGroup.OnCheckedChangeListener, PlaylistCallback,
+        BottomSheetDialog.BottomSheetListener {
 
     private static final String TAG = "TestPlaybackActivity";
     private static final String PLAY_VIEW = "PlayIcon";
@@ -57,9 +62,6 @@ public class SearchActivity extends AppCompatActivity implements TrackCallback, 
     private Button buttonLogin;
     private EditText searchText;
     private boolean searchPerformed = false;
-    private ImageButton ibtnHome;
-    private ImageButton ibtnSearch;
-    private ImageButton ibtnProfile;
 
     private ImageButton btnBackward;
     private ImageButton btnPlayStop;
@@ -68,50 +70,44 @@ public class SearchActivity extends AppCompatActivity implements TrackCallback, 
     private Handler mHandler;
     private Runnable mRunnable;
 
-
     private TextView tvTitle;
     private TextView tvAuthor;
     private ImageView ivPhoto;
 
-    //private RecyclerView mRecyclerView;
-
     private MediaPlayer mPlayer;
-    //private ArrayList<Track> mTracks;
     private int currentTrack = 0;
 
-
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
-        radioGroup = findViewById(R.id.group_buttons);
-        radioButton1 = findViewById(R.id.radio_song);
-        radioButton2 = findViewById(R.id.radio_playlists);
-        radioButton3 = findViewById(R.id.radio_users);
-        buttonLogin = findViewById(R.id.search_button);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v =  inflater.inflate(R.layout.fragment_search, container, false);
+
+        initViews(v);
+        return v;
+    }
+
+    private void initViews(View v){
+        mTracks = new ArrayList<>();
+        mPlay = new ArrayList<>();
+        mUsers = new ArrayList<>();
+
+        radioGroup = v.findViewById(R.id.group_buttons);
+        radioButton1 = v.findViewById(R.id.radio_song);
+        radioButton2 = v.findViewById(R.id.radio_playlists);
+        radioButton3 = v.findViewById(R.id.radio_users);
+        buttonLogin = v.findViewById(R.id.search_button);
         radioGroup.setOnCheckedChangeListener(this);
-        searchText = findViewById(R.id.search_text);
+        searchText = v.findViewById(R.id.search_text);
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getSearch();
             }
         });
-        initViews();
-    }
 
-    private void initViews() {
-        mTracks = new ArrayList<>();
-        mPlay = new ArrayList<>();
-        mUsers = new ArrayList<>();
-
-        ibtnHome = (ImageButton) findViewById(R.id.home_button);
-        ibtnSearch = (ImageButton) findViewById(R.id.search_button_down);
-        ibtnProfile = (ImageButton) findViewById(R.id.profile_button);
-
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        LinearLayoutManager manager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        TrackListAdapter adapter = new TrackListAdapter(this,this, null);
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
+        TrackListAdapter adapter = new TrackListAdapter(this, getContext(), null);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);
 
@@ -127,8 +123,8 @@ public class SearchActivity extends AppCompatActivity implements TrackCallback, 
 
         mHandler = new Handler();
 
-        tvAuthor = findViewById(R.id.track_author);
-        tvTitle = findViewById(R.id.track_title);
+        tvAuthor = v. findViewById(R.id.track_author);
+        tvTitle = v. findViewById(R.id.track_title);
 
         /*
         btnBackward = (ImageButton)findViewById(R.id.dynamic_backward_btn);
@@ -154,7 +150,7 @@ public class SearchActivity extends AppCompatActivity implements TrackCallback, 
 
          */
 
-        btnPlayStop = (ImageButton)findViewById(R.id.play_pause);
+        btnPlayStop = (ImageButton) v.findViewById(R.id.play_pause);
         btnPlayStop.setTag(PLAY_VIEW);
         btnPlayStop.setOnClickListener(new View.OnClickListener() {
 
@@ -194,25 +190,12 @@ public class SearchActivity extends AppCompatActivity implements TrackCallback, 
             }
         });
          */
-
-        ibtnProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                return;
-            }
-        });
-
-        ibtnHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadMainScreen();
-            }
-        });
     }
 
     /************************SEARCH IMPLEMENTATION**********************/
     public void getSearch(){
-        SearchManager.getInstance(this).getSearchResult((searchText.getText()).toString(), this);
+        SearchManager.getInstance(getActivity()).getSearchResult((searchText.getText()).toString(),
+                this);
     }
 
     @Override
@@ -225,7 +208,7 @@ public class SearchActivity extends AppCompatActivity implements TrackCallback, 
 
         if(radioButton1.isChecked()){
             if(!mTracks.isEmpty()) {
-                TrackListAdapter adapter = new TrackListAdapter(this,this, mTracks);
+                TrackListAdapter adapter = new TrackListAdapter(this,getActivity(), mTracks);
                 mRecyclerView.setAdapter(adapter);
                 adapter.setItemClickedListener(new TrackListAdapter.OnItemClickedListener() {
                     @Override
@@ -241,17 +224,17 @@ public class SearchActivity extends AppCompatActivity implements TrackCallback, 
                 });
             }
             else{
-                TrackListAdapter adapter = new TrackListAdapter(this,this, null);
+                TrackListAdapter adapter = new TrackListAdapter(this,getActivity(), null);
                 mRecyclerView.setAdapter(adapter);
                 text = "No songs found";
                 if(!searchPerformed) text = "No search done";
-                Toast toast =  Toast.makeText(SearchActivity.this, text, Toast.LENGTH_SHORT);
+                Toast toast =  Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
                 toast.show();
             }
         }
         else if(radioButton2.isChecked()){
             if(!mPlay.isEmpty()) {
-                PlaylistListAdapter adapter = new PlaylistListAdapter(this, mPlay);
+                PlaylistListAdapter adapter = new PlaylistListAdapter(getActivity(), mPlay);
                 mRecyclerView.setAdapter(adapter);
                 adapter.setItemClickedListener(new PlaylistListAdapter.OnItemClickedListener() {
                     @Override
@@ -266,17 +249,17 @@ public class SearchActivity extends AppCompatActivity implements TrackCallback, 
                 });
             }
             else{
-                PlaylistListAdapter adapter = new PlaylistListAdapter(this, null);
+                PlaylistListAdapter adapter = new PlaylistListAdapter(getActivity(), null);
                 mRecyclerView.setAdapter(adapter);
                 text = "No playlists found";
                 if(!searchPerformed) text = "No search done";
-                Toast toast =  Toast.makeText(SearchActivity.this, text, Toast.LENGTH_SHORT);
+                Toast toast =  Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
                 toast.show();
             }
         }
         else{
             if(!mUsers.isEmpty()) {
-                UserListAdapter adapter = new UserListAdapter(this, mUsers);
+                UserListAdapter adapter = new UserListAdapter(getActivity(), mUsers);
                 mRecyclerView.setAdapter(adapter);
                 adapter.setItemClickedListener(new UserListAdapter.OnItemClickedListener() {
                     @Override
@@ -295,27 +278,22 @@ public class SearchActivity extends AppCompatActivity implements TrackCallback, 
                 mRecyclerView.setAdapter(adapter);
                 text = "No users found";
                 if(!searchPerformed) text = "No search done";
-                Toast toast =  Toast.makeText(SearchActivity.this, text, Toast.LENGTH_SHORT);
+                Toast toast =  Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
                 toast.show();
             }
         }
     }
 
 
-    /****************NAVIGATION BAR***************/
-    private void loadMainScreen() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
 
     /******************************MUSIC PLAYBACK******************************/
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
     }
 
@@ -341,7 +319,8 @@ public class SearchActivity extends AppCompatActivity implements TrackCallback, 
                     mPlayer.setDataSource(url);
                     mPlayer.prepare(); // might take long! (for buffering, etc)
                 } catch (IOException e) {
-                    Toast.makeText(getApplicationContext(),"Error, couldn't play the music\n" + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"Error, couldn't play the music\n"
+                            + e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -387,7 +366,7 @@ public class SearchActivity extends AppCompatActivity implements TrackCallback, 
 
     public void trackOptions(int position){
         BottomSheetDialog trackOptions = new BottomSheetDialog(mTracks.get(position));
-        trackOptions.show(getSupportFragmentManager(), "trackBottomSheet");
+        //trackOptions.show(getSupportFragmentManager(), "trackBottomSheet");
     }
 
     public void playlistOptions(int position){
@@ -414,7 +393,7 @@ public class SearchActivity extends AppCompatActivity implements TrackCallback, 
 
         if(radioButton1.isChecked()){
             if(!mTracks.isEmpty()) {
-                TrackListAdapter adapter = new TrackListAdapter(this,this, mTracks);
+                TrackListAdapter adapter = new TrackListAdapter(this,getActivity(), mTracks);
                 mRecyclerView.setAdapter(adapter);
                 adapter.setItemClickedListener(new TrackListAdapter.OnItemClickedListener() {
                     @Override
@@ -429,17 +408,17 @@ public class SearchActivity extends AppCompatActivity implements TrackCallback, 
                 });
             }
             else{
-                TrackListAdapter adapter = new TrackListAdapter(this,this, null);
+                TrackListAdapter adapter = new TrackListAdapter(this,getActivity(), null);
                 mRecyclerView.setAdapter(adapter);
                 text = "No songs found";
                 if(!searchPerformed) text = "No search done";
-                Toast toast =  Toast.makeText(SearchActivity.this, text, Toast.LENGTH_SHORT);
+                Toast toast =  Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
                 toast.show();
             }
         }
         else if(radioButton2.isChecked()){
             if(!mPlay.isEmpty()) {
-                PlaylistListAdapter adapter = new PlaylistListAdapter(this, mPlay);
+                PlaylistListAdapter adapter = new PlaylistListAdapter(getActivity(), mPlay);
                 mRecyclerView.setAdapter(adapter);
                 adapter.setItemClickedListener(new PlaylistListAdapter.OnItemClickedListener() {
                     @Override
@@ -454,17 +433,17 @@ public class SearchActivity extends AppCompatActivity implements TrackCallback, 
                 });
             }
             else{
-                PlaylistListAdapter adapter = new PlaylistListAdapter(this, null);
+                PlaylistListAdapter adapter = new PlaylistListAdapter(getActivity(), null);
                 mRecyclerView.setAdapter(adapter);
                 text = "No playlists found";
                 if(!searchPerformed) text = "No search done";
-                Toast toast =  Toast.makeText(SearchActivity.this, text, Toast.LENGTH_SHORT);
+                Toast toast =  Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
                 toast.show();
             }
         }
         else{
             if(!mUsers.isEmpty()) {
-                UserListAdapter adapter = new UserListAdapter(this, mUsers);
+                UserListAdapter adapter = new UserListAdapter(getActivity(), mUsers);
                 mRecyclerView.setAdapter(adapter);
                 adapter.setItemClickedListener(new UserListAdapter.OnItemClickedListener() {
                     @Override
@@ -483,7 +462,7 @@ public class SearchActivity extends AppCompatActivity implements TrackCallback, 
                 mRecyclerView.setAdapter(adapter);
                 text = "No users found";
                 if(!searchPerformed) text = "No search done";
-                Toast toast =  Toast.makeText(SearchActivity.this, text, Toast.LENGTH_SHORT);
+                Toast toast =  Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
                 toast.show();
             }
         }
@@ -518,7 +497,7 @@ public class SearchActivity extends AppCompatActivity implements TrackCallback, 
     @Override
     public void onTracksReceived(List<Track> tracks) {
         mTracks = (ArrayList) tracks;
-        TrackListAdapter adapter = new TrackListAdapter(this, this, mTracks);
+        TrackListAdapter adapter = new TrackListAdapter(this, getActivity(), mTracks);
         mRecyclerView.setAdapter(adapter);
     }
 

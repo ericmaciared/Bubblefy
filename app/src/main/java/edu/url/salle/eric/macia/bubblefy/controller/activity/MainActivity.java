@@ -1,49 +1,20 @@
 package edu.url.salle.eric.macia.bubblefy.controller.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.Toast;
+import android.view.MenuItem;
 
-import com.igalata.bubblepicker.BubblePickerListener;
-import com.igalata.bubblepicker.adapter.BubblePickerAdapter;
-import com.igalata.bubblepicker.model.PickerItem;
-import com.igalata.bubblepicker.rendering.BubblePicker;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import edu.url.salle.eric.macia.bubblefy.R;
-import edu.url.salle.eric.macia.bubblefy.controller.adapters.BubbleTrackListAdapter;
-import edu.url.salle.eric.macia.bubblefy.model.Confirmation;
-import edu.url.salle.eric.macia.bubblefy.model.Track;
-import edu.url.salle.eric.macia.bubblefy.restapi.callback.TrackCallback;
-import edu.url.salle.eric.macia.bubblefy.restapi.manager.TrackManager;
+import edu.url.salle.eric.macia.bubblefy.controller.fragments.HomeFragment;
+import edu.url.salle.eric.macia.bubblefy.controller.fragments.ProfileFragment;
+import edu.url.salle.eric.macia.bubblefy.controller.fragments.SearchFragment;
 
-public class MainActivity extends AppCompatActivity implements TrackCallback {
-
-    private BubblePicker bubblePicker;
-
-    private String[] name = {
-            "Colores",
-            "YHLQMDLG",
-            "Blue",
-            "Chill",
-            "Party"
-    };
-
-    private RecyclerView recyclerView;
-    private ArrayList<Track> mTracks;
-    private ImageButton ibtnHome;
-    private ImageButton ibtnSearch;
-    private ImageButton ibtnProfile;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,158 +22,41 @@ public class MainActivity extends AppCompatActivity implements TrackCallback {
         setContentView(R.layout.activity_main);
 
         initViews();
-        initListenAgain();
-        initBubblePicker();
+        setInitialFragment();
 
     }
 
-    private void initListenAgain() {
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-
-        LinearLayoutManager manager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL,
-                false);
-        BubbleTrackListAdapter adapter = new BubbleTrackListAdapter(this, null);
-
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(adapter);
-
-        TrackManager.getInstance(this).getUserLikedTracks(this);
-    }
-
-    private void initBubblePicker() {
-        bubblePicker = (BubblePicker) findViewById(R.id.picker);
-
-        bubblePicker.setAdapter(new BubblePickerAdapter() {
+    private void initViews() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public int getTotalCount() {
-                return name.length;
-            }
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment selectedFragment = null;
 
-            @NotNull
-            @Override
-            public PickerItem getItem(int i) {
-                PickerItem item = new PickerItem();
-                //item.setColor(120);
-                item.setTitle(name[i]);
-                //item.setTextColor(255);
-                //item.setOverlayAlpha(1);
-                return item;
-            }
-
-        });
-
-        bubblePicker.setListener(new BubblePickerListener() {
-            @Override
-            public void onBubbleSelected(@NotNull PickerItem pickerItem) {
-                Toast.makeText(MainActivity.this, "You have clicked "+
-                        pickerItem.getTitle(), Toast.LENGTH_SHORT).show();
-                if (pickerItem.isSelected()){
-                    pickerItem.setTitle("TEST");
+                switch (item.getItemId()){
+                    case R.id.nav_home:
+                        selectedFragment = new HomeFragment();
+                        break;
+                    case R.id.nav_search:
+                        selectedFragment = new SearchFragment();
+                        break;
+                    case R.id.nav_profile:
+                        selectedFragment = new ProfileFragment();
+                        break;
                 }
-            }
 
-            @Override
-            public void onBubbleDeselected(@NotNull PickerItem pickerItem) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        selectedFragment).commit();
 
-            }
-        });
-
-        bubblePicker.setCenterImmediately(true);
-    }
-
-    private void initViews(){
-        ibtnHome = (ImageButton) findViewById(R.id.home_button);
-        ibtnSearch = (ImageButton) findViewById(R.id.search_button);
-        ibtnProfile = (ImageButton) findViewById(R.id.profile_button);
-
-        ibtnProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                return;
-            }
-        });
-
-        ibtnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadSearchScreen();
+                return true;
             }
         });
     }
 
-    private void loadSearchScreen() {
-        Intent intent = new Intent(this, SearchActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        bubblePicker.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        bubblePicker.onPause();
-    }
-
-    @Override
-    public void onTracksReceived(List<Track> tracks) {
-
-    }
-
-    @Override
-    public void onNoTracks(Throwable throwable) {
-
-    }
-
-    @Override
-    public void onPersonalTracksReceived(List<Track> tracks) {
-
-    }
-
-    @Override
-    public void onUserTracksReceived(List<Track> tracks) {
-
-    }
-
-    @Override
-    public void onUserLikedTracksReceived(List<Track> tracks) {
-        ArrayList<Track> mTracks = new ArrayList<Track>();
-        mTracks = (ArrayList<Track>) tracks;
-
-        BubbleTrackListAdapter adapter = new BubbleTrackListAdapter(this, mTracks);
-        recyclerView.setAdapter(adapter);
-    }
-
-    @Override
-    public void onLikeOperationSuccess(Confirmation confirmation) {
-
-    }
-
-    @Override
-    public void onLikeOperationFailure(Throwable throwable) {
-
-    }
-
-    @Override
-    public void onReceiveLikeSuccess(Confirmation confirmation) {
-
-    }
-
-    @Override
-    public void onReceiveLikeFailure(Throwable throwable) {
-
-    }
-
-    @Override
-    public void onCreateTrack() {
-
-    }
-
-    @Override
-    public void onFailure(Throwable throwable) {
-
+    private void setInitialFragment() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new HomeFragment()).commit();
     }
 }
+
+
