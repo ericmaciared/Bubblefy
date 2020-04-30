@@ -7,4 +7,8 @@ public class Constants {
         public static String BASE_URL = "http://" +
                 "sallefy.eu-west-3.elasticbeanstalk.com/api/";
     }
+
+    public interface STORAGE {
+        public static int SONG_SELECTED = 4;
+    }
 }

@@ -366,7 +366,7 @@ public class SearchFragment extends Fragment
 
     public void trackOptions(int position){
         BottomSheetDialog trackOptions = new BottomSheetDialog(mTracks.get(position));
-        //trackOptions.show(getSupportFragmentManager(), "trackBottomSheet");
+        trackOptions.show(getChildFragmentManager(), "trackBottomSheet");
     }
 
     public void playlistOptions(int position){

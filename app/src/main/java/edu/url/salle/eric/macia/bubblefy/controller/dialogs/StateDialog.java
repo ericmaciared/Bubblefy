@@ -9,7 +9,7 @@ import android.widget.TextView;
 import edu.url.salle.eric.macia.bubblefy.R;
 
 public class StateDialog {
-/*
+
     private static StateDialog sManager;
     private static Object mutex = new Object();
 
@@ -77,5 +77,4 @@ public class StateDialog {
         return mDialog.isShowing();
     }
 
- */
 }

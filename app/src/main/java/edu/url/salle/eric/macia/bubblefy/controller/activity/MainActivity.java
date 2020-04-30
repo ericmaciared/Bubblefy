@@ -10,11 +10,13 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import edu.url.salle.eric.macia.bubblefy.R;
+import edu.url.salle.eric.macia.bubblefy.controller.fragments.BottomSheetDialog;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.HomeFragment;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.ProfileFragment;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.SearchFragment;
+import edu.url.salle.eric.macia.bubblefy.controller.fragments.UploadFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BottomSheetDialog.BottomSheetListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                         selectedFragment = new SearchFragment();
                         break;
                     case R.id.nav_profile:
-                        selectedFragment = new ProfileFragment();
+                        selectedFragment = new UploadFragment();
                         break;
                 }
 
@@ -56,6 +58,11 @@ public class MainActivity extends AppCompatActivity {
     private void setInitialFragment() {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment()).commit();
+    }
+
+    @Override
+    public void onButtonClicked(String text) {
+
     }
 }
 
