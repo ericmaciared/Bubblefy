@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements TrackCallback {
         ibtnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                return;
+                loadProfileScreen();
             }
         });
 
@@ -132,6 +132,11 @@ public class MainActivity extends AppCompatActivity implements TrackCallback {
 
     private void loadSearchScreen() {
         Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
+    }
+
+    private void loadProfileScreen() {
+        Intent intent = new Intent(this, UploadActivity.class);
         startActivity(intent);
     }
 

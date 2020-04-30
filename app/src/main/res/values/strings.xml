@@ -28,5 +28,18 @@
     <string name="default_track_title">Título canción</string>
     <string name="default_track_author">Autor/a</string>
 
+    <!-- ACTIVITY [ Create Song ] -->
+    <string name="action_cloudinary">Subir canción</string>
+    <string name="create_song_titulo">Título</string>
+    <string name="create_song_genre">Género</string>
+    <string name="create_song_file">Buscar fichero</string>
+    <string name="action_accept">Aceptar</string>
+    <string name="action_decline">Cancelar</string>
+
+    <!-- INFO STATE -->
+    <string name="state_wait">Porfavor espere..</string>
+    <string name="state_task_in_progress">Tarea en proceso</string>
+    <string name="state_success_title">Éxito</string>
+    <string name="state_task_completed">Tarea completada con éxito!</string>
 
 </resources>
