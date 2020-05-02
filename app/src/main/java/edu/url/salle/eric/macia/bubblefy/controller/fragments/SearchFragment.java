@@ -9,11 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.url.salle.eric.macia.bubblefy.R;
+import edu.url.salle.eric.macia.bubblefy.controller.activity.MainActivity;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.PlaylistListAdapter;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.TrackListAdapter;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.UserListAdapter;
@@ -63,18 +61,9 @@ public class SearchFragment extends Fragment
     private EditText searchText;
     private boolean searchPerformed = false;
 
-    private ImageButton btnBackward;
-    private ImageButton btnPlayStop;
-    private ImageButton btnForward;
-
     private Handler mHandler;
     private Runnable mRunnable;
 
-    private TextView tvTitle;
-    private TextView tvAuthor;
-    private ImageView ivPhoto;
-
-    private MediaPlayer mPlayer;
     private int currentTrack = 0;
 
     @Nullable
@@ -98,12 +87,7 @@ public class SearchFragment extends Fragment
         buttonLogin = v.findViewById(R.id.search_button);
         radioGroup.setOnCheckedChangeListener(this);
         searchText = v.findViewById(R.id.search_text);
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getSearch();
-            }
-        });
+        buttonLogin.setOnClickListener(v1 -> getSearch());
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
@@ -111,20 +95,18 @@ public class SearchFragment extends Fragment
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);
 
-        mPlayer = new MediaPlayer();
-        mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        MainActivity.mediaPlayer = new MediaPlayer();
+        MainActivity.mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        MainActivity.mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 playAudio();
-                int audioSessionId = mPlayer.getAudioSessionId();
+                int audioSessionId = MainActivity.mediaPlayer.getAudioSessionId();
             }
         });
 
         mHandler = new Handler();
 
-        tvAuthor = v. findViewById(R.id.track_author);
-        tvTitle = v. findViewById(R.id.track_title);
 
         /*
         btnBackward = (ImageButton)findViewById(R.id.dynamic_backward_btn);
@@ -149,20 +131,6 @@ public class SearchFragment extends Fragment
         });
 
          */
-
-        btnPlayStop = (ImageButton) v.findViewById(R.id.play_pause);
-        btnPlayStop.setTag(PLAY_VIEW);
-        btnPlayStop.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (btnPlayStop.getTag().equals(PLAY_VIEW)) {
-                    playAudio();
-                } else {
-                    pauseAudio();
-                }
-            }
-        });
 
         /*
         mSeekBar = (SeekBar) findViewById(R.id.dynamic_seekBar);
@@ -298,17 +266,11 @@ public class SearchFragment extends Fragment
     }
 
     private void playAudio() {
-        mPlayer.start();
-        btnPlayStop.setImageResource(R.drawable.ic_pause);
-        btnPlayStop.setTag(STOP_VIEW);
-        //Toast.makeText(getApplicationContext(), "Playing Audio", Toast.LENGTH_SHORT).show();
+        MainActivity.playAudio();
     }
 
     private void pauseAudio() {
-        mPlayer.pause();
-        btnPlayStop.setImageResource(R.drawable.ic_play);
-        btnPlayStop.setTag(PLAY_VIEW);
-        //Toast.makeText(getApplicationContext(), "Pausing Audio", Toast.LENGTH_SHORT).show();
+        MainActivity.pauseAudio();
     }
 
     private void prepareMediaPlayer(final String url) {
@@ -316,8 +278,8 @@ public class SearchFragment extends Fragment
             @Override
             public void run() {
                 try {
-                    mPlayer.setDataSource(url);
-                    mPlayer.prepare(); // might take long! (for buffering, etc)
+                    MainActivity.mediaPlayer.setDataSource(url);
+                    MainActivity.mediaPlayer.prepare(); // might take long! (for buffering, etc)
                 } catch (IOException e) {
                     Toast.makeText(getActivity(),"Error, couldn't play the music\n"
                             + e.getMessage(), Toast.LENGTH_LONG).show();
@@ -330,13 +292,13 @@ public class SearchFragment extends Fragment
 
     public void updateTrack(Track track) {
         //updateSessionMusicData(offset);
-        tvAuthor.setText(track.getUserLogin());
-        tvTitle.setText(track.getName());
+        MainActivity.tvAuthor.setText(track.getUserLogin());
+        MainActivity.tvTitle.setText(track.getName());
         try {
-            mPlayer.reset();
-            mPlayer.setDataSource(track.getUrl());
+            MainActivity.mediaPlayer.reset();
+            MainActivity.mediaPlayer.setDataSource(track.getUrl());
             //mediaPlayer.pause();
-            mPlayer.prepare();
+            MainActivity.mediaPlayer.prepare();
         } catch(Exception e) {
         }
     }
