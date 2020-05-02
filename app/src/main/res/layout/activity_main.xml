@@ -37,7 +37,8 @@
             android:layout_weight="7"
             android:background="#0000"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:clickable="true">
 
             <TextView
                 android:id="@+id/track_title"
@@ -47,7 +48,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/open_sans"
                 android:singleLine="true"
-                android:text="Colores"
+                android:text="Title"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="@dimen/text_size_medium" />
 
@@ -57,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:fontFamily="@font/open_sans_light"
-                android:text="J Balvin"
+                android:text="Author"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="@dimen/text_size_smallmedium" />
         </LinearLayout>

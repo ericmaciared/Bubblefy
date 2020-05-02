@@ -6,7 +6,8 @@
                 android:startColor="@color/colorBackground"
                 android:centerColor="@color/colorPrimaryDarkened"
                 android:endColor="@color/colorPrimaryDarkened"
-                android:angle="90"/>
+                android:angle="90"
+                android:centerX="75"/>
         </shape>
     </item>
 </selector>
