@@ -37,3 +37,4 @@ local.properties
 .gradle/buildOutputCleanup/buildOutputCleanup.lock
 .gradle/buildOutputCleanup/outputFiles.bin
 .idea/workspace.xml
+.idea/workspace.xml
