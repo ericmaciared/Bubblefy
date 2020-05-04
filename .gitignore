@@ -38,3 +38,9 @@ local.properties
 .gradle/buildOutputCleanup/outputFiles.bin
 .idea/workspace.xml
 .idea/workspace.xml
+.gradle/5.6.4/fileHashes/fileHashes.lock
+.idea/libraries/Gradle__com_cloudinary_cloudinary_android_1_25_0_aar.xml
+.idea/libraries/Gradle__com_evernote_android_job_1_2_6_aar.xml
+.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_9_0_aar.xml
+.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_9_0_aar.xml
+.idea/libraries/Gradle__com_github_igalata_Bubble_Picker_v0_2_4_aar.xml
