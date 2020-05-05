@@ -3,6 +3,7 @@ package edu.url.salle.eric.macia.bubblefy.controller.fragments;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +23,13 @@ import com.igalata.bubblepicker.BubblePickerListener;
 import com.igalata.bubblepicker.adapter.BubblePickerAdapter;
 import com.igalata.bubblepicker.model.PickerItem;
 import com.igalata.bubblepicker.rendering.BubblePicker;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -167,18 +171,25 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
         //Profile Picture
         ivProfileImage = (ImageView) v.findViewById(R.id.profile_image);
         if(Session.sSession.getUser() != null) {
-            if(Session.sSession.getUser().getImageUrl() != null) {
-                URL url = new URL(Session.sSession.getUser().getImageUrl());
-                Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                ivProfileImage.setImageBitmap(bmp);
+            if(Session.sSession.getUser().getImageUrl() == null) {
+                Picasso.get()
+                        .load("https://lh3.googleusercontent.com/proxy/ayjlQJLp0z94G8CitaXSADVXJLcFbDUD1bIoEiVgEiA07XH3RjSfHQFkvfprfFtqUESabFj9XXPPX4ynVQgpAbbK2LWtMUyvuXOQRmUPg_n5uDKPzYE3Osk16M4Ih_NV-C4")
+                        .into(ivProfileImage);
             }
+            else{
+                Picasso.get()
+                        .load(Session.sSession.getUser().getImageUrl())
+                        .into(ivProfileImage);
+            }
+
             if(Session.sSession.getUser().getFollowers() != null) {
-                tFollowers.setText(Session.sSession.getUser().getFollowers());
+                tFollowers.setText(Session.getInstance(getContext()).getUser().getFollowers());
             } else{
                 tFollowers.setText("0");
             }
+
             if(Session.sSession.getUser().getFollowing() != null) {
-                tFollowing.setText(Session.sSession.getUser().getFollowing());
+                tFollowing.setText(Session.getInstance(getContext()).getUser().getFollowing());
             } else {
                 tFollowing.setText("0");
             }

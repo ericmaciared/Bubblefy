@@ -12,7 +12,7 @@
         android:paddingTop="20dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-        android:paddingBottom="10dp"
+        android:paddingBottom="20dp"
         android:layout_height="wrap_content"
         android:gravity="right">
 
@@ -40,14 +40,14 @@
             android:layout_height="150dp"
             android:layout_marginBottom="5dp"
             app:cardCornerRadius="75dp"
-            app:cardElevation="10dp">
+            app:cardBackgroundColor="#0000">
 
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:id="@+id/profile_image"
                 android:src="@drawable/ic_bubblefy_logo_white"
-                android:background="#0000">
+                android:layout_gravity="center">
             </ImageView>
         </androidx.cardview.widget.CardView>
 

@@ -50,4 +50,8 @@ dependencies {
 
     //Cloudinary
     implementation group: 'com.cloudinary', name: 'cloudinary-android', version: '1.25.0'
+
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
 }
