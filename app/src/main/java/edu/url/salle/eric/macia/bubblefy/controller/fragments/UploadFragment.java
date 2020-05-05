@@ -79,7 +79,6 @@ public class UploadFragment extends Fragment implements GenreCallback, TrackCall
         mFilename = (TextView) v.findViewById(R.id.create_song_file_name);
 
         mSpinner = (Spinner) v.findViewById(R.id.create_song_genre);
-
         btnFind = (Button) v.findViewById(R.id.create_song_file);
         btnFind.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,7 +148,7 @@ public class UploadFragment extends Fragment implements GenreCallback, TrackCall
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constants.STORAGE.SONG_SELECTED && resultCode == RESULT_OK) {
             mFileUri = data.getData();
-            mFilename.setText(mFileUri.toString());
+            //mFilename.setText(mFileUri.toString());
         }
     }
 

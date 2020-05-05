@@ -29,18 +29,18 @@
     <string name="default_track_author">Autor/a</string>
 
     <!-- Fragment [ Create Song ] -->
-    <string name="action_cloudinary">Subir canción</string>
-    <string name="create_song_titulo">Título</string>
-    <string name="create_song_genre">Género</string>
-    <string name="create_song_file">Buscar fichero</string>
-    <string name="action_accept">Aceptar</string>
-    <string name="action_decline">Cancelar</string>
+    <string name="action_cloudinary">Upload your music</string>
+    <string name="create_song_titulo">Title</string>
+    <string name="create_song_genre">Genre</string>
+    <string name="create_song_file">Search song</string>
+    <string name="action_accept">Upload</string>
+    <string name="action_decline">Dismiss</string>
 
     <!-- State Dialog [ Create Song ] -->
-    <string name="state_task_in_progress">Tarea en proceso</string>
-    <string name="state_wait">Porfavor espere..</string>
-    <string name="state_success_title">Éxito</string>
-    <string name="state_task_completed">Tarea completada con éxito!</string>
+    <string name="state_task_in_progress">Task in progress</string>
+    <string name="state_wait">Please wait...</string>
+    <string name="state_success_title">Success</string>
+    <string name="state_task_completed">Everything was fine!</string>
     <string name="followers">Followers</string>
     <string name="following">Following</string>
 

@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:background="@drawable/round_button"
+        android:background="@color/gray"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingBottom="20dp"
@@ -45,6 +45,7 @@
                     android:id="@+id/dialog_state_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:textSize="30sp"
                     android:textStyle="bold"
                     android:textAlignment="center"
@@ -57,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textSize="20sp"
+                android:textColor="@color/white"
                 android:text="@string/state_task_in_progress"/>
 
             <Button
@@ -64,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="@color/colorSecondary"
+                android:background="@drawable/round_button"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:text="@string/action_accept"/>

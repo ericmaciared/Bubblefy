@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:gravity="center_horizontal"
+    android:background="@color/colorBackground">
 
     <TextView
+        android:id="@+id/text_above"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/open_sans_bold"
+        android:textSize="@dimen/text_size_medium"
+        android:textColor="@color/colorTextPrimary"
         android:textAlignment="center"
         android:textStyle="bold"
-        android:textSize="34sp"
         android:text="@string/action_cloudinary"/>
 
     <LinearLayout
+        android:layout_below="@id/text_above"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:orientation="vertical">
@@ -31,11 +35,17 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/create_song_titulo"/>
+                android:text="@string/create_song_titulo"
+                android:textColor="@color/white"
+                />
 
             <EditText
                 android:id="@+id/create_song_title"
                 android:layout_width="match_parent"
+                android:hint="Type here..."
+                android:textSize="@dimen/text_size_medium"
+                android:textColor="@color/colorTextPrimary"
+                android:textColorHint="@color/colorTextPrimary"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"/>
 
@@ -44,35 +54,41 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="@string/create_song_genre"/>
 
             <Spinner
                 android:id="@+id/create_song_genre"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:outlineSpotShadowColor="@color/white"
+                android:outlineAmbientShadowColor="@color/white"
+                android:textSize="@dimen/text_size_medium" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:orientation="vertical">
 
             <Button
                 android:id="@+id/create_song_file"
-                android:layout_width="wrap_content"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:layout_gravity="center"
                 android:padding="5dp"
-                android:text="@string/create_song_file"/>
+                android:text="@string/create_song_file"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/create_song_file_name"
@@ -86,28 +102,35 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="40dp"
             android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/create_song_cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:padding="10dp"
-                android:layout_marginEnd="40dp"
-                android:text="@string/action_decline"/>
-
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/create_song_accept"
-                android:layout_width="wrap_content"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
                 android:padding="15dp"
-                android:text="@string/action_accept"/>
+                android:text="@string/action_accept"
+                android:background="@drawable/round_button"
+                android:fontFamily="@font/open_sans"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="@dimen/text_size_smallmedium"/>
+
+            <Button
+                android:id="@+id/create_song_cancel"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/action_decline"
+                android:background="#0000"
+                android:fontFamily="@font/open_sans"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="@dimen/text_size_smallmedium"/>
         </LinearLayout>
 
+
+
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>
