@@ -3,6 +3,7 @@ package edu.url.salle.eric.macia.bubblefy.controller.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import android.media.Image;
 import android.media.MediaPlayer;
@@ -29,7 +30,7 @@ import edu.url.salle.eric.macia.bubblefy.controller.fragments.SearchFragment;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.UploadFragment;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
 
-public class MainActivity extends AppCompatActivity implements BottomSheetDialog.BottomSheetListener {
+public class MainActivity extends FragmentActivity implements BottomSheetDialog.BottomSheetListener {
     private static final String PLAY_VIEW = "PlayIcon";
     private static final String STOP_VIEW = "StopIcon";
 
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements BottomSheetDialog
     public static ImageView ivPhoto;
 
     private static int activity = 0;
+    Fragment selectedFragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +92,6 @@ public class MainActivity extends AppCompatActivity implements BottomSheetDialog
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment selectedFragment = null;
 
                 switch (item.getItemId()){
                     case R.id.nav_home:
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements BottomSheetDialog
                         break;
                     case R.id.nav_profile:
                         activity = 2;
-                        selectedFragment = new UploadFragment();
+                        selectedFragment = new ProfileFragment();
                         break;
                 }
 

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,19 +31,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.url.salle.eric.macia.bubblefy.R;
+import edu.url.salle.eric.macia.bubblefy.controller.activity.LoginActivity;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.BubbleTrackListAdapter;
 import edu.url.salle.eric.macia.bubblefy.model.Confirmation;
 import edu.url.salle.eric.macia.bubblefy.model.Playlist;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
+import edu.url.salle.eric.macia.bubblefy.model.User;
+import edu.url.salle.eric.macia.bubblefy.model.UserToken;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.TrackCallback;
+import edu.url.salle.eric.macia.bubblefy.restapi.callback.UserCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.TrackManager;
+import edu.url.salle.eric.macia.bubblefy.restapi.manager.UserManager;
 import edu.url.salle.eric.macia.bubblefy.utils.Session;
 
-public class ProfileFragment extends Fragment implements TrackCallback{
+public class ProfileFragment extends Fragment implements TrackCallback, UserCallback {
 
     //BubblePicker
     private BubblePicker bubblePicker;
-    private RecyclerView recyclerView;
     private ArrayList<Playlist> mPlaylists;
     private String[] name = {
             "Colores",
@@ -69,29 +74,21 @@ public class ProfileFragment extends Fragment implements TrackCallback{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =  inflater.inflate(R.layout.fragment_profile, container, false);
-
+        getUserData();
         try {
             initViews(v);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        initListenAgain(v);
+        initUserListened(v);
         initBubblePicker(v);
         return v;
     }
 
-    private void initListenAgain(View v) {
-        recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
-
-        LinearLayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL,
-                false);
-        BubbleTrackListAdapter adapter = new BubbleTrackListAdapter(getActivity(), null);
-
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(adapter);
-
-        TrackManager.getInstance(getActivity()).getUserLikedTracks(this);
+    private void initUserListened(View v) {
+        //TrackManager.getInstance(getActivity()).getUserLikedTracks(this);
+        // Will need to implement the most listened playlists / genres
     }
 
     private void initBubblePicker(View v) {
@@ -143,25 +140,9 @@ public class ProfileFragment extends Fragment implements TrackCallback{
     }
 
     private void initViews(View v) throws IOException {
-
-        //Profile Picture
-        ivProfileImage = (ImageView) v.findViewById(R.id.profile_image);
-        if(Session.sSession.getUser().getImageUrl() != null){
-            URL url = new URL(Session.sSession.getUser().getImageUrl());
-            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-            ivProfileImage.setImageBitmap(bmp);
-        }
-        else{
-            String text = "No picture URL found";
-            Toast toast =  Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
-            toast.show();
-        }
-
         //Followers and Following
         tFollowers = (TextView) v.findViewById(R.id.num_followers_text);
         tFollowing = (TextView) v.findViewById(R.id.num_following_text);
-        tFollowers.setText(Session.sSession.getUser().getFollowers());
-        tFollowing.setText(Session.sSession.getUser().getFollowing());
 
         //Upload and Config Buttons
         ibtnConfig = (ImageButton) v.findViewById(R.id.config_button);
@@ -175,9 +156,45 @@ public class ProfileFragment extends Fragment implements TrackCallback{
         ibtnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                return;
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, new UploadFragment());
+                transaction.addToBackStack(null);
+                transaction.commit();
+
             }
         });
+
+        //Profile Picture
+        ivProfileImage = (ImageView) v.findViewById(R.id.profile_image);
+        if(Session.sSession.getUser() != null) {
+            if(Session.sSession.getUser().getImageUrl() != null) {
+                URL url = new URL(Session.sSession.getUser().getImageUrl());
+                Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                ivProfileImage.setImageBitmap(bmp);
+            }
+            if(Session.sSession.getUser().getFollowers() != null) {
+                tFollowers.setText(Session.sSession.getUser().getFollowers());
+            } else{
+                tFollowers.setText("0");
+            }
+            if(Session.sSession.getUser().getFollowing() != null) {
+                tFollowing.setText(Session.sSession.getUser().getFollowing());
+            } else {
+                tFollowing.setText("0");
+            }
+
+        }
+        else{
+            String text = "No picture URL found";
+            Toast toast =  Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
+    private void getUserData(){
+        UserManager.getInstance(getActivity().getApplicationContext())
+                .getUserData(Session.getInstance(getActivity().getApplicationContext())
+                        .getUser().getLogin(), this);
     }
 
     @Override
@@ -202,11 +219,6 @@ public class ProfileFragment extends Fragment implements TrackCallback{
 
     @Override
     public void onUserLikedTracksReceived(List<Track> tracks) {
-        ArrayList<Track> mTracks = new ArrayList<Track>();
-        mTracks = (ArrayList<Track>) tracks;
-
-        BubbleTrackListAdapter adapter = new BubbleTrackListAdapter(getActivity(), mTracks);
-        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -240,4 +252,28 @@ public class ProfileFragment extends Fragment implements TrackCallback{
     }
 
 
+    @Override
+    public void onLoginSuccess(UserToken userToken) {
+
+    }
+
+    @Override
+    public void onLoginFailure(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onRegisterSuccess() {
+
+    }
+
+    @Override
+    public void onRegisterFailure(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onUserInfoReceived(User userData) {
+        Session.sSession.setUser(userData);
+    }
 }

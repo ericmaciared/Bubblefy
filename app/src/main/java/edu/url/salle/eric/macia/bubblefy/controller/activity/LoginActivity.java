@@ -90,8 +90,12 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
     //USER CALLBACK
     @Override
     public void onLoginSuccess(UserToken userToken) {
+        User user = new User();
+        user.setLogin(etUsername.toString());
         Session.getInstance(getApplicationContext())
                 .setUserToken(userToken);
+        Session.getInstance(getApplicationContext())
+                .setUser(user);
         Intent intent = new Intent(this, MainActivity.class);
         PreferenceUtils.saveUser(this, etUsername.getText().toString());
         PreferenceUtils.savePassword(this, etPassword.getText().toString());

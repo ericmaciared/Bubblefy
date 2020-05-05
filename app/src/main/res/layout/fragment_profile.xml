@@ -67,7 +67,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginRight="30dp">
+                android:layout_marginRight="30dp"
+                android:textAlignment="center">
 
                 <TextView
                     android:id="@+id/num_followers_text"
@@ -76,7 +77,9 @@
                     android:textStyle="bold|italic"
                     android:textColor="@color/white"
                     android:layout_marginBottom="10dp"
-                    android:textSize="30sp">
+                    android:textSize="30sp"
+                    android:textAlignment="center"
+                    android:layout_gravity="center">
                 </TextView>
 
                 <TextView
@@ -84,7 +87,9 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold|italic"
                     android:textColor="@color/white"
-                    android:text="@string/followers">
+                    android:text="@string/followers"
+                    android:textAlignment="center"
+                    android:layout_gravity="center">
                 </TextView>
             </LinearLayout>
 
@@ -93,7 +98,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginLeft="30dp">
+                android:layout_marginLeft="30dp"
+                android:textAlignment="center">
 
                 <TextView
                     android:id="@+id/num_following_text"
@@ -102,7 +108,9 @@
                     android:textStyle="bold|italic"
                     android:textColor="@color/white"
                     android:layout_marginBottom="10dp"
-                    android:textSize="30sp">>
+                    android:textSize="30sp"
+                    android:textAlignment="center"
+                    android:layout_gravity="center">
                 </TextView>
 
                 <TextView
@@ -110,7 +118,9 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold|italic"
                     android:textColor="@color/white"
-                    android:text="@string/following">
+                    android:text="@string/following"
+                    android:textAlignment="center"
+                    android:layout_gravity="center">
                 </TextView>
 
             </LinearLayout>
