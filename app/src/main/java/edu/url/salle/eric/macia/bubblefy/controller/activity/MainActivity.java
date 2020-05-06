@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import android.media.AudioManager;
 import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -74,6 +75,15 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
             loadPlaybackFragment();
         });
 
+        mediaPlayer = new MediaPlayer();
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                playAudio();
+                int audioSessionId = mediaPlayer.getAudioSessionId();
+            }
+        });
 
         btnPlayStop = (ImageButton) findViewById(R.id.play_pause);
         btnPlayStop.setTag(PLAY_VIEW);

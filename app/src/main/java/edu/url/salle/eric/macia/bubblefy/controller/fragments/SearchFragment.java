@@ -61,9 +61,6 @@ public class SearchFragment extends Fragment
     private EditText searchText;
     private boolean searchPerformed = false;
 
-    private Handler mHandler;
-    private Runnable mRunnable;
-
     private int currentTrack = 0;
 
     @Nullable
@@ -95,17 +92,6 @@ public class SearchFragment extends Fragment
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);
 
-        MainActivity.mediaPlayer = new MediaPlayer();
-        MainActivity.mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        MainActivity.mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                playAudio();
-                int audioSessionId = MainActivity.mediaPlayer.getAudioSessionId();
-            }
-        });
-
-        mHandler = new Handler();
 
 
         /*
