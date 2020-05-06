@@ -47,11 +47,14 @@ public class UploadFragment extends Fragment implements GenreCallback, TrackCall
     private EditText etTitle;
     private Spinner mSpinner;
     private TextView mFilename;
-    private Button btnFind, btnCancel, btnAccept;
+    private TextView mImagename;
+    private Button btnFind, btnFindImg, btnCancel, btnAccept;
 
     private ArrayList<String> mGenres;
     private ArrayList<Genre> mGenresObjs;
     private Uri mFileUri;
+    private Uri mImageUri = null;
+    private boolean hasImage = false;
 
     private Context mContext;
 
@@ -77,6 +80,7 @@ public class UploadFragment extends Fragment implements GenreCallback, TrackCall
     private void initViews(View v) {
         etTitle = (EditText) v.findViewById(R.id.create_song_title);
         mFilename = (TextView) v.findViewById(R.id.create_song_file_name);
+        mImagename = (TextView) v.findViewById(R.id.create_image_file_name);
 
         mSpinner = (Spinner) v.findViewById(R.id.create_song_genre);
         btnFind = (Button) v.findViewById(R.id.create_song_file);
@@ -84,6 +88,14 @@ public class UploadFragment extends Fragment implements GenreCallback, TrackCall
             @Override
             public void onClick(View v) {
                 getAudioFromStorage();
+            }
+        });
+
+        btnFindImg = (Button) v.findViewById(R.id.create_image_file);
+        btnFindImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getImageFromStorage();
             }
         });
 
@@ -103,6 +115,9 @@ public class UploadFragment extends Fragment implements GenreCallback, TrackCall
                     etTitle.setFocusable(false);
                     showStateDialog(false);
                     uploadToCloudinary();
+                    if(mImageUri != null){
+                        uploadImageToCloudinary();
+                    }
                 }
             }
         });
@@ -133,6 +148,13 @@ public class UploadFragment extends Fragment implements GenreCallback, TrackCall
         startActivityForResult(Intent.createChooser(intent, "Choose a song"), Constants.STORAGE.SONG_SELECTED);
     }
 
+    private void getImageFromStorage() {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/jpeg");
+        startActivityForResult(Intent.createChooser(intent, "Choose a song"), Constants.STORAGE.IMAGE_SELECTED);
+    }
+
     private void uploadToCloudinary() {
         Genre genre = new Genre();
         for (Genre g: mGenresObjs) {
@@ -140,7 +162,11 @@ public class UploadFragment extends Fragment implements GenreCallback, TrackCall
                 genre = g;
             }
         }
-        CloudinaryManager.getInstance(getContext(), this).uploadAudioFile(mFileUri, etTitle.getText().toString(), genre);
+        CloudinaryManager.getInstance(getContext(), this).uploadAudioFile(mFileUri, etTitle.getText().toString(), genre, hasImage);
+    }
+
+    private void uploadImageToCloudinary() {
+                CloudinaryManager.getInstance(getContext(), this).uploadImageFile(mImageUri, etTitle.getText().toString());
     }
 
     @Override
@@ -148,7 +174,12 @@ public class UploadFragment extends Fragment implements GenreCallback, TrackCall
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constants.STORAGE.SONG_SELECTED && resultCode == RESULT_OK) {
             mFileUri = data.getData();
-            //mFilename.setText(mFileUri.toString());
+            mFilename.setText("Song Selected");
+        }
+        if (requestCode == Constants.STORAGE.IMAGE_SELECTED && resultCode == RESULT_OK) {
+            mImageUri = data.getData();
+            mImagename.setText("Image Selected");
+            hasImage = true;
         }
     }
 

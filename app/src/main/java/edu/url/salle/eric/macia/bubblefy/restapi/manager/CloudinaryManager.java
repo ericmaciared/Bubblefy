@@ -24,6 +24,10 @@ public class CloudinaryManager extends AppCompatActivity {
     private Context mContext;
     private String mFileName;
     private Genre mGenre;
+    private boolean hasImg;
+    private boolean songReady = false;
+    private Track savedTrack = new Track();
+
     private TrackCallback mCallback;
 
     public static CloudinaryManager getInstance(Context context, TrackCallback callback) {
@@ -39,13 +43,29 @@ public class CloudinaryManager extends AppCompatActivity {
         MediaManager.init(mContext, CloudinaryConfigs.getConfigurations());
     }
 
-    public synchronized void uploadAudioFile(Uri fileUri, String fileName, Genre genre) {
+    public synchronized void uploadAudioFile(Uri fileUri, String fileName, Genre genre, boolean hasImage) {
         mGenre = genre;
         mFileName = fileName;
+        hasImg = hasImage;
         Map<String, Object> options = new HashMap<>();
         options.put("public_id", fileName);
         options.put("folder", "sallefy/songs/mobile");
         options.put("resource_type", "video");
+
+        MediaManager.get().upload(fileUri)
+                .unsigned(fileName)
+                .options(options)
+                .callback(new CloudinaryCallback())
+                .dispatch();
+    }
+
+    public synchronized void uploadImageFile(Uri fileUri, String fileName) {
+
+        mFileName = fileName;
+        Map<String, Object> options = new HashMap<>();
+        options.put("public_id", fileName);
+        options.put("folder", "sallefy/images/mobile");
+        options.put("resource_type", "auto");
 
         MediaManager.get().upload(fileUri)
                 .unsigned(fileName)
@@ -65,16 +85,52 @@ public class CloudinaryManager extends AppCompatActivity {
         }
         @Override
         public void onSuccess(String requestId, Map resultData) {
-            Track track = new Track();
-            track.setId(null);
-            track.setName(mFileName);
-            //track.setUser(Session.getInstance(mContext).getUser());
-            //track.setUserLogin(Session.getInstance(mContext).getUser().getLogin());
-            track.setUrl((String) resultData.get("url"));
-            ArrayList<Genre> genres = new ArrayList<>();
-            genres.add(mGenre);
-            track.setGenres(genres);
-            TrackManager.getInstance(mContext).createTrack(track, mCallback);
+            if(!hasImg) {
+                Track track = new Track();
+                track.setId(null);
+                track.setName(mFileName);
+                //track.setUser(Session.getInstance(mContext).getUser());
+                //track.setUserLogin(Session.getInstance(mContext).getUser().getLogin());
+                track.setUrl((String) resultData.get("url"));
+                ArrayList<Genre> genres = new ArrayList<>();
+                genres.add(mGenre);
+                track.setGenres(genres);
+
+                TrackManager.getInstance(mContext).createTrack(track, mCallback);
+            }
+            else{
+                if(!songReady){
+                    Track track = new Track();
+                    track.setId(null);
+                    track.setName(mFileName);
+                    //track.setUser(Session.getInstance(mContext).getUser());
+                    //track.setUserLogin(Session.getInstance(mContext).getUser().getLogin());
+                    if(((String) resultData.get("url")).contains("sallefy/songs/mobile")) {
+                        track.setUrl((String) resultData.get("url"));
+                    }
+                    else{
+                        track.setThumbnail((String) resultData.get("url"));
+                    }
+                    ArrayList<Genre> genres = new ArrayList<>();
+                    genres.add(mGenre);
+                    track.setGenres(genres);
+                    savedTrack = track;
+                    songReady = true;
+                }
+                else{
+                    if(((String) resultData.get("url")).contains("sallefy/songs/mobile")) {
+                        savedTrack.setUrl((String) resultData.get("url"));
+                    }
+                    else{
+                        savedTrack.setThumbnail((String) resultData.get("url"));
+                    }
+                    TrackManager.getInstance(mContext).createTrack(savedTrack, mCallback);
+                    songReady = false;
+                    hasImg = false;
+                }
+            }
+
+
         }
         @Override
         public void onError(String requestId, ErrorInfo error) {
