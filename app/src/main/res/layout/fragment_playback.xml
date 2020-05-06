@@ -130,13 +130,15 @@
             android:background="#0000"
             android:layout_weight="2"
             />
+
         <ImageButton
             android:id="@+id/playback_play_pause"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_play3"
+            android:layout_weight="2"
             android:background="#0000"
-            android:layout_weight="2"/>
+            android:src="@drawable/ic_pause2" />
+
         <ImageButton
             android:id="@+id/playback_forward"
             android:layout_width="wrap_content"
