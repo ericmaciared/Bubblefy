@@ -160,11 +160,10 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
         ibtnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, new UploadFragment());
                 transaction.addToBackStack(null);
                 transaction.commit();
-
             }
         });
 

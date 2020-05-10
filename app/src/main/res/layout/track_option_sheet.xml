@@ -99,4 +99,11 @@
         android:textColor="@color/colorTextPrimary"
         android:textSize="17.5dp"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:singleLine="true"
+        android:background="@color/colorBackground"
+        android:layout_below="@id/random_playback"/>
+
 </RelativeLayout>

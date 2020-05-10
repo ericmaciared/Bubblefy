@@ -1,6 +1,5 @@
 package edu.url.salle.eric.macia.bubblefy.controller.fragments;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,9 +30,6 @@ public class PlaybackFragment extends Fragment {
     private ImageButton ibNextSong;
     private ImageButton ibPreviousSong;
 
-    public PlaybackFragment(int activity) {
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -59,7 +55,7 @@ public class PlaybackFragment extends Fragment {
             public void onClick(View v) {
                 MainActivity.playbackLayout.setVisibility(View.VISIBLE);
                 MainActivity.bottomNavigationView.setVisibility(View.VISIBLE);
-                getActivity().getFragmentManager().popBackStack();
+                getParentFragmentManager().popBackStack();
             }
         });
 
