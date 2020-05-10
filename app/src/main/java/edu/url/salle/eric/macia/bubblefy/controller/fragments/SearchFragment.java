@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -309,7 +310,14 @@ public class SearchFragment extends Fragment
     }
 
     public void userClicked(int position){
-        //IMPLEMENTAR
+        Bundle bundle = new Bundle();
+        bundle.putString("login", mUsers.get(position).getLogin());
+        UserFragment fragUser = new UserFragment();
+        fragUser.setArguments(bundle);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, fragUser);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     public void trackOptions(int position){

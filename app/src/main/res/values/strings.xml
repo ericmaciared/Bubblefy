@@ -43,6 +43,7 @@
     <string name="state_task_completed">Everything was fine!</string>
     <string name="followers">Followers</string>
     <string name="following">Following</string>
+    <string name="add_playlist">+</string>
 
 
 </resources>

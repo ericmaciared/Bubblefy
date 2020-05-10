@@ -12,7 +12,8 @@
         android:paddingTop="20dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-        android:paddingBottom="20dp"
+        android:paddingBottom="0dp"
+        android:layout_marginBottom="10dp"
         android:layout_height="wrap_content"
         android:gravity="right">
 
@@ -36,15 +37,14 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewProfile"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginBottom="5dp"
-            app:cardCornerRadius="75dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:cardCornerRadius="50dp"
             app:cardBackgroundColor="#0000">
 
             <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:id="@+id/profile_image"
                 android:src="@drawable/ic_bubblefy_logo_white"
                 android:layout_gravity="center">
@@ -54,7 +54,14 @@
         <TextView
             android:id="@+id/username_text"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textStyle="bold|italic"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:layout_gravity="center">
         </TextView>
 
         <LinearLayout
@@ -76,8 +83,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold|italic"
                     android:textColor="@color/white"
-                    android:layout_marginBottom="10dp"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:textAlignment="center"
                     android:layout_gravity="center">
                 </TextView>
@@ -107,8 +113,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold|italic"
                     android:textColor="@color/white"
-                    android:layout_marginBottom="10dp"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     android:textAlignment="center"
                     android:layout_gravity="center">
                 </TextView>
@@ -129,15 +134,15 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:orientation="horizontal"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="40dp">
 
             <ImageButton
                 android:id="@+id/config_button"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_info"
+                android:src="@drawable/ic_bubblefy_logo_white"
                 android:background="#0000"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
@@ -152,8 +157,19 @@
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
                 android:background="#0000"
-                android:layout_marginLeft="30dp">
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp">
+            </ImageButton>
 
+            <ImageButton
+                android:id="@+id/new_playlist_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/add_playlist"
+                android:background="#0000"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:layout_marginLeft="30dp">
             </ImageButton>
 
 

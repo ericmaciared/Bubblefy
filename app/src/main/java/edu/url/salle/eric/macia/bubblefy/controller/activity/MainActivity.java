@@ -115,7 +115,7 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
                         break;
                     case R.id.nav_profile:
                         activity = 2;
-                        selectedFragment = new NewPlaylistFragment();
+                        selectedFragment = new ProfileFragment();
                         break;
                 }
 
