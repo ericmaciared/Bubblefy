@@ -1,5 +1,6 @@
 package edu.url.salle.eric.macia.bubblefy.restapi.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.url.salle.eric.macia.bubblefy.model.Confirmation;
@@ -20,7 +21,7 @@ public interface TrackService {
     Call<List<Track>> getAllTracks(@Header("Authorization") String token);
 
     @GET("me/tracks")
-    Call<List<Track>> getOwnTracks(@Header("Authorization") String token);
+    Call<ArrayList<Track>> getOwnTracks(@Header("Authorization") String token);
 
     @GET("users/{login}/tracks")
     Call<List<Track>> getUserTracks(@Path("login") String login, @Header("Authorization") String token);

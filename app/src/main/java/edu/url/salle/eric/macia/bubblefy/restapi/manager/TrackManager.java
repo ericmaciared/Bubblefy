@@ -107,11 +107,10 @@ public class TrackManager {
 
     public synchronized void getOwnTracks(final TrackCallback trackCallback) {
         UserToken userToken = Session.getInstance(mContext).getUserToken();
-        Call<List<Track>> call = mTrackService.getOwnTracks("Bearer " + userToken.getIdToken());
-        call.enqueue(new Callback<List<Track>>() {
+        Call<ArrayList<Track>> call = mTrackService.getOwnTracks("Bearer " + userToken.getIdToken());
+        call.enqueue(new Callback<ArrayList<Track>>() {
             @Override
-            public void onResponse(Call<List<Track>> call, Response<List<Track>> response) {
-
+            public void onResponse(Call<ArrayList<Track>> call, Response<ArrayList<Track>> response) {
                 int code = response.code();
                 if (response.isSuccessful()) {
                     trackCallback.onPersonalTracksReceived((ArrayList<Track>) response.body());
@@ -122,7 +121,7 @@ public class TrackManager {
             }
 
             @Override
-            public void onFailure(Call<List<Track>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<Track>> call, Throwable t) {
                 Log.d(TAG, "Error Failure: " + t.getStackTrace());
                 trackCallback.onFailure(new Throwable("ERROR " + t.getStackTrace()));
             }
@@ -233,3 +232,18 @@ public class TrackManager {
         });
     }
 }
+
+
+/*
+call.enqueue(new Callback<List<Track>>() {
+            @Override
+            public void onResponse(Call<List<Track>> call, Response<List<Track>> response) {
+
+
+            }
+
+            @Override
+
+            }
+        });
+ */

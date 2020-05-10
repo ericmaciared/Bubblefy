@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import edu.url.salle.eric.macia.bubblefy.R;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.BottomSheetDialog;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.HomeFragment;
+import edu.url.salle.eric.macia.bubblefy.controller.fragments.NewPlaylistFragment;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.PlaybackFragment;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.ProfileFragment;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.SearchFragment;
@@ -114,7 +115,7 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
                         break;
                     case R.id.nav_profile:
                         activity = 2;
-                        selectedFragment = new ProfileFragment();
+                        selectedFragment = new NewPlaylistFragment();
                         break;
                 }
 

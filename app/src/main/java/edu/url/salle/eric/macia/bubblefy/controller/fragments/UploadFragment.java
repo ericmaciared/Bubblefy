@@ -37,6 +37,7 @@ import edu.url.salle.eric.macia.bubblefy.restapi.callback.GenreCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.TrackCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.CloudinaryManager;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.GenreManager;
+import edu.url.salle.eric.macia.bubblefy.restapi.manager.TrackManager;
 import edu.url.salle.eric.macia.bubblefy.utils.Constants;
 
 import static android.app.Activity.RESULT_OK;

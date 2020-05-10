@@ -12,6 +12,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c85f3c15-fa78-4e5a-996b-e5f77b167cdc" name="Default Changelist" comment="Implemented">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/adapters/CheckBoxListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/adapters/SelectTrackAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/NewPlaylistFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_newplaylist.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/track_item_select.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" afterDir="false" />
@@ -22,18 +27,14 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_cloudinary_cloudinary_android_1_25_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_cloudinary_cloudinary_android_1_25_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_evernote_android_job_1_2_6_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_evernote_android_job_1_2_6_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_9_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_9_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_9_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_9_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_igalata_Bubble_Picker_v0_2_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_igalata_Bubble_Picker_v0_2_4_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_71828_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_71828_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/activity/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/UploadFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/UploadFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/manager/CloudinaryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/manager/CloudinaryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_upload.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_upload.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/manager/PlaylistManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/manager/PlaylistManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/manager/TrackManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/manager/TrackManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/service/TrackService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/service/TrackService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,10 +60,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="valueResourceFile" />
-        <option value="Interface" />
-        <option value="Class" />
         <option value="resourceFile" />
         <option value="layoutResourceFile" />
+        <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -96,17 +97,19 @@
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="ignore.virus.scanning.warn.message" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Bubble-Picker-develop/Bubble-Picker-develop" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
       <recent name="C:\Users\ericm\AndroidStudioProjects\Bubblefy\app\src\main\res\drawable" />
-      <recent name="C:\Users\ericm\AndroidStudioProjects\Bubblefy\app\src\main\res\font" />
+      <recent name="C:\Users\ericm\AndroidStudioProjects\Bubblefy\app\src\main\res\layout" />
       <recent name="C:\Users\ericm\AndroidStudioProjects\Bubblefy\app\src\main\res\drawable-v24" />
+      <recent name="C:\Users\ericm\AndroidStudioProjects\Bubblefy\app\src\main\res\mipmap-xxhdpi" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="edu.url.salle.eric.macia.bubblefy.controller.activity" />
@@ -117,16 +120,16 @@
       <recent name="edu.url.salle.eric.macia.bubblefy" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="edu.url.salle.eric.macia.bubblefy.controller.fragments" />
       <recent name="edu.url.salle.eric.macia.bubblefy.restapi.service" />
       <recent name="edu.url.salle.eric.macia.bubblefy.restapi.manager" />
       <recent name="edu.url.salle.eric.macia.bubblefy.model" />
       <recent name="edu.url.salle.eric.macia.bubblefy.restapi.callback" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ericm\AndroidStudioProjects\Bubblefy\app\src\main\res\drawable" />
-      <recent name="C:\Users\ericm\AndroidStudioProjects\Bubblefy\app\src\main\res\layout" />
+      <recent name="C:\Users\ericm\AndroidStudioProjects\Bubblefy\app\src\main\res\font" />
       <recent name="C:\Users\ericm\AndroidStudioProjects\Bubblefy\app\src\main\res\drawable-v24" />
-      <recent name="C:\Users\ericm\AndroidStudioProjects\Bubblefy\app\src\main\res\mipmap-xxhdpi" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -373,7 +376,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588778325440</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Upload Image Implemented">
+      <created>1588793590387</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1588793590387</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -427,66 +437,33 @@
     <MESSAGE value="Added bubble menu on mainActivity." />
     <MESSAGE value="Added dynamic playback on all fragments." />
     <MESSAGE value="Hotfix mediamanager." />
-    <option name="LAST_COMMIT_MESSAGE" value="Hotfix mediamanager." />
+    <MESSAGE value="Upload Image Implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Upload Image Implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/manager/CloudinaryManager.java</url>
-          <line>28</line>
-          <properties field="savedTrack" class="edu.url.salle.eric.macia.bubblefy.restapi.manager.CloudinaryManager" />
-          <option name="timeStamp" value="7" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/NewPlaylistFragment.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/manager/CloudinaryManager.java</url>
-          <line>27</line>
-          <properties field="songReady" class="edu.url.salle.eric.macia.bubblefy.restapi.manager.CloudinaryManager" />
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/manager/CloudinaryManager.java</url>
-          <line>26</line>
-          <properties field="hasImg" class="edu.url.salle.eric.macia.bubblefy.restapi.manager.CloudinaryManager" />
-          <option name="timeStamp" value="9" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/NewPlaylistFragment.java</url>
+          <line>122</line>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/manager/CloudinaryManager.java</url>
-          <line>61</line>
-          <properties class="edu.url.salle.eric.macia.bubblefy.restapi.manager.CloudinaryManager" method="uploadImageFile" />
-          <option name="timeStamp" value="10" />
+          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/NewPlaylistFragment.java</url>
+          <line>75</line>
+          <properties class="edu.url.salle.eric.macia.bubblefy.controller.fragments.NewPlaylistFragment" method="initViews" />
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/manager/CloudinaryManager.java</url>
-          <line>45</line>
-          <properties class="edu.url.salle.eric.macia.bubblefy.restapi.manager.CloudinaryManager" method="uploadAudioFile" />
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/manager/CloudinaryManager.java</url>
-          <line>86</line>
-          <properties class="edu.url.salle.eric.macia.bubblefy.restapi.manager.CloudinaryManager.CloudinaryCallback" method="onSuccess" />
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/UploadFragment.java</url>
-          <line>116</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/UploadFragment.java</url>
-          <line>115</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/UploadFragment.java</url>
-          <line>118</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/UploadFragment.java</url>
-          <line>117</line>
-          <option name="timeStamp" value="16" />
+          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/NewPlaylistFragment.java</url>
+          <line>97</line>
+          <properties method="onClick" />
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
