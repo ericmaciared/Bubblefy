@@ -12,20 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.cloudinary.android.MediaManager;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import edu.url.salle.eric.macia.bubblefy.R;
@@ -37,7 +30,6 @@ import edu.url.salle.eric.macia.bubblefy.restapi.callback.GenreCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.TrackCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.CloudinaryManager;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.GenreManager;
-import edu.url.salle.eric.macia.bubblefy.restapi.manager.TrackManager;
 import edu.url.salle.eric.macia.bubblefy.utils.Constants;
 
 import static android.app.Activity.RESULT_OK;
@@ -84,6 +76,7 @@ public class UploadFragment extends Fragment implements GenreCallback, TrackCall
         mImagename = (TextView) v.findViewById(R.id.create_image_file_name);
 
         mSpinner = (Spinner) v.findViewById(R.id.create_song_genre);
+
         btnFind = (Button) v.findViewById(R.id.create_song_file);
         btnFind.setOnClickListener(new View.OnClickListener() {
             @Override

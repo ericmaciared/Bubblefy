@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".controller.activity.MainActivity"></activity>
+        <activity android:name=".controller.activity.MainActivity"
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".controller.activity.StartActivity" />
         <activity
             android:name=".controller.activity.SplashActivity"
