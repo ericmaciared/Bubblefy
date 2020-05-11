@@ -79,9 +79,10 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements Trac
         buttonAddPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //TODO --------------
-
+                FragmentTransaction transaction = getParentFragment().getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, new AddSongToPlaylistFragment());
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 

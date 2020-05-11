@@ -20,6 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 
 import edu.url.salle.eric.macia.bubblefy.R;
+import edu.url.salle.eric.macia.bubblefy.controller.fragments.AddSongToPlaylistFragment;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.BottomSheetDialog;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.HomeFragment;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.PlaybackFragment;
@@ -106,7 +107,7 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
                         selectedFragment = new SearchFragment();
                         break;
                     case R.id.nav_profile:
-                        selectedFragment = new ProfileFragment();
+                        selectedFragment = new AddSongToPlaylistFragment();
                         break;
                 }
 
