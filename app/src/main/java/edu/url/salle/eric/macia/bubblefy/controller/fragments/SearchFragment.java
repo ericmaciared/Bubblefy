@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -58,9 +60,10 @@ public class SearchFragment extends Fragment
     private ArrayList<Track> mTracks;
     private ArrayList<Playlist> mPlay;
     private ArrayList<User> mUsers;
-    private Button buttonLogin;
+    private ImageButton buttonLogin;
     private EditText searchText;
     private boolean searchPerformed = false;
+    private LinearLayout genresView;
 
     private int currentTrack = 0;
 
@@ -93,7 +96,8 @@ public class SearchFragment extends Fragment
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);
 
-
+        genresView = (LinearLayout) v.findViewById(R.id.genresView);
+        genresView.setVisibility(View.VISIBLE);
 
         /*
         btnBackward = (ImageButton)findViewById(R.id.dynamic_backward_btn);
@@ -160,6 +164,8 @@ public class SearchFragment extends Fragment
         mUsers = (ArrayList) search.getUsers();
         searchPerformed = true;
         String text;
+
+        mRecyclerView.setVisibility(View.VISIBLE);
 
         if(radioButton1.isChecked()){
             if(!mTracks.isEmpty()) {
