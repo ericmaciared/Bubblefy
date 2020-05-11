@@ -155,7 +155,6 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
             public void onClick(View v){
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, new UploadFragment());
-                transaction.addToBackStack(null);
                 transaction.commit();
             }
         });

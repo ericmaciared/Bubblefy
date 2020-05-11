@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.ContentView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -76,7 +79,9 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements Trac
         buttonAddPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //IMPLEMENTAR
+
+                //TODO --------------
+
             }
         });
 

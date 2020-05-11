@@ -14,7 +14,14 @@
         android:background="@color/colorBackground"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingLeft="30dp">
+        android:paddingLeft="20dp">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkbox"
+            android:buttonTint="@color/white"
+            android:paddingRight="20dp"/>
 
         <ImageView
             android:id="@+id/track_img"
@@ -59,17 +66,6 @@
 
         </LinearLayout>
 
-
-
-        <ImageButton
-            android:id="@+id/option_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginRight="20dp"
-            android:adjustViewBounds="true"
-            android:background="#0000"
-            android:scaleType="centerCrop"
-            android:src="@drawable/three_dots_horizontal" />
     </LinearLayout>
 
 </LinearLayout>
