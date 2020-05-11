@@ -5,26 +5,41 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     android:orientation="vertical">
-
     <LinearLayout
         android:id="@+id/layout1"
         android:layout_width="match_parent"
-        android:paddingTop="20dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:paddingBottom="0dp"
-        android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content"
-        android:gravity="right">
+        android:layout_height="70dp"
+        android:gravity="center"
+        android:padding="10dp">
 
         <ImageButton
-            android:id="@+id/option_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:adjustViewBounds="true"
+            android:id="@+id/arrow_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="#0000"
-            android:scaleType="centerCrop"
-            android:src="@drawable/three_dots_horizontal" />
+            android:src="@drawable/ic_arrow_down"
+            android:visibility="invisible"
+            android:layout_weight="2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_bold"
+            android:text="Now Playing"
+            android:textAlignment="center"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/text_size_medium"
+            android:visibility="invisible"
+            android:layout_weight="4"/>
+
+        <ImageButton
+            android:paddingTop="30dp"
+            android:id="@+id/option_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#0000"
+            android:src="@drawable/ic_queue"
+            android:layout_weight="2"/>
     </LinearLayout>
 
     <LinearLayout
@@ -37,14 +52,15 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardViewProfile"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:cardCornerRadius="50dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginBottom="5dp"
+            app:cardCornerRadius="70dp"
             app:cardBackgroundColor="#0000">
 
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
                 android:id="@+id/profile_image"
                 android:src="@drawable/ic_bubblefy_logo_white"
                 android:layout_gravity="center">
@@ -55,14 +71,12 @@
             android:id="@+id/username_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold|italic"
-            android:textColor="@color/white"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:textSize="20sp"
-            android:textAlignment="center"
-            android:layout_gravity="center">
-        </TextView>
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:text="User"
+            android:textSize="@dimen/text_size_medium"
+            android:fontFamily="@font/open_sans_bold"
+            android:textColor="@color/colorTextPrimary"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -73,16 +87,17 @@
                 android:id="@+id/followers_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
                 android:orientation="vertical"
-                android:layout_marginRight="30dp"
                 android:textAlignment="center">
 
                 <TextView
                     android:id="@+id/num_followers_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold|italic"
+                    android:fontFamily="@font/open_sans_bold"
                     android:textColor="@color/white"
+                    android:text="-"
                     android:textSize="20sp"
                     android:textAlignment="center"
                     android:layout_gravity="center">
@@ -91,7 +106,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold|italic"
+                    android:fontFamily="@font/open_sans"
                     android:textColor="@color/white"
                     android:text="@string/followers"
                     android:textAlignment="center"
@@ -104,15 +119,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="15dp"
                 android:textAlignment="center">
 
                 <TextView
                     android:id="@+id/num_following_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold|italic"
+                    android:fontFamily="@font/open_sans_bold"
                     android:textColor="@color/white"
+                    android:text="-"
                     android:textSize="20sp"
                     android:textAlignment="center"
                     android:layout_gravity="center">
@@ -121,7 +137,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold|italic"
+                    android:fontFamily="@font/open_sans"
                     android:textColor="@color/white"
                     android:text="@string/following"
                     android:textAlignment="center"
@@ -134,45 +150,73 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="70dp"
             android:orientation="horizontal"
-            android:layout_marginTop="40dp">
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp">
 
-            <ImageButton
-                android:id="@+id/config_button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_bubblefy_logo_white"
-                android:background="#0000"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:layout_marginRight="30dp">
-            </ImageButton>
+            <androidx.cardview.widget.CardView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:cardCornerRadius="30dp"
+                app:cardBackgroundColor="@color/colorPrimary"
+                android:gravity="center"
+                android:orientation="vertical"
+                >
 
-            <ImageButton
-                android:id="@+id/upload_button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_upload"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:background="#0000"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp">
-            </ImageButton>
+                <ImageButton
+                    android:id="@+id/config_button"
+                    android:layout_weight="2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_config"
+                    android:background="#0000"
+                    android:adjustViewBounds="true"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter">
+                </ImageButton>
+            </androidx.cardview.widget.CardView>
 
-            <ImageButton
-                android:id="@+id/new_playlist_button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/add_playlist"
-                android:background="#0000"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:layout_marginLeft="30dp">
-            </ImageButton>
+            <androidx.cardview.widget.CardView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:cardCornerRadius="30dp"
+                app:cardBackgroundColor="@color/colorPrimary">
 
+                <ImageButton
+                    android:id="@+id/upload_button"
+                    android:layout_weight="2"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/ic_upload"
+                    android:background="#0000"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    >
+                </ImageButton>
+            </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:cardCornerRadius="30dp"
+                app:cardBackgroundColor="@color/colorPrimary">
+                <ImageButton
+                    android:id="@+id/new_playlist_button"
+                    android:layout_weight="2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_add"
+                    android:background="#0000"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter">
+                </ImageButton>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
 
 
