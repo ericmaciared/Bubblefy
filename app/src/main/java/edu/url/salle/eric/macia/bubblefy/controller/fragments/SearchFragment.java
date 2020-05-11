@@ -441,6 +441,21 @@ public class SearchFragment extends Fragment
     }
 
     @Override
+    public void onUserPlaylistReceived(ArrayList<Playlist> playlist) {
+
+    }
+
+    @Override
+    public void onPlaylistUpdated(Playlist playlist) {
+
+    }
+
+    @Override
+    public void onNoPlaylist(Throwable throwable) {
+
+    }
+
+    @Override
     public void onButtonClicked(String text) {
 
     }

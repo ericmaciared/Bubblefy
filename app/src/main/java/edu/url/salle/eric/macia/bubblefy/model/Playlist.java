@@ -29,7 +29,7 @@ public class Playlist implements Serializable {
     private User user;
 
     @SerializedName("tracks")
-    private List<Track> tracks = null;
+    private List<Track> tracks;
 
     private boolean followed;
 
@@ -99,14 +99,19 @@ public class Playlist implements Serializable {
     }
 
     public int countTracks() {
+        if(tracks == null){
+            return 0;
+        }
         return tracks.size();
     }
 
     public List<Track> getTracks() {
+
         return tracks;
     }
 
     public void setTracks(List<Track> tracks) {
+
         this.tracks = tracks;
     }
 

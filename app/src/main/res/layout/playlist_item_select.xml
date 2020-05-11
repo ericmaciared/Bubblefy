@@ -4,7 +4,7 @@
     android:layout_height="90dp"
     android:layout_margin="5dp"
     android:gravity="center_vertical"
-    android:id="@+id/playlist_item_layout">
+    android:id="@+id/playlist_item_layout_select">
 
 
     <LinearLayout

@@ -214,4 +214,19 @@ public class NewPlaylistFragment extends Fragment
     public void onPlaylistFailure(Throwable throwable) {
 
     }
+
+    @Override
+    public void onUserPlaylistReceived(ArrayList<Playlist> playlist) {
+
+    }
+
+    @Override
+    public void onPlaylistUpdated(Playlist playlist) {
+
+    }
+
+    @Override
+    public void onNoPlaylist(Throwable throwable) {
+
+    }
 }

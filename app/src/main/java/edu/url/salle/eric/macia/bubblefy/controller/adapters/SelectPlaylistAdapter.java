@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 //import com.bumptech.glide.Glide;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import edu.url.salle.eric.macia.bubblefy.R;
@@ -68,13 +70,13 @@ public class SelectPlaylistAdapter extends RecyclerView.Adapter<SelectPlaylistAd
             }
         });
 
-        /*if (mPlaylist.get(position).getThumbnail() != null) {
+        if (mPlaylist.get(position).getThumbnail() != null) {
             Glide.with(mContext)
                     .asBitmap()
                     .placeholder(R.drawable.ic_audiotrack)
                     .load(mPlaylist.get(position).getThumbnail())
                     .into(holder.ivPicture);
-        }*/
+        }
     }
 
     @Override
@@ -98,7 +100,7 @@ public class SelectPlaylistAdapter extends RecyclerView.Adapter<SelectPlaylistAd
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mLayout = itemView.findViewById(R.id.playlist_item_layout);
+            mLayout = itemView.findViewById(R.id.playlist_item_layout_select);
             checkBox = (CheckBox) itemView.findViewById(R.id.checkbox);
             tvTitle = (TextView) itemView.findViewById(R.id.track_title);
             tvAuthor = (TextView) itemView.findViewById(R.id.track_author);

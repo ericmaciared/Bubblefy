@@ -107,7 +107,7 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
                         selectedFragment = new SearchFragment();
                         break;
                     case R.id.nav_profile:
-                        selectedFragment = new AddSongToPlaylistFragment();
+                        selectedFragment = new ProfileFragment();
                         break;
                 }
 

@@ -80,7 +80,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements Trac
             @Override
             public void onClick(View v) {
                 FragmentTransaction transaction = getParentFragment().getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, new AddSongToPlaylistFragment());
+                transaction.replace(R.id.fragment_container, new AddSongToPlaylistFragment(track));
                 transaction.addToBackStack(null);
                 transaction.commit();
             }

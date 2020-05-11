@@ -39,7 +39,7 @@ import static android.app.Activity.RESULT_OK;
 
 
 public class AddSongToPlaylistFragment extends Fragment
-        implements TrackCallback, PlaylistCallback {
+        implements PlaylistCallback {
 
     private static final String TAG = "TestPlaybackActivity";
     private static final String PLAY_VIEW = "PlayIcon";
@@ -57,10 +57,14 @@ public class AddSongToPlaylistFragment extends Fragment
     private Button btnFindImg;
     private Uri mImageUri = null;
     private boolean hasImage = false;
+    private Track track;
+    private int received = 0;
 
     private int currentTrack = 0;
 
-
+    public AddSongToPlaylistFragment(Track track) {
+        this.track = track;
+    }
 
     @Nullable
     @Override
@@ -73,14 +77,14 @@ public class AddSongToPlaylistFragment extends Fragment
     }
 
     public void getData(){
-        TrackManager.getInstance(getActivity()).getOwnTracks(this);
+        PlaylistManager.getInstance(getActivity()).getOwnPlaylist(this);
+
     }
 
     private void initViews(View v) {
 
 
         buttonCreate = v.findViewById(R.id.search_button);
-        checkBox = v.findViewById(R.id.checkbox);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
         SelectPlaylistAdapter adapter = new SelectPlaylistAdapter(getContext(), mPlaylist);
@@ -92,79 +96,28 @@ public class AddSongToPlaylistFragment extends Fragment
             @Override
             public void onClick(View v) {
                 playlistSelected = adapter.getSelectedPlaylist();
-                createPlaylist();
+                addSong();
             }
         });
     }
 
 
-    public void createPlaylist(){
-        if((playlistName.getText()).toString().equals("")){
+    public void addSong(){
+        if(playlistSelected.size() == 0){
             Toast toast = null;
             toast =  Toast.makeText(getContext(),
-                    "Missing name",
+                    "You must select a playlist",
                     Toast.LENGTH_SHORT);
             toast.show();
         }else{
-            playlist = new Playlist();
-            playlist.setName((playlistName.getText()).toString());
-            //playlist.setTracks(playlistSelected);
-            playlist.setPublicAccessible(checkBox.isChecked());
 
-            PlaylistManager.getInstance(getActivity()).createPlaylist(playlist, this);
-
+            for(int i = 0; i<playlistSelected.size(); i++){
+                playlistSelected.get(i).getTracks().add(track);
+                PlaylistManager.getInstance(getActivity()).updatePlaylist(playlistSelected.get(i), this);
+            }
         }
     }
 
-
-    @Override
-    public void onTracksReceived(List<Track> tracks) {
-
-    }
-
-    @Override
-    public void onNoTracks(Throwable throwable) {
-
-    }
-
-    @Override
-    public void onPersonalTracksReceived(List<Track> tracks) {
-    }
-
-    @Override
-    public void onUserTracksReceived(List<Track> tracks) {
-
-    }
-
-    @Override
-    public void onUserLikedTracksReceived(List<Track> tracks) {
-
-    }
-
-    @Override
-    public void onLikeOperationSuccess(Confirmation confirmation) {
-
-    }
-
-    @Override
-    public void onLikeOperationFailure(Throwable throwable) {
-
-    }
-
-    @Override
-    public void onReceiveLikeSuccess(Confirmation confirmation) {
-
-    }
-
-    @Override
-    public void onReceiveLikeFailure(Throwable throwable) {
-
-    }
-
-    @Override
-    public void onCreateTrack() {
-
-    }
 
     @Override
     public void onFailure(Throwable throwable) {
@@ -178,6 +131,30 @@ public class AddSongToPlaylistFragment extends Fragment
 
     @Override
     public void onPlaylistFailure(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onUserPlaylistReceived(ArrayList<Playlist> playlist) {
+        mPlaylist = playlist;
+        initViews(view);
+    }
+
+    @Override
+    public void onPlaylistUpdated(Playlist playlist) {
+        received++;
+        if(received == playlistSelected.size()){
+            Toast toast = null;
+            toast =  Toast.makeText(getContext(),
+                    "All playlists updated",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
+    }
+
+    @Override
+    public void onNoPlaylist(Throwable throwable) {
 
     }
 }
