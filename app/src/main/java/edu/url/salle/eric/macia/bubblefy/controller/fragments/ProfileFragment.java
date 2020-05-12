@@ -38,6 +38,7 @@ import edu.url.salle.eric.macia.bubblefy.R;
 import edu.url.salle.eric.macia.bubblefy.controller.activity.LoginActivity;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.BubbleTrackListAdapter;
 import edu.url.salle.eric.macia.bubblefy.model.Confirmation;
+import edu.url.salle.eric.macia.bubblefy.model.Follow;
 import edu.url.salle.eric.macia.bubblefy.model.Playlist;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
 import edu.url.salle.eric.macia.bubblefy.model.User;
@@ -299,5 +300,16 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
     @Override
     public void onUserInfoReceived(User userData) {
         Session.sSession.setUser(userData);
+    }
+
+
+    @Override
+    public void onCheckFollowReceived(Follow follow) {
+
+    }
+
+    @Override
+    public void onUserFollowed(Follow follow) {
+
     }
 }

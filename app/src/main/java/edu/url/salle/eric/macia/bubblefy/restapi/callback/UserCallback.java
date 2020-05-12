@@ -1,5 +1,6 @@
 package edu.url.salle.eric.macia.bubblefy.restapi.callback;
 
+import edu.url.salle.eric.macia.bubblefy.model.Follow;
 import edu.url.salle.eric.macia.bubblefy.model.User;
 import edu.url.salle.eric.macia.bubblefy.model.UserToken;
 
@@ -9,4 +10,6 @@ public interface UserCallback extends FailureCallback {
     void onRegisterSuccess();
     void onRegisterFailure(Throwable throwable);
     void onUserInfoReceived(User userData);
+    void onCheckFollowReceived(Follow follow);
+    void onUserFollowed(Follow follow);
 }

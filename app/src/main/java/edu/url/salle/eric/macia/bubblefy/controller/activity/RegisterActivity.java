@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import edu.url.salle.eric.macia.bubblefy.model.Follow;
 import edu.url.salle.eric.macia.bubblefy.model.User;
 import edu.url.salle.eric.macia.bubblefy.model.UserRegister;
 import edu.url.salle.eric.macia.bubblefy.model.UserToken;
@@ -126,6 +127,17 @@ public class RegisterActivity extends AppCompatActivity
     public void onUserInfoReceived(User userData) {
 
     }
+
+    @Override
+    public void onCheckFollowReceived(Follow follow) {
+
+    }
+
+    @Override
+    public void onUserFollowed(Follow follow) {
+
+    }
+
 
     @Override
     public void onFailure(Throwable throwable) {

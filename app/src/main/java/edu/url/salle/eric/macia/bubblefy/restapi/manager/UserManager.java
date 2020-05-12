@@ -5,6 +5,7 @@ import android.util.Log;
 
 import java.io.IOException;
 
+import edu.url.salle.eric.macia.bubblefy.model.Follow;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -143,6 +144,63 @@ public class UserManager {
         });
     }
 
+    /********************   FOLLOW / CHECK FOLLOW    ****************/
+    public synchronized void checkUserFollowed(String login, final UserCallback userCallback){
+        UserToken userToken = Session.getInstance(mContext).getUserToken();
+        Call<Follow> call = mService.checkUserFollowed(login, "Bearer " + userToken.getIdToken());
+        call.enqueue(new Callback<Follow>() {
+            @Override
+            public void onResponse(Call<Follow> call, Response<Follow> response) {
+                int code = response.code();
+                if (response.isSuccessful()) {
+                    userCallback.onCheckFollowReceived(response.body());
+                } else {
+                    Log.d(TAG, "Error NOT SUCCESSFUL: " + response.toString());
+                    try {
+                        userCallback.onFailure(new Throwable("ERROR " + code + ", " + response.errorBody().string()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Follow> call, Throwable t) {
+                Log.d(TAG, "Error: " + t.getMessage());
+                userCallback.onFailure(new Throwable("ERROR " + t.getStackTrace()));
+
+            }
+        });
+    }
+
+    /********************   FOLLOW / CHECK FOLLOW    ****************/
+    public synchronized void followUser(String login, final UserCallback userCallback){
+        UserToken userToken = Session.getInstance(mContext).getUserToken();
+        Call<Follow> call = mService.followUser(login, "Bearer " + userToken.getIdToken());
+        call.enqueue(new Callback<Follow>() {
+            @Override
+            public void onResponse(Call<Follow> call, Response<Follow> response) {
+                int code = response.code();
+                if (response.isSuccessful()) {
+                    userCallback.onUserFollowed(response.body());
+                } else {
+                    Log.d(TAG, "Error NOT SUCCESSFUL: " + response.toString());
+                    try {
+                        userCallback.onFailure(new Throwable("ERROR " + code + ", " + response.errorBody().string()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Follow> call, Throwable t) {
+                Log.d(TAG, "Error: " + t.getMessage());
+                userCallback.onFailure(new Throwable("ERROR " + t.getStackTrace()));
+
+            }
+        });
+    }
 
     /********************   GETTERS / SETTERS    ********************/
 

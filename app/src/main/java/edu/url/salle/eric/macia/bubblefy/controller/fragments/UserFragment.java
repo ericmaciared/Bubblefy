@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ import java.util.List;
 
 import edu.url.salle.eric.macia.bubblefy.R;
 import edu.url.salle.eric.macia.bubblefy.model.Confirmation;
+import edu.url.salle.eric.macia.bubblefy.model.Follow;
 import edu.url.salle.eric.macia.bubblefy.model.Playlist;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
 import edu.url.salle.eric.macia.bubblefy.model.User;
@@ -55,16 +57,16 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
     private TextView tUsername;
     private TextView tFollowers;
     private TextView tFollowing;
-    private ImageButton ibtnConfig;
-    private ImageButton ibtnUpload;
-    private ImageButton ibtnNewPlaylist;
+    private Button btnFollow;
 
     private User mUser;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =  inflater.inflate(R.layout.fragment_profile, container, false);
+        View v =  inflater.inflate(R.layout.fragment_user, container, false);
         String login = getArguments().getString("login");
+
+
         getUserData(login);
 
         initUserListened(v);
@@ -138,33 +140,13 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
         tFollowers = (TextView) v.findViewById(R.id.num_followers_text);
         tFollowing = (TextView) v.findViewById(R.id.num_following_text);
         tUsername = (TextView) v.findViewById(R.id.username_text);
+        btnFollow = (Button) v.findViewById(R.id.follow_button);
 
-        //Upload, Config and New Playlist Buttons
-        ibtnConfig = (ImageButton) v.findViewById(R.id.config_button);
-        ibtnUpload = (ImageButton) v.findViewById(R.id.upload_button);
-        ibtnNewPlaylist = (ImageButton) v.findViewById(R.id.new_playlist_button);
-
-        ibtnConfig.setOnClickListener(new View.OnClickListener() {
+        btnFollow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                return;
-            }
-        });
-        ibtnUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, new UploadFragment());
-                transaction.commit();
-            }
-        });
-        ibtnNewPlaylist.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, new NewPlaylistFragment());
-                transaction.addToBackStack(null);
-                transaction.commit();
+                UserManager.getInstance(getActivity().getApplicationContext())
+                        .followUser(mUser.getLogin(), UserFragment.this);
             }
         });
 
@@ -254,6 +236,26 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
     @Override
     public void onUserInfoReceived(User userData) {
         mUser = userData;
+        setUserFields();
+    }
+
+    @Override
+    public void onCheckFollowReceived(Follow follow) {
+        if (follow.getFollowed()){
+            btnFollow.setText("Following");
+        } else {
+            btnFollow.setText("Follow");
+        }
+    }
+
+    @Override
+    public void onUserFollowed(Follow follow) {
+        if (follow.getFollowed()){
+            btnFollow.setText("Following");
+        } else {
+            btnFollow.setText("Follow");
+        }
+        getUserData(mUser.getLogin());
     }
 
     private void setUserFields(){
@@ -288,6 +290,9 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
             } else {
                 tFollowing.setText("0");
             }
+
+            //Following button
+            UserManager.getInstance(getActivity().getApplicationContext()).checkUserFollowed(mUser.getLogin(), this);
 
         }
         else{

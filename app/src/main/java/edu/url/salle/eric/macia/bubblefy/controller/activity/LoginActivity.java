@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import edu.url.salle.eric.macia.bubblefy.R;
+import edu.url.salle.eric.macia.bubblefy.model.Follow;
 import edu.url.salle.eric.macia.bubblefy.model.User;
 import edu.url.salle.eric.macia.bubblefy.model.UserToken;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.UserCallback;
@@ -120,6 +121,16 @@ public class LoginActivity extends AppCompatActivity implements UserCallback {
 
     @Override
     public void onUserInfoReceived(User userData) {
+
+    }
+
+    @Override
+    public void onCheckFollowReceived(Follow follow) {
+
+    }
+
+    @Override
+    public void onUserFollowed(Follow follow) {
 
     }
 
