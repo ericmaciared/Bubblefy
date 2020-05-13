@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.ContentView;
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import java.util.List;
 
 import edu.url.salle.eric.macia.bubblefy.R;
+import edu.url.salle.eric.macia.bubblefy.controller.activity.MainActivity;
 import edu.url.salle.eric.macia.bubblefy.model.Confirmation;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.TrackCallback;
@@ -65,7 +67,10 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements Trac
         buttonAddQueue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //IMPLEMENTAR
+                MainActivity.addTrackToQueue(track);
+                Toast toast =  Toast.makeText(getActivity(), "Added " + track.getName()
+                        + " to queue.", Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
 
@@ -89,7 +94,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements Trac
         buttonShuffle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //IMPLEMENTAR
+                MainActivity.random = !MainActivity.random;
             }
         });
 

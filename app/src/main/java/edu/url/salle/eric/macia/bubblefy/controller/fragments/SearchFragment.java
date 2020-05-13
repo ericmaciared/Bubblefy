@@ -283,17 +283,9 @@ public class SearchFragment extends Fragment
     }
 
 
-    public void updateTrack(Track track) {
+    private void updateTrack(Track track) {
         //updateSessionMusicData(offset);
-        MainActivity.tvAuthor.setText(track.getUserLogin());
-        MainActivity.tvTitle.setText(track.getName());
-        try {
-            MainActivity.mediaPlayer.reset();
-            MainActivity.mediaPlayer.setDataSource(track.getUrl());
-            //mediaPlayer.pause();
-            MainActivity.mediaPlayer.prepare();
-        } catch(Exception e) {
-        }
+        MainActivity.updateTrack(track);
     }
 
     public void updateSessionMusicData(int offset) {

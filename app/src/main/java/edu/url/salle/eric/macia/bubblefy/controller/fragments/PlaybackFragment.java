@@ -35,6 +35,9 @@ public class PlaybackFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =  inflater.inflate(R.layout.fragment_playback, container, false);
 
+        MainActivity.showNavigation(false);
+        MainActivity.showPlayback(false);
+
         initViews(v);
 
         return v;
@@ -53,8 +56,8 @@ public class PlaybackFragment extends Fragment {
         ibArrowDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.playbackLayout.setVisibility(View.VISIBLE);
-                MainActivity.bottomNavigationView.setVisibility(View.VISIBLE);
+                MainActivity.showNavigation(true);
+                MainActivity.showPlayback(true);
                 getParentFragmentManager().popBackStack();
             }
         });
@@ -71,11 +74,11 @@ public class PlaybackFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (ibPlayPause.getTag().equals(PLAY_VIEW)) {
-                    MainActivity.mediaPlayer.start();
+                    MainActivity.playAudio();
                     ibPlayPause.setTag(STOP_VIEW);
                     ibPlayPause.setImageResource(R.drawable.ic_pause2);
                 } else {
-                    MainActivity.mediaPlayer.pause();
+                    MainActivity.pauseAudio();
                     ibPlayPause.setTag(PLAY_VIEW);
                     ibPlayPause.setImageResource(R.drawable.ic_play3);
                 }
@@ -86,7 +89,7 @@ public class PlaybackFragment extends Fragment {
         ibNextSong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MainActivity.nextTrack();
             }
         });
 
@@ -102,7 +105,7 @@ public class PlaybackFragment extends Fragment {
         ibRandom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MainActivity.random = !MainActivity.random;
             }
         });
 
@@ -110,7 +113,7 @@ public class PlaybackFragment extends Fragment {
         ibRepeat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MainActivity.repeat = !MainActivity.repeat;
             }
         });
     }

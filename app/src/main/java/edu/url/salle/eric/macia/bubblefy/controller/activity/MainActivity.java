@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import edu.url.salle.eric.macia.bubblefy.R;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.AddSongToPlaylistFragment;
@@ -35,8 +36,9 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
     public static BottomNavigationView bottomNavigationView;
 
     public static ArrayList<Track> queue;
-    public static int currentTrack = 0;
     public static MediaPlayer mediaPlayer;
+    public static boolean random;
+    public static boolean repeat;
 
     public static LinearLayout playbackLayout;
     public static LinearLayout playbackButton;
@@ -58,40 +60,7 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
 
     }
 
-    private void initPlayer() {
-        tvTitle = (TextView) findViewById(R.id.track_title);
-        tvAuthor = (TextView) findViewById(R.id.track_author);
-        ivPhoto = (ImageView) findViewById(R.id.track_img);
-
-        playbackLayout = (LinearLayout) findViewById(R.id.playback);
-        playbackLayout.setVisibility(View.GONE);
-
-        playbackButton = (LinearLayout) findViewById(R.id.info_section);
-        playbackButton.setOnClickListener(v -> {
-            loadPlaybackFragment();
-        });
-
-        mediaPlayer = new MediaPlayer();
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                playAudio();
-                int audioSessionId = mediaPlayer.getAudioSessionId();
-            }
-        });
-
-        btnPlayStop = (ImageButton) findViewById(R.id.play_pause);
-        btnPlayStop.setTag(PLAY_VIEW);
-        btnPlayStop.setOnClickListener(v -> {
-            if (btnPlayStop.getTag().equals(PLAY_VIEW)) {
-                playAudio();
-            } else {
-                pauseAudio();
-            }
-        });
-    }
-
+    //VIEWS
     private void initViews() {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setVisibility(View.VISIBLE);
@@ -125,12 +94,60 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
     }
 
     private void loadPlaybackFragment() {
-        playbackLayout.setVisibility(View.GONE);
-        bottomNavigationView.setVisibility(View.GONE);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, new PlaybackFragment());
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public static void showNavigation(boolean show) {
+        if (show) bottomNavigationView.setVisibility(View.VISIBLE);
+        else bottomNavigationView.setVisibility(View.GONE);
+    }
+
+    public static void showPlayback(boolean show) {
+        if (show) playbackLayout.setVisibility(View.VISIBLE);
+        else playbackLayout.setVisibility(View.GONE);
+    }
+
+
+    //MUSIC
+    private void initPlayer() {
+        random = false;
+        repeat = false;
+        queue = new ArrayList<Track>();
+
+        tvTitle = (TextView) findViewById(R.id.track_title);
+        tvAuthor = (TextView) findViewById(R.id.track_author);
+        ivPhoto = (ImageView) findViewById(R.id.track_img);
+
+        playbackLayout = (LinearLayout) findViewById(R.id.playback);
+        playbackLayout.setVisibility(View.GONE);
+
+        playbackButton = (LinearLayout) findViewById(R.id.info_section);
+        playbackButton.setOnClickListener(v -> {
+            loadPlaybackFragment();
+        });
+
+        mediaPlayer = new MediaPlayer();
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                playAudio();
+                int audioSessionId = mediaPlayer.getAudioSessionId();
+            }
+        });
+
+        btnPlayStop = (ImageButton) findViewById(R.id.play_pause);
+        btnPlayStop.setTag(PLAY_VIEW);
+        btnPlayStop.setOnClickListener(v -> {
+            if (btnPlayStop.getTag().equals(PLAY_VIEW)) {
+                playAudio();
+            } else {
+                pauseAudio();
+            }
+        });
     }
 
     public static void playAudio() {
@@ -144,6 +161,46 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
         mediaPlayer.pause();
         btnPlayStop.setImageResource(R.drawable.ic_play);
         btnPlayStop.setTag(PLAY_VIEW);
+    }
+
+    public static void updateTrack(Track track){
+        queue.add(0, track);
+        if (queue.size() > 1) queue.remove(1);
+
+        //updateSessionMusicData(offset);
+        tvAuthor.setText(track.getUserLogin());
+        tvTitle.setText(track.getName());
+        try {
+            mediaPlayer.reset();
+            mediaPlayer.setDataSource(track.getUrl());
+            //mediaPlayer.pause();
+            mediaPlayer.prepare();
+        } catch(Exception e) {
+        }
+    }
+
+    public static void nextTrack() {
+        Random ran = new Random();
+        if (queue.size() == 0) return;
+        if (queue.size() == 1){
+            updateTrack(queue.get(0));
+            return;
+        }
+        if (repeat){
+            updateTrack(queue.get(0));
+        } else if (random){
+            int aux = ran.nextInt(queue.size());
+            queue.add(0, queue.get(aux));
+            queue.remove(1);
+            queue.remove(aux+1);
+        } else {
+            queue.remove(0);
+            updateTrack(queue.get(0));
+        }
+    }
+
+    public static void addTrackToQueue(Track track){
+        queue.add(track);
     }
 
     @Override
