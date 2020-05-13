@@ -54,16 +54,6 @@
         </LinearLayout>
 
 
-
-        <ImageButton
-            android:id="@+id/option_button"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginRight="20dp"
-            android:adjustViewBounds="true"
-            android:background="#0000"
-            android:scaleType="centerCrop"
-            android:src="@drawable/three_dots_horizontal" />
     </LinearLayout>
 
 </LinearLayout>

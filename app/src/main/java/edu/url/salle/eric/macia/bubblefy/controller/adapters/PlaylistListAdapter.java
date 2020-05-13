@@ -76,14 +76,12 @@ public class PlaylistListAdapter extends RecyclerView.Adapter<PlaylistListAdapte
         TextView tvTitle;
         TextView tvDescription;
         ImageView ivPicture;
-        ImageButton btOptions;
 
         public ViewHolder(@NonNull View itemView, final OnItemClickedListener listener) {
             super(itemView);
             tvTitle = (TextView) itemView.findViewById(R.id.track_title);
             tvDescription = (TextView) itemView.findViewById(R.id.track_author);
             ivPicture = (ImageView) itemView.findViewById(R.id.track_img);
-            btOptions = (ImageButton) itemView.findViewById(R.id.option_button);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -97,17 +95,6 @@ public class PlaylistListAdapter extends RecyclerView.Adapter<PlaylistListAdapte
                 }
             });
 
-            btOptions.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null){
-                        int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION){
-                            listener.onOptionsClicked(position);
-                        }
-                    }
-                }
-            });
         }
     }
 }

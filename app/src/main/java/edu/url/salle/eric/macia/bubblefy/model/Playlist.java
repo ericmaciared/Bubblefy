@@ -49,7 +49,7 @@ public class Playlist implements Serializable {
         this.description = description;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 

@@ -12,6 +12,7 @@ import edu.url.salle.eric.macia.bubblefy.restapi.callback.PlaylistCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.service.PlaylistService;
 import edu.url.salle.eric.macia.bubblefy.utils.Constants;
 import edu.url.salle.eric.macia.bubblefy.utils.Session;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -126,9 +127,32 @@ public class PlaylistManager {
             }
         });
 
-
     }
 
+    public void followPlaylist(int id, final PlaylistCallback callback) {
+        UserToken userToken = Session.getInstance(mContext).getUserToken();
+        Call<ResponseBody> call = mService.followPlaylist(id, "Bearer " + userToken.getIdToken());
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                int code = response.code();
 
+                if (response.isSuccessful()) {
+                    callback.onFollowSuccess();
+                } else {
+                    try {
+                        callback.onFailure(new Throwable(response.errorBody().string()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
 
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                callback.onPlaylistFailure(t);
+            }
+        });
+
+    }
 }

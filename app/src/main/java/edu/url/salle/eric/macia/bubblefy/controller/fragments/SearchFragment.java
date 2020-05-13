@@ -304,7 +304,10 @@ public class SearchFragment extends Fragment
     }
 
     public void playlistClicked(int position){
-        //IMPLEMENTAR
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, new PlaylistFragment(mPlay.get(position)));
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     public void userClicked(int position){
@@ -444,6 +447,11 @@ public class SearchFragment extends Fragment
 
     @Override
     public void onNoPlaylist(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onFollowSuccess() {
 
     }
 

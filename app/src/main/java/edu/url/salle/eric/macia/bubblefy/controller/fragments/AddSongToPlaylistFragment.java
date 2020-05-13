@@ -157,4 +157,9 @@ public class AddSongToPlaylistFragment extends Fragment
     public void onNoPlaylist(Throwable throwable) {
 
     }
+
+    @Override
+    public void onFollowSuccess() {
+
+    }
 }
