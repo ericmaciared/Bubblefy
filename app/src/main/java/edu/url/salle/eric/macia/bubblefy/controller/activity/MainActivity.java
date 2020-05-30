@@ -34,6 +34,7 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
 
     public static BottomNavigationView bottomNavigationView;
 
+    public static Track currentSong;
     public static ArrayList<Track> queue;
     public static MediaPlayer mediaPlayer;
     public static boolean random;
@@ -137,6 +138,13 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
                 int audioSessionId = mediaPlayer.getAudioSessionId();
             }
         });
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                nextTrack();
+            }
+        });
+
 
         btnPlayStop = (ImageButton) findViewById(R.id.play_pause);
         btnPlayStop.setTag(PLAY_VIEW);
@@ -167,8 +175,9 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
         if (queue.size() > 1) queue.remove(1);
 
         //updateSessionMusicData(offset);
-        tvAuthor.setText(track.getUserLogin());
-        tvTitle.setText(track.getName());
+        MainActivity.tvAuthor.setText(track.getUserLogin());
+        MainActivity.tvTitle.setText(track.getName());
+        MainActivity.currentSong = track;
         try {
             mediaPlayer.reset();
             mediaPlayer.setDataSource(track.getUrl());
@@ -196,6 +205,10 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
             queue.remove(0);
             updateTrack(queue.get(0));
         }
+    }
+
+    public static void previousTrack() {
+        updateTrack(queue.get(0));
     }
 
     public static void addTrackToQueue(Track track){

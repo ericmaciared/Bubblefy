@@ -1,27 +1,38 @@
 package edu.url.salle.eric.macia.bubblefy.controller.fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+
 import edu.url.salle.eric.macia.bubblefy.R;
 import edu.url.salle.eric.macia.bubblefy.controller.activity.MainActivity;
+import edu.url.salle.eric.macia.bubblefy.model.Track;
 
-public class PlaybackFragment extends Fragment {
+public class PlaybackFragment extends Fragment{
     private static final String PLAY_VIEW = "PlayIcon";
     private static final String STOP_VIEW = "StopIcon";
+
+    private ArrayList<Track> queue;
 
     private ImageView ivTrackImg;
     private TextView tvTrackTitle;
     private TextView tvTrackAuthor;
+
+    private SeekBar seekBar;
+    private Handler mHandler;
+    private Runnable mRunnable;
 
     private ImageButton ibArrowDown;
     private ImageButton ibPlayPause;
@@ -52,12 +63,41 @@ public class PlaybackFragment extends Fragment {
         tvTrackTitle.setText(MainActivity.tvTitle.getText());
         tvTrackAuthor.setText(MainActivity.tvAuthor.getText());
 
+        this.seekBar = (SeekBar) v.findViewById(R.id.music_seek_bar);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser){
+                    MainActivity.mediaPlayer.seekTo(progress);
+                    updateSeekBar();
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        mHandler = new Handler();
+
+        updateSeekBar();
+
         this.ibArrowDown = (ImageButton) v.findViewById(R.id.arrow_down);
         ibArrowDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MainActivity.showNavigation(true);
                 MainActivity.showPlayback(true);
+                if (ibPlayPause.getTag().equals(PLAY_VIEW)){
+                    MainActivity.pauseAudio();
+                }
+                else MainActivity.playAudio();
                 getParentFragmentManager().popBackStack();
             }
         });
@@ -74,11 +114,11 @@ public class PlaybackFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (ibPlayPause.getTag().equals(PLAY_VIEW)) {
-                    MainActivity.playAudio();
+                    MainActivity.mediaPlayer.start();
                     ibPlayPause.setTag(STOP_VIEW);
                     ibPlayPause.setImageResource(R.drawable.ic_pause2);
                 } else {
-                    MainActivity.pauseAudio();
+                    MainActivity.mediaPlayer.pause();
                     ibPlayPause.setTag(PLAY_VIEW);
                     ibPlayPause.setImageResource(R.drawable.ic_play3);
                 }
@@ -97,7 +137,7 @@ public class PlaybackFragment extends Fragment {
         ibPreviousSong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MainActivity.previousTrack();
             }
         });
 
@@ -118,5 +158,19 @@ public class PlaybackFragment extends Fragment {
         });
     }
 
+    //SEEKBAR
+    public void updateSeekBar() {
+        seekBar.setMax(MainActivity.currentSong.getDuration());
+        seekBar.setProgress(MainActivity.mediaPlayer.getCurrentPosition());
 
+        if(MainActivity.mediaPlayer.isPlaying()) {
+            mRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    updateSeekBar();
+                }
+            };
+            mHandler.postDelayed(mRunnable, 1000);
+        }
+    }
 }
