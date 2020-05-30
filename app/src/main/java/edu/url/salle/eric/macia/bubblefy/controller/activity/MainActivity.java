@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import edu.url.salle.eric.macia.bubblefy.R;
-import edu.url.salle.eric.macia.bubblefy.controller.fragments.AddSongToPlaylistFragment;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.BottomSheetDialog;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.HomeFragment;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.PlaybackFragment;
