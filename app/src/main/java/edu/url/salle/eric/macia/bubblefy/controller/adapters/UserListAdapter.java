@@ -80,18 +80,6 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
                     }
                 }
             });
-
-            btOptions.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null){
-                        int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION){
-                            listener.onOptionsClicked(position);
-                        }
-                    }
-                }
-            });
         }
     }
 }

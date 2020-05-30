@@ -150,7 +150,6 @@ public class AddSongToPlaylistFragment extends Fragment
                     Toast.LENGTH_SHORT);
             toast.show();
         }
-
     }
 
     @Override
