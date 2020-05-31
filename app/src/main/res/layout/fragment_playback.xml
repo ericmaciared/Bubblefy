@@ -104,6 +104,39 @@
         android:thumb="@drawable/seek_thumb"
         />
     <LinearLayout
+        android:id="@+id/time"
+        android:layout_below="@id/music_seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="15dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/currentTime"
+            android:text="-"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/text_size_smallmedium"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:text=""
+            android:fontFamily="@font/open_sans_bold"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/text_size_smallmedium"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/finishTime"
+            android:text="3:23"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/text_size_smallmedium"/>
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/playback_controls"
         android:layout_width="match_parent"
         android:layout_height="60dp"

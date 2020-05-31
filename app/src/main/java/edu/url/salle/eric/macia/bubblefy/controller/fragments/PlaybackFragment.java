@@ -32,6 +32,8 @@ public class PlaybackFragment extends Fragment{
     private TextView tvTrackAuthor;
 
     private SeekBar seekBar;
+    private TextView tvCurrentTime;
+    private TextView tvFinishTime;
     private Handler mHandler;
     private Runnable mRunnable;
 
@@ -64,13 +66,15 @@ public class PlaybackFragment extends Fragment{
         tvTrackTitle.setText(MainActivity.tvTitle.getText());
         tvTrackAuthor.setText(MainActivity.tvAuthor.getText());
 
+        this.tvCurrentTime = (TextView) v.findViewById(R.id.currentTime);
+        this.tvFinishTime = (TextView) v.findViewById(R.id.finishTime);
+
         this.seekBar = (SeekBar) v.findViewById(R.id.music_seek_bar);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser){
                     MainActivity.mediaPlayer.seekTo(progress);
-                    updateSeekBar();
                 }
             }
 
@@ -85,9 +89,8 @@ public class PlaybackFragment extends Fragment{
             }
         });
 
-        mHandler = new Handler();
 
-        updateSeekBar();
+        setupSeekBar();
 
         this.ibArrowDown = (ImageButton) v.findViewById(R.id.arrow_down);
         ibArrowDown.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +127,7 @@ public class PlaybackFragment extends Fragment{
                     ibPlayPause.setTag(PLAY_VIEW);
                     ibPlayPause.setImageResource(R.drawable.ic_play3);
                 }
+                updateSeekBar();
             }
         });
 
@@ -164,6 +168,18 @@ public class PlaybackFragment extends Fragment{
         });
     }
 
+    private void setupSeekBar() {
+        mHandler = new Handler();
+        mRunnable = () -> {
+            if (MainActivity.mediaPlayer.isPlaying()) {
+                this.seekBar.setProgress(MainActivity.mediaPlayer.getCurrentPosition());
+                this.tvCurrentTime.setText(convertToTime(MainActivity.mediaPlayer.getCurrentPosition()));
+                mHandler.post(mRunnable);
+            }
+        };
+        updateSeekBar();
+    }
+
     private void updateTrack() {
         this.tvTrackTitle.setText(MainActivity.currentSong.getName());
         this.tvTrackAuthor.setText(MainActivity.currentSong.getUserLogin());
@@ -171,17 +187,19 @@ public class PlaybackFragment extends Fragment{
 
     //SEEKBAR
     public void updateSeekBar() {
-        seekBar.setMax(MainActivity.currentSong.getDuration()/1000);
-        seekBar.setProgress(MainActivity.mediaPlayer.getCurrentPosition());
+        mHandler.post(mRunnable);
+        this.seekBar.setMax(MainActivity.mediaPlayer.getDuration());
+        this.tvFinishTime.setText(convertToTime(MainActivity.mediaPlayer.getDuration()));
+    }
 
-        if(MainActivity.mediaPlayer.isPlaying()) {
-            mRunnable = new Runnable() {
-                @Override
-                public void run() {
-                    updateSeekBar();
-                }
-            };
-            mHandler.postDelayed(mRunnable, 1000);
-        }
+    private String convertToTime(int msec){
+        String time;
+        int sec = msec/1000;
+
+        if (sec%60 < 10){
+            time = sec/60 + ":0" + sec%60;
+        } else time = sec/60 + ":" + sec%60;
+
+        return time;
     }
 }

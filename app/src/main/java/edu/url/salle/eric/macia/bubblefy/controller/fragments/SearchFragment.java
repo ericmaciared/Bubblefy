@@ -285,6 +285,7 @@ public class SearchFragment extends Fragment
 
     private void updateTrack(Track track) {
         //updateSessionMusicData(offset);
+        MainActivity.queue.add(0, track);
         MainActivity.updateTrack(track);
     }
 

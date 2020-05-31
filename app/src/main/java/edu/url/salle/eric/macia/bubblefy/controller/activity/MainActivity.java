@@ -148,7 +148,6 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
             }
         });
 
-
         btnPlayStop = (ImageButton) findViewById(R.id.play_pause);
         btnPlayStop.setTag(PLAY_VIEW);
         btnPlayStop.setOnClickListener(v -> {
@@ -177,6 +176,7 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
         //updateSessionMusicData(offset);
         MainActivity.tvAuthor.setText(track.getUserLogin());
         MainActivity.tvTitle.setText(track.getName());
+        //TODO: Add image
 
         MainActivity.currentSong = track;
         try {

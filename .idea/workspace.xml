@@ -14,7 +14,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97a12188-3dce-46c6-bb20-f90b641f8550" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" afterDir="false" />
@@ -24,7 +23,6 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_cloudinary_cloudinary_android_1_25_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_cloudinary_cloudinary_android_1_25_0_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_evernote_android_job_1_2_6_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_evernote_android_job_1_2_6_aar.xml" afterDir="false" />
@@ -35,18 +33,19 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bubblefy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Bubblefy.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/activity/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/PlaybackFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/PlaybackFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/SearchFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/SearchFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_playback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_playback.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3a_API_28" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3_XL_API_24" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -85,33 +84,27 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
-    <option name="UPDATE_TYPE" value="MERGE" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="1YyVZzgNonpNGcdFKzBq5PNsB8f" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
-  </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
-    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DEBUGGABLE_DEVICE" value="Pixel_3_API_29 [emulator-5554]" />
     <property name="DEBUGGABLE_PROCESS" value="edu.url.salle.eric.macia.bubblefy" />
     <property name="DEBUGGER_ID" value="Auto" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="ignore.virus.scanning.warn.message" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/build.gradle" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Sallefy-Test-Vol-3" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -141,6 +134,18 @@
       <recent name="C:\Users\ericm\AndroidStudioProjects\Bubblefy\app\src\main\res\font" />
       <recent name="C:\Users\ericm\AndroidStudioProjects\Bubblefy\app\src\main\res\drawable-v24" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -416,7 +421,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590854783986</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Fixing Playback transaction issue">
+      <created>1590926977982</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1590926977982</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -448,7 +460,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Linked activity login amb sign up page.&#10;Update del login activity." />
     <MESSAGE value="Update Send Key i Forgot Password activities.&#10;XML actualitzats." />
     <MESSAGE value="No Action Bar (fullscreen)&#10;Canviat xml colors de algunes screens&#10;Afegit links entre algunes pagines." />
     <MESSAGE value="Afegit Toasts i logica per el login activity.&#10;Afegit Splash screen per la app.&#10;Canviat icono de la app." />
@@ -473,82 +484,31 @@
     <MESSAGE value="Upload UI polish" />
     <MESSAGE value="Playlists implemented" />
     <MESSAGE value="SeekBar change and some view issues implemented." />
-    <option name="LAST_COMMIT_MESSAGE" value="SeekBar change and some view issues implemented." />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="908" y="294" key="CommitChangelistDialog2" timestamp="1590933027341">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="908" y="294" key="CommitChangelistDialog2/2560.0.1920.1040/0.0.2560.1400/-1920.0.1920.1080@0.0.2560.1400" timestamp="1590933027341" />
-    <state width="2500" height="488" key="GridCell.Tab.0.bottom" timestamp="1590932299521">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2500" height="488" key="GridCell.Tab.0.bottom/2560.0.1920.1040/0.0.2560.1400/-1920.0.1920.1080@0.0.2560.1400" timestamp="1590932299521" />
-    <state width="2500" height="488" key="GridCell.Tab.0.center" timestamp="1590932299521">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2500" height="488" key="GridCell.Tab.0.center/2560.0.1920.1040/0.0.2560.1400/-1920.0.1920.1080@0.0.2560.1400" timestamp="1590932299521" />
-    <state width="2500" height="488" key="GridCell.Tab.0.left" timestamp="1590932299521">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2500" height="488" key="GridCell.Tab.0.left/2560.0.1920.1040/0.0.2560.1400/-1920.0.1920.1080@0.0.2560.1400" timestamp="1590932299521" />
-    <state width="2500" height="488" key="GridCell.Tab.0.right" timestamp="1590932299521">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2500" height="488" key="GridCell.Tab.0.right/2560.0.1920.1040/0.0.2560.1400/-1920.0.1920.1080@0.0.2560.1400" timestamp="1590932299521" />
-    <state width="2500" height="488" key="GridCell.Tab.1.bottom" timestamp="1590932299521">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2500" height="488" key="GridCell.Tab.1.bottom/2560.0.1920.1040/0.0.2560.1400/-1920.0.1920.1080@0.0.2560.1400" timestamp="1590932299521" />
-    <state width="2500" height="488" key="GridCell.Tab.1.center" timestamp="1590932299521">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2500" height="488" key="GridCell.Tab.1.center/2560.0.1920.1040/0.0.2560.1400/-1920.0.1920.1080@0.0.2560.1400" timestamp="1590932299521" />
-    <state width="2500" height="488" key="GridCell.Tab.1.left" timestamp="1590932299521">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2500" height="488" key="GridCell.Tab.1.left/2560.0.1920.1040/0.0.2560.1400/-1920.0.1920.1080@0.0.2560.1400" timestamp="1590932299521" />
-    <state width="2500" height="488" key="GridCell.Tab.1.right" timestamp="1590932299521">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2500" height="488" key="GridCell.Tab.1.right/2560.0.1920.1040/0.0.2560.1400/-1920.0.1920.1080@0.0.2560.1400" timestamp="1590932299521" />
-    <state x="976" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1590927149194">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="976" y="524" key="com.intellij.ide.util.TipDialog/2560.0.1920.1040/0.0.2560.1400/-1920.0.1920.1080@0.0.2560.1400" timestamp="1590927149194" />
+    <MESSAGE value="Fixing Playback transaction issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing Playback transaction issue" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/SearchFragment.java</url>
-          <line>400</line>
+          <line>401</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/SearchFragment.java</url>
-          <line>401</line>
+          <line>402</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/SearchFragment.java</url>
-          <line>416</line>
+          <line>417</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/SearchFragment.java</url>
-          <line>417</line>
+          <line>418</line>
           <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/activity/MainActivity.java</url>
-          <line>195</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/PlaybackFragment.java</url>
-          <line>133</line>
-          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
