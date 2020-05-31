@@ -99,6 +99,7 @@ public class PlaybackFragment extends Fragment{
                     MainActivity.pauseAudio();
                 }
                 else MainActivity.playAudio();
+                MainActivity.showPlaybackFragment = false;
                 getParentFragmentManager().popBackStackImmediate();
             }
         });

@@ -47,6 +47,8 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
     public static TextView tvAuthor;
     public static ImageView ivPhoto;
 
+    public static boolean showPlaybackFragment;
+
     Fragment selectedFragment = null;
 
     @Override
@@ -57,7 +59,6 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
         initViews();
         initPlayer();
         setInitialFragment();
-
     }
 
     //VIEWS
@@ -96,8 +97,9 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
     private void loadPlaybackFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, new PlaybackFragment());
-        transaction.addToBackStack(null);
+        if (!showPlaybackFragment) transaction.addToBackStack(null);
         transaction.commit();
+        showPlaybackFragment = true;
     }
 
     public static void showNavigation(boolean show) {
@@ -135,6 +137,7 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
             @Override
             public void onPrepared(MediaPlayer mp) {
                 playAudio();
+                if (showPlaybackFragment) loadPlaybackFragment();
                 int audioSessionId = mediaPlayer.getAudioSessionId();
             }
         });
@@ -158,7 +161,7 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
     }
 
     public static void playAudio() {
-        playbackLayout.setVisibility(View.VISIBLE);
+        if (!showPlaybackFragment) playbackLayout.setVisibility(View.VISIBLE);
         mediaPlayer.start();
         btnPlayStop.setImageResource(R.drawable.ic_pause);
         btnPlayStop.setTag(STOP_VIEW);
@@ -171,20 +174,18 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
     }
 
     public static void updateTrack(Track track){
-        queue.add(0, track);
-        if (queue.size() > 1) queue.remove(1);
-
         //updateSessionMusicData(offset);
         MainActivity.tvAuthor.setText(track.getUserLogin());
         MainActivity.tvTitle.setText(track.getName());
 
         MainActivity.currentSong = track;
         try {
+            mediaPlayer.stop();
             mediaPlayer.reset();
             mediaPlayer.setDataSource(track.getUrl());
-            //mediaPlayer.pause();
-            mediaPlayer.prepare();
+            mediaPlayer.prepareAsync();
         } catch(Exception e) {
+            e.printStackTrace();
         }
     }
 
