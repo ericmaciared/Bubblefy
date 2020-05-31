@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -98,7 +99,7 @@ public class PlaybackFragment extends Fragment{
                     MainActivity.pauseAudio();
                 }
                 else MainActivity.playAudio();
-                getParentFragmentManager().popBackStack();
+                getParentFragmentManager().popBackStackImmediate();
             }
         });
 
@@ -130,6 +131,7 @@ public class PlaybackFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 MainActivity.nextTrack();
+                updateTrack();
             }
         });
 
@@ -138,6 +140,7 @@ public class PlaybackFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 MainActivity.previousTrack();
+                updateTrack();
             }
         });
 
@@ -146,6 +149,8 @@ public class PlaybackFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 MainActivity.random = !MainActivity.random;
+                Toast toast =  Toast.makeText(getActivity(), "Random", Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
 
@@ -158,9 +163,14 @@ public class PlaybackFragment extends Fragment{
         });
     }
 
+    private void updateTrack() {
+        this.tvTrackTitle.setText(MainActivity.currentSong.getName());
+        this.tvTrackAuthor.setText(MainActivity.currentSong.getUserLogin());
+    }
+
     //SEEKBAR
     public void updateSeekBar() {
-        seekBar.setMax(MainActivity.currentSong.getDuration());
+        seekBar.setMax(MainActivity.currentSong.getDuration()/1000);
         seekBar.setProgress(MainActivity.mediaPlayer.getCurrentPosition());
 
         if(MainActivity.mediaPlayer.isPlaying()) {

@@ -177,6 +177,7 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
         //updateSessionMusicData(offset);
         MainActivity.tvAuthor.setText(track.getUserLogin());
         MainActivity.tvTitle.setText(track.getName());
+
         MainActivity.currentSong = track;
         try {
             mediaPlayer.reset();
