@@ -154,8 +154,13 @@ public class PlaybackFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 MainActivity.random = !MainActivity.random;
-                Toast toast =  Toast.makeText(getActivity(), "Random", Toast.LENGTH_SHORT);
-                toast.show();
+                if (MainActivity.random){
+                Toast toast =  Toast.makeText(getActivity(), "Random active", Toast.LENGTH_SHORT);
+                toast.show();}
+                else{
+                    Toast toast =  Toast.makeText(getActivity(), "Random unnactive", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
         });
 
@@ -164,6 +169,13 @@ public class PlaybackFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 MainActivity.repeat = !MainActivity.repeat;
+                if (MainActivity.repeat){
+                    Toast toast =  Toast.makeText(getActivity(), "Repeat active", Toast.LENGTH_SHORT);
+                    toast.show();}
+                else{
+                    Toast toast =  Toast.makeText(getActivity(), "Repeat unnactive", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
         });
     }

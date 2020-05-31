@@ -18,26 +18,11 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_cloudinary_cloudinary_android_1_25_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_cloudinary_cloudinary_android_1_25_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_evernote_android_job_1_2_6_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_evernote_android_job_1_2_6_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_9_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_9_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_9_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_9_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_igalata_Bubble_Picker_v0_2_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_igalata_Bubble_Picker_v0_2_4_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_71828_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_71828_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bubblefy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Bubblefy.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/activity/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/PlaybackFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/PlaybackFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/SearchFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/SearchFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_playback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_playback.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -428,7 +413,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590926977982</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Implemented Search Bar movement and data of time.">
+      <created>1590938802201</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1590938802202</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -460,7 +452,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Update Send Key i Forgot Password activities.&#10;XML actualitzats." />
     <MESSAGE value="No Action Bar (fullscreen)&#10;Canviat xml colors de algunes screens&#10;Afegit links entre algunes pagines." />
     <MESSAGE value="Afegit Toasts i logica per el login activity.&#10;Afegit Splash screen per la app.&#10;Canviat icono de la app." />
     <MESSAGE value="Update xml login.&#10;Canviat values a dimens.xml.&#10;Afegit tags per text-size-(small/medium/big)" />
@@ -485,7 +476,8 @@
     <MESSAGE value="Playlists implemented" />
     <MESSAGE value="SeekBar change and some view issues implemented." />
     <MESSAGE value="Fixing Playback transaction issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing Playback transaction issue" />
+    <MESSAGE value="Implemented Search Bar movement and data of time." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented Search Bar movement and data of time." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
