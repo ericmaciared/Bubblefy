@@ -111,8 +111,8 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
 
     private void initBubblePicker(View v) {
         bubblePicker = (BubblePicker) v.findViewById(R.id.profile_picker);
-
         bubblePicker.setAdapter(new BubblePickerAdapter() {
+
             @Override
             public int getTotalCount() {
                 return (name.length);
@@ -131,7 +131,34 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
                 return item;
             }
 
+
         });
+
+        /*
+        bubblePicker.setAdapter(new BubblePickerAdapter() {
+            @Override
+            public int getTotalCount() {
+                return mTracks.size();
+            }
+
+            @NotNull
+            @Override
+            public PickerItem getItem(int i) {
+                Track track = mTracks.get(i);
+                PickerItem item = new PickerItem();
+                item.setTitle(track.getName());
+                item.setGradient(new BubbleGradient(colors.getColor((i * 2) % 8, 0),
+                        colors.getColor((i * 2) % 8 + 1, 0), BubbleGradient.VERTICAL));
+                item.setTextColor(ContextCompat.getColor(getContext(),android.R.color.white));
+                if(track.getThumbnail() != null) {
+                    ImageManager im = new ImageManager();
+                    item.setBackgroundImage(im.getDrawable(Objects.requireNonNull(getActivity()).getApplicationContext(), track.getThumbnail()));
+                }
+                item.setTypeface(Typeface.DEFAULT);
+                return item;
+            }
+        });
+        */
 
         bubblePicker.setListener(new BubblePickerListener() {
             @Override
@@ -165,6 +192,9 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
     private void initViews(View v) throws IOException {
         //Profile Picture
         ivProfileImage = (ImageView) v.findViewById(R.id.profile_image);
+
+        //Bubble Picker
+        bubblePicker = (BubblePicker) v.findViewById(R.id.profile_picker);
 
         //Followers and Following
         tFollowers = (TextView) v.findViewById(R.id.num_followers_text);
@@ -230,6 +260,7 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
 
     }
 
+    /*
     @Override
     public void onUserLikedTracksReceived(List<Track> tracks) {
         mTracks = (ArrayList<Track>) tracks;
@@ -249,6 +280,38 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
             listItems.add(item);
         }
         bubblePicker.setItems(listItems);
+    }
+    */
+
+    @Override
+    public void onUserLikedTracksReceived(List<Track> tracks) {
+        bubblePicker = (BubblePicker) getView().findViewById(R.id.profile_picker);
+        mTracks = (ArrayList<Track>) tracks;
+        bubblePicker.setAdapter(new BubblePickerAdapter() {
+            @Override
+            public int getTotalCount() {
+                return mTracks.size();
+            }
+
+            @NotNull
+            @Override
+            public PickerItem getItem(int i) {
+                Track track = mTracks.get(i);
+                PickerItem item = new PickerItem();
+                item.setTitle(track.getName());
+                item.setGradient(new BubbleGradient(colors.getColor((i * 2) % 8, 0),
+                        colors.getColor((i * 2) % 8 + 1, 0), BubbleGradient.VERTICAL));
+                item.setTextColor(ContextCompat.getColor(getContext(),android.R.color.white));
+                if(track.getThumbnail() != null) {
+                    ImageManager im = new ImageManager();
+                    item.setBackgroundImage(im.getDrawable(Objects.requireNonNull(getActivity()).getApplicationContext(), track.getThumbnail()));
+                }
+                item.setTypeface(Typeface.DEFAULT);
+                return item;
+            }
+        });
+
+        //initBubblePicker(getView());
     }
 
     @Override

@@ -13,9 +13,8 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97a12188-3dce-46c6-bb20-f90b641f8550" name="Default Changelist" comment="Items clickable on main screen and playlist">
+    <list default="true" id="97a12188-3dce-46c6-bb20-f90b641f8550" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_cloudinary_cloudinary_android_1_25_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_cloudinary_cloudinary_android_1_25_0_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_evernote_android_job_1_2_6_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_evernote_android_job_1_2_6_aar.xml" afterDir="false" />
@@ -24,18 +23,14 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_igalata_Bubble_Picker_v0_2_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_igalata_Bubble_Picker_v0_2_4_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_71828_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_71828_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/adapters/BubbleTrackListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/adapters/BubbleTrackListAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/HomeFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/PlaylistFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/PlaylistFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/ProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/ProfileFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3_API_29" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="2ad0e35b16027ece" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -478,6 +473,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Items clickable on main screen and playlist" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="158" y="73" key="#PSD" timestamp="1591031252978">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="158" y="73" key="#PSD/0.0.1280.680/1920.0.1920.1160@0.0.1280.680" timestamp="1591031252978" />
     <state x="446" y="49" key="#com.intellij.ide.util.MemberChooser" timestamp="1591028572702">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -488,28 +487,52 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="293" y="52" key="CommitChangelistDialog2/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591030390370" />
-    <state width="1236" height="21" key="GridCell.Tab.0.bottom" timestamp="1591028571592" />
-    <state width="1236" height="21" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1160@0.0.1280.680" timestamp="1591028571592" />
+    <state width="1236" height="218" key="GridCell.Tab.0.bottom" timestamp="1591033188097">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1236" height="218" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1160@0.0.1280.680" timestamp="1591033188097" />
     <state width="1872" height="452" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1160@1920.0.1920.1160" timestamp="1591028571592" />
-    <state width="1236" height="21" key="GridCell.Tab.0.center" timestamp="1591028571592" />
-    <state width="1236" height="21" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1160@0.0.1280.680" timestamp="1591028571592" />
+    <state width="1236" height="218" key="GridCell.Tab.0.center" timestamp="1591033188097">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1236" height="218" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1160@0.0.1280.680" timestamp="1591033188097" />
     <state width="1872" height="452" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1160@1920.0.1920.1160" timestamp="1591028571592" />
-    <state width="1236" height="21" key="GridCell.Tab.0.left" timestamp="1591028571592" />
-    <state width="1236" height="21" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1160@0.0.1280.680" timestamp="1591028571592" />
+    <state width="1236" height="218" key="GridCell.Tab.0.left" timestamp="1591033188097">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1236" height="218" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1160@0.0.1280.680" timestamp="1591033188097" />
     <state width="1872" height="452" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1160@1920.0.1920.1160" timestamp="1591028571592" />
-    <state width="1236" height="21" key="GridCell.Tab.0.right" timestamp="1591028571592" />
-    <state width="1236" height="21" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1160@0.0.1280.680" timestamp="1591028571592" />
+    <state width="1236" height="218" key="GridCell.Tab.0.right" timestamp="1591033188097">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1236" height="218" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1160@0.0.1280.680" timestamp="1591033188097" />
     <state width="1872" height="452" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1160@1920.0.1920.1160" timestamp="1591028571592" />
-    <state width="1872" height="394" key="GridCell.Tab.1.bottom" timestamp="1591028571592" />
+    <state width="1236" height="348" key="GridCell.Tab.1.bottom" timestamp="1591031280936">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1236" height="348" key="GridCell.Tab.1.bottom/0.0.1280.680/1920.0.1920.1160@0.0.1280.680" timestamp="1591031280936" />
     <state width="1872" height="394" key="GridCell.Tab.1.bottom/0.0.1280.680/1920.0.1920.1160@1920.0.1920.1160" timestamp="1591028571592" />
-    <state width="1872" height="394" key="GridCell.Tab.1.center" timestamp="1591028571592" />
+    <state width="1236" height="348" key="GridCell.Tab.1.center" timestamp="1591031280935">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1236" height="348" key="GridCell.Tab.1.center/0.0.1280.680/1920.0.1920.1160@0.0.1280.680" timestamp="1591031280935" />
     <state width="1872" height="394" key="GridCell.Tab.1.center/0.0.1280.680/1920.0.1920.1160@1920.0.1920.1160" timestamp="1591028571592" />
-    <state width="1872" height="394" key="GridCell.Tab.1.left" timestamp="1591028571592" />
+    <state width="1236" height="348" key="GridCell.Tab.1.left" timestamp="1591031280935">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1236" height="348" key="GridCell.Tab.1.left/0.0.1280.680/1920.0.1920.1160@0.0.1280.680" timestamp="1591031280935" />
     <state width="1872" height="394" key="GridCell.Tab.1.left/0.0.1280.680/1920.0.1920.1160@1920.0.1920.1160" timestamp="1591028571592" />
-    <state width="1872" height="394" key="GridCell.Tab.1.right" timestamp="1591028571592" />
+    <state width="1236" height="348" key="GridCell.Tab.1.right" timestamp="1591031280935">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1236" height="348" key="GridCell.Tab.1.right/0.0.1280.680/1920.0.1920.1160@0.0.1280.680" timestamp="1591031280935" />
     <state width="1872" height="394" key="GridCell.Tab.1.right/0.0.1280.680/1920.0.1920.1160@1920.0.1920.1160" timestamp="1591028571592" />
     <state x="2257" y="144" key="com.intellij.ide.util.TipDialog" timestamp="1591028571592" />
     <state x="2257" y="144" key="com.intellij.ide.util.TipDialog/0.0.1280.680/1920.0.1920.1160@1920.0.1920.1160" timestamp="1591028571592" />
+    <state x="100" y="100" width="1060" height="440" key="dock-window-1" timestamp="1591031363485">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="100" y="100" width="1060" height="440" key="dock-window-1/0.0.1280.680/1920.0.1920.1160@0.0.1280.680" timestamp="1591031363485" />
   </component>
   <component name="masterDetails">
     <states>
