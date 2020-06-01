@@ -45,6 +45,7 @@ public class HomeFragment extends Fragment implements TrackCallback {
     };
 
     private RecyclerView recyclerView;
+    private BubbleTrackListAdapter mAdapter;
     private ArrayList<Track> mTracks;
 
     @Nullable
@@ -63,12 +64,19 @@ public class HomeFragment extends Fragment implements TrackCallback {
 
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL,
                 false);
-        BubbleTrackListAdapter adapter = new BubbleTrackListAdapter(getActivity(), null);
+        mAdapter = new BubbleTrackListAdapter(getActivity(), null);
 
         recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(mAdapter);
 
         TrackManager.getInstance(getActivity()).getUserLikedTracks(this);
+
+        mAdapter.setOnItemClickListener(new BubbleTrackListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                trackClicked(position);
+            }
+        });
     }
 
     private void initBubblePicker(View v) {
@@ -107,6 +115,10 @@ public class HomeFragment extends Fragment implements TrackCallback {
         bubblePicker.setCenterImmediately(true);
     }
 
+    public void trackClicked(int position){
+        //TODO Position de la canço triada del mTracks
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -141,11 +153,10 @@ public class HomeFragment extends Fragment implements TrackCallback {
 
     @Override
     public void onUserLikedTracksReceived(List<Track> tracks) {
-        ArrayList<Track> mTracks = new ArrayList<Track>();
         mTracks = (ArrayList<Track>) tracks;
 
-        BubbleTrackListAdapter adapter = new BubbleTrackListAdapter(getActivity(), mTracks);
-        recyclerView.setAdapter(adapter);
+        mAdapter = new BubbleTrackListAdapter(getActivity(), mTracks);
+        recyclerView.setAdapter(mAdapter);
     }
 
     @Override

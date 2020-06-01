@@ -23,6 +23,15 @@ public class BubbleTrackListAdapter extends RecyclerView.Adapter<BubbleTrackList
     private static final String TAG = "TrackListAdapter";
     private ArrayList<Track> mTracks;
     private Context mContext;
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
 
     public BubbleTrackListAdapter(Context context, ArrayList<Track> tracks) {
         mContext = context;
@@ -34,7 +43,7 @@ public class BubbleTrackListAdapter extends RecyclerView.Adapter<BubbleTrackList
     public BubbleTrackListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.d(TAG, "onCreateViewHolder: called.");
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.track_item_round, parent, false);
-        return new BubbleTrackListAdapter.ViewHolder(itemView);
+        return new BubbleTrackListAdapter.ViewHolder(itemView, mListener);
     }
 
     public void onBindViewHolder(@NonNull BubbleTrackListAdapter.ViewHolder holder, final int position) {
@@ -65,11 +74,23 @@ public class BubbleTrackListAdapter extends RecyclerView.Adapter<BubbleTrackList
         TextView tvAuthor;
         ImageView ivPicture;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
             tvTitle = (TextView) itemView.findViewById(R.id.track_title);
             tvAuthor = (TextView) itemView.findViewById(R.id.track_author);
             ivPicture = (ImageView) itemView.findViewById(R.id.track_img);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 }

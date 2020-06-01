@@ -63,7 +63,7 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
             adapter.setItemClickedListener(new TrackListAdapter.OnItemClickedListener() {
                 @Override
                 public void onItemClicked(int position) {
-                    //trackClicked(position);
+                    trackClicked(position);
                 }
 
                 @Override
@@ -121,6 +121,10 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
             btnFollow.setText("FOLLOW");
         }
 
+    }
+
+    public void trackClicked(int position){
+        //TODO Position de la canço triada dins de l'array de tracks de la playlist
     }
 
     @Override
