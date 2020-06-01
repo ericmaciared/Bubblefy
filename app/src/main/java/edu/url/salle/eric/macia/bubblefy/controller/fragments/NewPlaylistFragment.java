@@ -221,6 +221,11 @@ public class NewPlaylistFragment extends Fragment
     }
 
     @Override
+    public void onUserFollowingPlaylistReceived(ArrayList<Playlist> playlist) {
+
+    }
+
+    @Override
     public void onPlaylistUpdated(Playlist playlist) {
 
     }

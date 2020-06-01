@@ -141,6 +141,11 @@ public class AddSongToPlaylistFragment extends Fragment
     }
 
     @Override
+    public void onUserFollowingPlaylistReceived(ArrayList<Playlist> playlist) {
+
+    }
+
+    @Override
     public void onPlaylistUpdated(Playlist playlist) {
         received++;
         if(received == playlistSelected.size()){

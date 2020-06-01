@@ -102,6 +102,33 @@ public class PlaylistManager {
 
     }
 
+
+    public void getFollowingPlaylist(final PlaylistCallback callback) {
+        UserToken userToken = Session.getInstance(mContext).getUserToken();
+        Call<ArrayList<Playlist>> call = mService.getFollowingPlaylists("Bearer " + userToken.getIdToken());
+        call.enqueue(new Callback<ArrayList<Playlist>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Playlist>> call, Response<ArrayList<Playlist>> response) {
+                int code = response.code();
+                if (response.isSuccessful()) {
+                    callback.onUserFollowingPlaylistReceived((ArrayList<Playlist>) response.body());
+                } else {
+                    Log.d(TAG, "Error Not Successful: " + code);
+                    callback.onNoPlaylist(new Throwable("ERROR " + code + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Playlist>> call, Throwable t) {
+                Log.d(TAG, "Error Failure: " + t.getStackTrace());
+                callback.onFailure(new Throwable("ERROR " + t.getStackTrace()));
+            }
+        });
+
+
+    }
+
+
     public void updatePlaylist(Playlist playlist, final PlaylistCallback callback) {
         UserToken userToken = Session.getInstance(mContext).getUserToken();
         Call<Playlist> call = mService.updatePlaylist(playlist, "Bearer " + userToken.getIdToken());

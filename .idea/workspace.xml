@@ -16,14 +16,15 @@
     <list default="true" id="97a12188-3dce-46c6-bb20-f90b641f8550" name="Default Changelist" comment="Items clickable on main screen and playlist">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_cloudinary_cloudinary_android_1_25_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_cloudinary_cloudinary_android_1_25_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_evernote_android_job_1_2_6_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_evernote_android_job_1_2_6_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_9_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_9_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_9_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_9_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_igalata_Bubble_Picker_v0_2_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_igalata_Bubble_Picker_v0_2_4_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_71828_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_71828_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/AddSongToPlaylistFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/AddSongToPlaylistFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/NewPlaylistFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/NewPlaylistFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/PlaylistFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/PlaylistFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/ProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/ProfileFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/SearchFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/SearchFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/callback/PlaylistCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/callback/PlaylistCallback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/manager/PlaylistManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/manager/PlaylistManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/service/PlaylistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/restapi/service/PlaylistService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +66,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="eric" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -481,71 +482,75 @@
     <option name="LAST_COMMIT_MESSAGE" value="Items clickable on main screen and playlist" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="446" y="49" key="#com.intellij.ide.util.MemberChooser" timestamp="1591034635581">
+    <state x="413" y="89" key="#app" timestamp="1591041332931">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="413" y="89" key="#app/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591041332931" />
+    <state x="446" y="49" key="#com.intellij.ide.util.MemberChooser" timestamp="1591046293866">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="446" y="49" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/1920.0.1920.1160@0.0.1280.680" timestamp="1591028571592" />
     <state x="2469" y="227" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680/1920.0.1920.1160@1920.0.1920.1160" timestamp="1591028571592" />
-    <state x="446" y="49" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591034635581" />
-    <state x="576" y="222" key="AndroidProcessChooserDialog" timestamp="1591033992959">
+    <state x="446" y="49" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591046293866" />
+    <state x="576" y="222" key="AndroidProcessChooserDialog" timestamp="1591046260410">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="576" y="222" key="AndroidProcessChooserDialog/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591033992959" />
+    <state x="576" y="222" key="AndroidProcessChooserDialog/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591046260410" />
     <state x="293" y="52" key="CommitChangelistDialog2" timestamp="1591030421059">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="293" y="52" key="CommitChangelistDialog2/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591030421059" />
-    <state width="688" height="293" key="GridCell.Tab.0.bottom" timestamp="1591040774637">
+    <state width="688" height="293" key="GridCell.Tab.0.bottom" timestamp="1591046999499">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1236" height="21" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1160@0.0.1280.680" timestamp="1591028571592" />
     <state width="1872" height="452" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1160@1920.0.1920.1160" timestamp="1591028571592" />
-    <state width="688" height="293" key="GridCell.Tab.0.bottom/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591040774637" />
-    <state width="688" height="293" key="GridCell.Tab.0.center" timestamp="1591040774635">
+    <state width="688" height="293" key="GridCell.Tab.0.bottom/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591046999499" />
+    <state width="688" height="293" key="GridCell.Tab.0.center" timestamp="1591046999498">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1236" height="21" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1160@0.0.1280.680" timestamp="1591028571592" />
     <state width="1872" height="452" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1160@1920.0.1920.1160" timestamp="1591028571592" />
-    <state width="688" height="293" key="GridCell.Tab.0.center/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591040774635" />
-    <state width="688" height="293" key="GridCell.Tab.0.left" timestamp="1591040774631">
+    <state width="688" height="293" key="GridCell.Tab.0.center/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591046999498" />
+    <state width="688" height="293" key="GridCell.Tab.0.left" timestamp="1591046999497">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1236" height="21" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1160@0.0.1280.680" timestamp="1591028571592" />
     <state width="1872" height="452" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1160@1920.0.1920.1160" timestamp="1591028571592" />
-    <state width="688" height="293" key="GridCell.Tab.0.left/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591040774631" />
-    <state width="688" height="293" key="GridCell.Tab.0.right" timestamp="1591040774636">
+    <state width="688" height="293" key="GridCell.Tab.0.left/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591046999497" />
+    <state width="688" height="293" key="GridCell.Tab.0.right" timestamp="1591046999498">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1236" height="21" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1160@0.0.1280.680" timestamp="1591028571592" />
     <state width="1872" height="452" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1160@1920.0.1920.1160" timestamp="1591028571592" />
-    <state width="688" height="293" key="GridCell.Tab.0.right/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591040774636" />
-    <state width="688" height="293" key="GridCell.Tab.1.bottom" timestamp="1591040702009">
+    <state width="688" height="293" key="GridCell.Tab.0.right/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591046999498" />
+    <state width="688" height="293" key="GridCell.Tab.1.bottom" timestamp="1591046999502">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1872" height="394" key="GridCell.Tab.1.bottom/0.0.1280.680/1920.0.1920.1160@1920.0.1920.1160" timestamp="1591028571592" />
-    <state width="688" height="293" key="GridCell.Tab.1.bottom/0.0.1440.900/-1920.-157.1920.1057@0.0.1440.900" timestamp="1591040556255" />
-    <state width="688" height="293" key="GridCell.Tab.1.bottom/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591040702009" />
+    <state width="688" height="293" key="GridCell.Tab.1.bottom/0.0.1440.900/-1920.-157.1920.1057@0.0.1440.900" timestamp="1591046931979" />
+    <state width="688" height="293" key="GridCell.Tab.1.bottom/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591046999502" />
     <state width="688" height="293" key="GridCell.Tab.1.bottom/0.23.1440.877/-1920.-157.1920.1057@0.23.1440.877" timestamp="1591035072754" />
-    <state width="688" height="293" key="GridCell.Tab.1.center" timestamp="1591040702007">
+    <state width="688" height="293" key="GridCell.Tab.1.center" timestamp="1591046999500">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1872" height="394" key="GridCell.Tab.1.center/0.0.1280.680/1920.0.1920.1160@1920.0.1920.1160" timestamp="1591028571592" />
-    <state width="688" height="293" key="GridCell.Tab.1.center/0.0.1440.900/-1920.-157.1920.1057@0.0.1440.900" timestamp="1591040556253" />
-    <state width="688" height="293" key="GridCell.Tab.1.center/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591040702007" />
+    <state width="688" height="293" key="GridCell.Tab.1.center/0.0.1440.900/-1920.-157.1920.1057@0.0.1440.900" timestamp="1591046931977" />
+    <state width="688" height="293" key="GridCell.Tab.1.center/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591046999500" />
     <state width="688" height="293" key="GridCell.Tab.1.center/0.23.1440.877/-1920.-157.1920.1057@0.23.1440.877" timestamp="1591035072753" />
-    <state width="688" height="293" key="GridCell.Tab.1.left" timestamp="1591040702007">
+    <state width="688" height="293" key="GridCell.Tab.1.left" timestamp="1591046999500">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1872" height="394" key="GridCell.Tab.1.left/0.0.1280.680/1920.0.1920.1160@1920.0.1920.1160" timestamp="1591028571592" />
-    <state width="688" height="293" key="GridCell.Tab.1.left/0.0.1440.900/-1920.-157.1920.1057@0.0.1440.900" timestamp="1591040556252" />
-    <state width="688" height="293" key="GridCell.Tab.1.left/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591040702007" />
+    <state width="688" height="293" key="GridCell.Tab.1.left/0.0.1440.900/-1920.-157.1920.1057@0.0.1440.900" timestamp="1591046931977" />
+    <state width="688" height="293" key="GridCell.Tab.1.left/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591046999500" />
     <state width="688" height="293" key="GridCell.Tab.1.left/0.23.1440.877/-1920.-157.1920.1057@0.23.1440.877" timestamp="1591035072752" />
-    <state width="688" height="293" key="GridCell.Tab.1.right" timestamp="1591040702008">
+    <state width="688" height="293" key="GridCell.Tab.1.right" timestamp="1591046999501">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1872" height="394" key="GridCell.Tab.1.right/0.0.1280.680/1920.0.1920.1160@1920.0.1920.1160" timestamp="1591028571592" />
-    <state width="688" height="293" key="GridCell.Tab.1.right/0.0.1440.900/-1920.-157.1920.1057@0.0.1440.900" timestamp="1591040556254" />
-    <state width="688" height="293" key="GridCell.Tab.1.right/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591040702008" />
+    <state width="688" height="293" key="GridCell.Tab.1.right/0.0.1440.900/-1920.-157.1920.1057@0.0.1440.900" timestamp="1591046931978" />
+    <state width="688" height="293" key="GridCell.Tab.1.right/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591046999501" />
     <state width="688" height="293" key="GridCell.Tab.1.right/0.23.1440.877/-1920.-157.1920.1057@0.23.1440.877" timestamp="1591035072753" />
     <state x="430" y="173" key="MultipleFileMergeDialog" timestamp="1591033417875">
       <screen x="0" y="0" width="1440" height="900" />
@@ -561,52 +566,30 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="500" y="374" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591033406279" />
-    <state x="130" y="193" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1591038410017">
+    <state x="130" y="193" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1591042490971">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="130" y="193" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591038410017" />
+    <state x="130" y="193" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591042490971" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-method">
           <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/ProfileFragment.java</url>
-          <line>112</line>
-          <properties class="edu.url.salle.eric.macia.bubblefy.controller.fragments.ProfileFragment" method="initBubblePicker" />
-          <option name="timeStamp" value="22" />
+          <line>217</line>
+          <properties class="edu.url.salle.eric.macia.bubblefy.controller.fragments.ProfileFragment" method="goToPlaylist" />
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-method">
           <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/ProfileFragment.java</url>
-          <line>288</line>
-          <properties class="edu.url.salle.eric.macia.bubblefy.controller.fragments.ProfileFragment" method="onUserLikedTracksReceived" />
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-method">
-          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/ProfileFragment.java</url>
-          <line>181</line>
-          <properties class="edu.url.salle.eric.macia.bubblefy.controller.fragments.ProfileFragment" method="onResume" />
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-method">
-          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/ProfileFragment.java</url>
-          <line>188</line>
-          <properties class="edu.url.salle.eric.macia.bubblefy.controller.fragments.ProfileFragment" method="onPause" />
-          <option name="timeStamp" value="29" />
+          <line>137</line>
+          <properties method="onBubbleSelected" />
+          <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/ProfileFragment.java</url>
-          <line>289</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/ProfileFragment.java</url>
-          <line>315</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/ProfileFragment.java</url>
-          <line>109</line>
-          <option name="timeStamp" value="28" />
+          <line>141</line>
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
