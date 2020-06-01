@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -70,21 +71,26 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
     private ImageButton ibtnConfig;
     private ImageButton ibtnUpload;
     private ImageButton ibtnNewPlaylist;
+    private User mUser;
 
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =  inflater.inflate(R.layout.fragment_profile, container, false);
-        getUserData(Session.getInstance(getActivity().getApplicationContext())
-                .getUser().getLogin());
+        View v =  inflater.inflate(R.layout.fragment_user, container, false);
+        String login = getArguments().getString("login");
+
+
+        getUserData(login);
+
+        initUserListened(v);
+        initBubblePicker(v);
+
         try {
             initViews(v);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        initUserListened(v);
-        initBubblePicker(v);
         return v;
     }
 
@@ -177,44 +183,8 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
             }
         });
 
-        //Profile Picture
-        ivProfileImage = (ImageView) v.findViewById(R.id.profile_image);
-        if(Session.getInstance(getActivity()).getUser() != null) {
-            if(Session.getInstance(getActivity()).getUser().getImageUrl() == null) {
-                Picasso.get().load("https://image.flaticon.com/icons/png/512/64/64572.png").into(ivProfileImage);
-            }
-            else{
-                Picasso.get()
-                        .load(Session.getInstance(getActivity()).getUser().getImageUrl())
-                        .into(ivProfileImage);
-            }
-
-            //Username
-            if(Session.getInstance(getActivity()).getUser().getLogin() != null) {
-                tUsername.setText(Session.getInstance(getActivity()).getUser().getLogin());
-            } else{
-                tUsername.setText("No name");
-            }
-
-            //Followers and Following
-            if(Session.getInstance(getActivity()).getUser().getFollowers() != null) {
-                tFollowers.setText(String.valueOf(Session.getInstance(getActivity()).getUser().getFollowers()));
-            }
-            else{
-                tFollowers.setText("0");
-            }
-            if(Session.getInstance(getActivity()).getUser().getFollowing() != null) {
-                tFollowers.setText(String.valueOf(Session.getInstance(getActivity()).getUser().getFollowing()));
-            } else {
-                tFollowing.setText("0");
-            }
-
-        }
-        else{
-            String text = "No picture URL found";
-            Toast toast =  Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
-            toast.show();
-        }
+        //Profile Information
+        setUserFields();
     }
 
     private void getUserData(String login){
@@ -299,9 +269,9 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
 
     @Override
     public void onUserInfoReceived(User userData) {
-        Session.sSession.setUser(userData);
+        mUser = userData;
+        setUserFields();
     }
-
 
     @Override
     public void onCheckFollowReceived(Follow follow) {
@@ -310,6 +280,43 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
 
     @Override
     public void onUserFollowed(Follow follow) {
+
+    }
+
+
+    private void setUserFields(){
+        //Profile
+        if(mUser != null) {
+            //Profile Picture
+            if(mUser.getImageUrl() == null) {
+                String text = "No picture URL found";
+                Toast toast =  Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
+                toast.show();
+                Picasso.get().load("https://image.flaticon.com/icons/png/512/64/64572.png").into(ivProfileImage);
+            }
+            else{
+                Picasso.get()
+                        .load(mUser.getImageUrl())
+                        .into(ivProfileImage);
+            }
+
+            //Username
+            if(mUser.getLogin() != null) {
+                tUsername.setText(mUser.getLogin());
+            } else{
+                tUsername.setText("No name");
+            }
+
+            //Followers and Following
+            tFollowers.setText(String.valueOf(mUser.getFollowers()));
+            tFollowing.setText(String.valueOf(mUser.getFollowing()));
+
+            //Following button
+            UserManager.getInstance(getActivity().getApplicationContext()).checkUserFollowed(mUser.getLogin(), this);
+
+        }
+        else{
+        }
 
     }
 }

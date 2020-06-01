@@ -26,7 +26,9 @@ import edu.url.salle.eric.macia.bubblefy.controller.fragments.HomeFragment;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.PlaybackFragment;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.ProfileFragment;
 import edu.url.salle.eric.macia.bubblefy.controller.fragments.SearchFragment;
+import edu.url.salle.eric.macia.bubblefy.controller.fragments.UserFragment;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
+import edu.url.salle.eric.macia.bubblefy.utils.Session;
 
 public class MainActivity extends FragmentActivity implements BottomSheetDialog.BottomSheetListener {
     private static final String PLAY_VIEW = "PlayIcon";
@@ -77,7 +79,11 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
                         selectedFragment = new SearchFragment();
                         break;
                     case R.id.nav_profile:
-                        selectedFragment = new ProfileFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("login", Session.getInstance(getApplicationContext()).getUser().getLogin());
+                        UserFragment fragUser = new UserFragment();
+                        fragUser.setArguments(bundle);
+                        selectedFragment = fragUser;
                         break;
                 }
 

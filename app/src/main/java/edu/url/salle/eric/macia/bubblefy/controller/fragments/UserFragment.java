@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,7 +12,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.igalata.bubblepicker.BubblePickerListener;
 import com.igalata.bubblepicker.adapter.BubblePickerAdapter;
@@ -37,7 +35,6 @@ import edu.url.salle.eric.macia.bubblefy.model.UserToken;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.TrackCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.UserCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.UserManager;
-import edu.url.salle.eric.macia.bubblefy.utils.Session;
 
 public class UserFragment extends Fragment implements TrackCallback, UserCallback {
 
@@ -54,9 +51,9 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
 
     //Profile
     private ImageView ivProfileImage;
-    private TextView tUsername;
-    private TextView tFollowers;
-    private TextView tFollowing;
+    private TextView tvUsername;
+    private TextView tvFollowers;
+    private TextView tvFollowing;
     private Button btnFollow;
 
     private User mUser;
@@ -137,9 +134,9 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
     private void initViews(View v) throws IOException {
         //User Information
         ivProfileImage = (ImageView) v.findViewById(R.id.profile_image);
-        tFollowers = (TextView) v.findViewById(R.id.num_followers_text);
-        tFollowing = (TextView) v.findViewById(R.id.num_following_text);
-        tUsername = (TextView) v.findViewById(R.id.username_text);
+        tvFollowers = (TextView) v.findViewById(R.id.num_followers_text);
+        tvFollowing = (TextView) v.findViewById(R.id.num_following_text);
+        tvUsername = (TextView) v.findViewById(R.id.username_text);
         btnFollow = (Button) v.findViewById(R.id.follow_button);
 
         btnFollow.setOnClickListener(new View.OnClickListener() {
@@ -262,44 +259,36 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
         //Profile
         if(mUser != null) {
             //Profile Picture
-            if(mUser.getImageUrl() == null) {
+            if(mUser.getImageUrl() == null || mUser.getImageUrl() == "") {
                 Picasso.get().load("https://image.flaticon.com/icons/png/512/64/64572.png").into(ivProfileImage);
             }
             else{
-                Picasso.get()
-                        .load(mUser.getImageUrl())
-                        .into(ivProfileImage);
+                try {
+                    Picasso.get()
+                            .load(mUser.getImageUrl())
+                            .into(ivProfileImage);
+                } catch (IllegalArgumentException ia){
+                    String text = "Picture not accessible";
+                    Toast toast =  Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+
             }
 
             //Username
             if(mUser.getLogin() != null) {
-                tUsername.setText(mUser.getLogin());
+                tvUsername.setText(mUser.getLogin());
             } else{
-                tUsername.setText("No name");
+                tvUsername.setText("No name");
             }
 
             //Followers and Following
-            if(mUser.getFollowers() != null) {
-                tFollowers.setText(String.valueOf(mUser.getFollowers()));
-            }
-            else{
-                tFollowers.setText("0");
-            }
-            if(mUser.getFollowing() != null) {
-                tFollowers.setText(String.valueOf(mUser.getFollowing()));
-            } else {
-                tFollowing.setText("0");
-            }
+            tvFollowers.setText(String.valueOf(mUser.getFollowers()));
+            tvFollowing.setText(String.valueOf(mUser.getFollowing()));
 
             //Following button
             UserManager.getInstance(getActivity().getApplicationContext()).checkUserFollowed(mUser.getLogin(), this);
 
         }
-        else{
-            String text = "No picture URL found";
-            Toast toast =  Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
-            toast.show();
-        }
-
     }
 }

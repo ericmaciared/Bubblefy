@@ -88,16 +88,17 @@ public class UserManager {
     /********************   USER INFO    ********************/
     public synchronized void getUserData (String login, final UserCallback userCallback) {
         UserToken userToken = Session.getInstance(mContext).getUserToken();
+
         Call<User> call = mService.getUserById(login, "Bearer " + userToken.getIdToken());
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-
                 int code = response.code();
+
                 if (response.isSuccessful()) {
                     userCallback.onUserInfoReceived(response.body());
                 } else {
-                    Log.d(TAG, "Error NOT SUCCESSFUL: " + response.toString());
+                    Log.d(TAG, "Error NOT SUCCESSFUL: " + response.body());
                     try {
                         userCallback.onFailure(new Throwable("ERROR " + code + ", " + response.errorBody().string()));
                     } catch (IOException e) {
