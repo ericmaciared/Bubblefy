@@ -1,6 +1,8 @@
 package edu.url.salle.eric.macia.bubblefy.controller.fragments;
 
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +40,8 @@ import edu.url.salle.eric.macia.bubblefy.restapi.manager.UserManager;
 
 public class UserFragment extends Fragment implements TrackCallback, UserCallback {
 
+    private static final String TAG = "UserFragment";
+
     //BubblePicker
     private BubblePicker bubblePicker;
     private ArrayList<Playlist> mPlaylists;
@@ -56,14 +60,17 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
     private TextView tvFollowing;
     private Button btnFollow;
 
+    Handler handler = new Handler();
+    Runnable refresh;
+
     private User mUser;
+
+    private int followers;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =  inflater.inflate(R.layout.fragment_user, container, false);
         String login = getArguments().getString("login");
-
-
         getUserData(login);
 
         initUserListened(v);
@@ -233,6 +240,7 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
     @Override
     public void onUserInfoReceived(User userData) {
         mUser = userData;
+        followers = mUser.getFollowers();
         setUserFields();
     }
 
@@ -249,10 +257,13 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
     public void onUserFollowed(Follow follow) {
         if (follow.getFollowed()){
             btnFollow.setText("Following");
+            followers++;
+            tvFollowers.setText(String.valueOf(followers));
         } else {
             btnFollow.setText("Follow");
+            followers--;
+            tvFollowers.setText(String.valueOf(followers));
         }
-        getUserData(mUser.getLogin());
     }
 
     private void setUserFields(){
@@ -283,7 +294,7 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
             }
 
             //Followers and Following
-            tvFollowers.setText(String.valueOf(mUser.getFollowers()));
+            tvFollowers.setText(String.valueOf(followers));
             tvFollowing.setText(String.valueOf(mUser.getFollowing()));
 
             //Following button

@@ -79,7 +79,6 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
         View v =  inflater.inflate(R.layout.fragment_user, container, false);
         String login = getArguments().getString("login");
 
-
         getUserData(login);
 
         initUserListened(v);
@@ -137,6 +136,7 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
 
     @Override
     public void onResume() {
+        getUserData(mUser.getLogin());
         super.onResume();
         bubblePicker.onResume();
     }
