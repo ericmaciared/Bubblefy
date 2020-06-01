@@ -81,7 +81,7 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
                     case R.id.nav_profile:
                         Bundle bundle = new Bundle();
                         bundle.putString("login", Session.getInstance(getApplicationContext()).getUser().getLogin());
-                        UserFragment fragUser = new UserFragment();
+                        ProfileFragment fragUser = new ProfileFragment();
                         fragUser.setArguments(bundle);
                         selectedFragment = fragUser;
                         break;

@@ -1,8 +1,12 @@
 package edu.url.salle.eric.macia.bubblefy.controller.fragments;
 
+import android.app.WallpaperManager;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,13 +19,16 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.igalata.bubblepicker.BubblePickerListener;
 import com.igalata.bubblepicker.adapter.BubblePickerAdapter;
+import com.igalata.bubblepicker.model.BubbleGradient;
 import com.igalata.bubblepicker.model.PickerItem;
 import com.igalata.bubblepicker.rendering.BubblePicker;
 import com.squareup.picasso.Picasso;
@@ -34,9 +41,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import edu.url.salle.eric.macia.bubblefy.R;
 import edu.url.salle.eric.macia.bubblefy.controller.activity.LoginActivity;
+import edu.url.salle.eric.macia.bubblefy.controller.activity.MainActivity;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.BubbleTrackListAdapter;
 import edu.url.salle.eric.macia.bubblefy.model.Confirmation;
 import edu.url.salle.eric.macia.bubblefy.model.Follow;
@@ -46,6 +55,7 @@ import edu.url.salle.eric.macia.bubblefy.model.User;
 import edu.url.salle.eric.macia.bubblefy.model.UserToken;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.TrackCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.UserCallback;
+import edu.url.salle.eric.macia.bubblefy.restapi.manager.ImageManager;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.TrackManager;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.UserManager;
 import edu.url.salle.eric.macia.bubblefy.utils.Session;
@@ -71,16 +81,18 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
     private ImageButton ibtnConfig;
     private ImageButton ibtnUpload;
     private ImageButton ibtnNewPlaylist;
+    private String login;
     private User mUser;
-
+    private List<Track> mTracks;
+    private TypedArray colors;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =  inflater.inflate(R.layout.fragment_user, container, false);
-        String login = getArguments().getString("login");
+        View v =  inflater.inflate(R.layout.fragment_profile, container, false);
+        login = getArguments().getString("login");
 
+        colors = getResources().obtainTypedArray(R.array.colors);
         getUserData(login);
-
         initUserListened(v);
         initBubblePicker(v);
 
@@ -94,17 +106,16 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
     }
 
     private void initUserListened(View v) {
-        //TrackManager.getInstance(getActivity()).getUserLikedTracks(this);
-        // Will need to implement the most listened playlists / genres
+        TrackManager.getInstance(getActivity()).getUserLikedTracks(this);
     }
 
     private void initBubblePicker(View v) {
-        bubblePicker = (BubblePicker) v.findViewById(R.id.picker);
+        bubblePicker = (BubblePicker) v.findViewById(R.id.profile_picker);
 
         bubblePicker.setAdapter(new BubblePickerAdapter() {
             @Override
             public int getTotalCount() {
-                return name.length;
+                return (name.length);
             }
 
             @NotNull
@@ -112,6 +123,11 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
             public PickerItem getItem(int i) {
                 PickerItem item = new PickerItem();
                 item.setTitle(name[i]);
+                item.setGradient(new BubbleGradient(colors.getColor((i * 2) % 8, 0),
+                        colors.getColor((i * 2) % 8 + 1, 0), BubbleGradient.VERTICAL));
+                item.setTextColor(ContextCompat.getColor(getContext(),android.R.color.white));
+                item.setBackgroundImage(getResources().getDrawable(R.drawable.colores));
+                item.setTypeface(Typeface.DEFAULT);
                 return item;
             }
 
@@ -121,7 +137,6 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
             @Override
             public void onBubbleSelected(@NotNull PickerItem pickerItem) {
                 if (pickerItem.isSelected()){
-                    pickerItem.setTitle("TEST");
                 }
             }
 
@@ -136,7 +151,7 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
 
     @Override
     public void onResume() {
-        getUserData(mUser.getLogin());
+        getUserData(login);
         super.onResume();
         bubblePicker.onResume();
     }
@@ -148,6 +163,9 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
     }
 
     private void initViews(View v) throws IOException {
+        //Profile Picture
+        ivProfileImage = (ImageView) v.findViewById(R.id.profile_image);
+
         //Followers and Following
         tFollowers = (TextView) v.findViewById(R.id.num_followers_text);
         tFollowing = (TextView) v.findViewById(R.id.num_following_text);
@@ -214,6 +232,23 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
 
     @Override
     public void onUserLikedTracksReceived(List<Track> tracks) {
+        mTracks = (ArrayList<Track>) tracks;
+        ArrayList<PickerItem> listItems = new ArrayList<>();
+        for(int i = 0; i < tracks.size(); i++) {
+            PickerItem item = new PickerItem();
+            Track track = mTracks.get(i);
+            item.setTitle(track.getName());
+            item.setGradient(new BubbleGradient(colors.getColor((i * 2) % 8, 0),
+                    colors.getColor((i * 2) % 8 + 1, 0), BubbleGradient.VERTICAL));
+            item.setTextColor(ContextCompat.getColor(getContext(), android.R.color.white));
+            if (track.getThumbnail() != null) {
+                ImageManager im = new ImageManager();
+                item.setBackgroundImage(im.getDrawable(Objects.requireNonNull(getActivity()).getApplicationContext(), track.getThumbnail()));
+            }
+            item.setTypeface(Typeface.DEFAULT);
+            listItems.add(item);
+        }
+        bubblePicker.setItems(listItems);
     }
 
     @Override
@@ -288,16 +323,19 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
         //Profile
         if(mUser != null) {
             //Profile Picture
-            if(mUser.getImageUrl() == null) {
-                String text = "No picture URL found";
-                Toast toast =  Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
-                toast.show();
+            if(mUser.getImageUrl() == null || mUser.getImageUrl() == "") {
                 Picasso.get().load("https://image.flaticon.com/icons/png/512/64/64572.png").into(ivProfileImage);
             }
             else{
-                Picasso.get()
-                        .load(mUser.getImageUrl())
-                        .into(ivProfileImage);
+                try {
+                    Picasso.get()
+                            .load(mUser.getImageUrl())
+                            .into(ivProfileImage);
+                } catch (IllegalArgumentException ia){
+                    String text = "Picture not accessible";
+                    Toast toast =  Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
 
             //Username

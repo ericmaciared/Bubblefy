@@ -230,7 +230,7 @@
         android:layout_height="match_parent">
 
         <com.igalata.bubblepicker.rendering.BubblePicker
-            android:id="@+id/picker"
+            android:id="@+id/profile_picker"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:backgroundColor="#0000" />

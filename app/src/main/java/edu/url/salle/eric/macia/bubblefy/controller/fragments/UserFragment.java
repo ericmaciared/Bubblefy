@@ -1,5 +1,8 @@
 package edu.url.salle.eric.macia.bubblefy.controller.fragments;
 
+import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,10 +16,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.igalata.bubblepicker.BubblePickerListener;
 import com.igalata.bubblepicker.adapter.BubblePickerAdapter;
+import com.igalata.bubblepicker.model.BubbleGradient;
 import com.igalata.bubblepicker.model.PickerItem;
 import com.igalata.bubblepicker.rendering.BubblePicker;
 import com.squareup.picasso.Picasso;
@@ -24,10 +30,15 @@ import com.squareup.picasso.Picasso;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import edu.url.salle.eric.macia.bubblefy.R;
+import edu.url.salle.eric.macia.bubblefy.controller.adapters.BubbleTrackListAdapter;
 import edu.url.salle.eric.macia.bubblefy.model.Confirmation;
 import edu.url.salle.eric.macia.bubblefy.model.Follow;
 import edu.url.salle.eric.macia.bubblefy.model.Playlist;
@@ -36,6 +47,8 @@ import edu.url.salle.eric.macia.bubblefy.model.User;
 import edu.url.salle.eric.macia.bubblefy.model.UserToken;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.TrackCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.UserCallback;
+import edu.url.salle.eric.macia.bubblefy.restapi.manager.ImageManager;
+import edu.url.salle.eric.macia.bubblefy.restapi.manager.TrackManager;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.UserManager;
 
 public class UserFragment extends Fragment implements TrackCallback, UserCallback {
@@ -60,19 +73,17 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
     private TextView tvFollowing;
     private Button btnFollow;
 
-    Handler handler = new Handler();
-    Runnable refresh;
-
     private User mUser;
-
+    private ArrayList<Track> mTracks;
     private int followers;
+    private ImageManager imageManager;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =  inflater.inflate(R.layout.fragment_user, container, false);
         String login = getArguments().getString("login");
         getUserData(login);
-
+        imageManager = new ImageManager();
         initUserListened(v);
         initBubblePicker(v);
 
@@ -86,17 +97,16 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
     }
 
     private void initUserListened(View v) {
-        //TrackManager.getInstance(getActivity()).getUserLikedTracks(this);
-        // Will need to implement the most listened playlists / genres
+        TrackManager.getInstance(getActivity()).getUserLikedTracks(this);
     }
 
     private void initBubblePicker(View v) {
-        bubblePicker = (BubblePicker) v.findViewById(R.id.picker);
+        bubblePicker = (BubblePicker) v.findViewById(R.id.user_picker);
 
         bubblePicker.setAdapter(new BubblePickerAdapter() {
             @Override
             public int getTotalCount() {
-                return name.length;
+                return (name.length);
             }
 
             @NotNull
@@ -104,6 +114,12 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
             public PickerItem getItem(int i) {
                 PickerItem item = new PickerItem();
                 item.setTitle(name[i]);
+                item.setGradient(new BubbleGradient(android.R.color.white,
+                        android.R.color.black, BubbleGradient.VERTICAL));
+                item.setColor(android.R.color.black);
+                item.setTextColor(ContextCompat.getColor(getContext(),android.R.color.white));
+                item.setBackgroundImage(getResources().getDrawable(R.drawable.colores));
+                item.setTypeface(Typeface.DEFAULT);
                 return item;
             }
 
@@ -184,6 +200,29 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
 
     @Override
     public void onUserLikedTracksReceived(List<Track> tracks) {
+        mTracks = (ArrayList<Track>) tracks;
+        bubblePicker.setAdapter(new BubblePickerAdapter() {
+            @Override
+            public int getTotalCount() {
+                return mTracks.size();
+            }
+
+            @NotNull
+            @Override
+            public PickerItem getItem(int i) {
+                Track track = mTracks.get(i);
+                PickerItem item = new PickerItem();
+                item.setTitle(track.getName());
+                item.setGradient(new BubbleGradient(android.R.color.white,
+                        android.R.color.holo_red_dark, BubbleGradient.VERTICAL));
+                item.setColor(android.R.color.black);
+                item.setTextColor(ContextCompat.getColor(getContext(),android.R.color.white));
+                if(track.getThumbnail() != null) {
+                    item.setBackgroundImage(imageManager.getDrawable(Objects.requireNonNull(getActivity()).getApplicationContext(), track.getThumbnail()));
+                }
+                return item;
+            }
+        });
     }
 
     @Override
