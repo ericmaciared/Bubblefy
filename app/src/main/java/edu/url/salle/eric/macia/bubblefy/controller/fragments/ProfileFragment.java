@@ -85,22 +85,23 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
     private User mUser;
     private List<Track> mTracks;
     private TypedArray colors;
+    private View v;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =  inflater.inflate(R.layout.fragment_profile, container, false);
+        v =  inflater.inflate(R.layout.fragment_profile, container, false);
         login = getArguments().getString("login");
 
         colors = getResources().obtainTypedArray(R.array.colors);
         getUserData(login);
-        initUserListened(v);
-        initBubblePicker(v);
 
         try {
             initViews(v);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        initUserListened(v);
 
         return v;
     }
@@ -110,8 +111,8 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
     }
 
     private void initBubblePicker(View v) {
-        bubblePicker = (BubblePicker) v.findViewById(R.id.profile_picker);
-        bubblePicker.setAdapter(new BubblePickerAdapter() {
+
+ /*           bubblePicker.setAdapter(new BubblePickerAdapter() {
 
             @Override
             public int getTotalCount() {
@@ -133,8 +134,8 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
 
 
         });
+*/
 
-        /*
         bubblePicker.setAdapter(new BubblePickerAdapter() {
             @Override
             public int getTotalCount() {
@@ -158,7 +159,8 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
                 return item;
             }
         });
-        */
+
+
 
         bubblePicker.setListener(new BubblePickerListener() {
             @Override
@@ -180,7 +182,7 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
     public void onResume() {
         getUserData(login);
         super.onResume();
-        bubblePicker.onResume();
+        bubblePicker.onPause();
     }
 
     @Override
@@ -285,9 +287,8 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
 
     @Override
     public void onUserLikedTracksReceived(List<Track> tracks) {
-        bubblePicker = (BubblePicker) getView().findViewById(R.id.profile_picker);
         mTracks = (ArrayList<Track>) tracks;
-        bubblePicker.setAdapter(new BubblePickerAdapter() {
+        /*bubblePicker.setAdapter(new BubblePickerAdapter() {
             @Override
             public int getTotalCount() {
                 return mTracks.size();
@@ -309,9 +310,12 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
                 item.setTypeface(Typeface.DEFAULT);
                 return item;
             }
-        });
+        });*/
 
-        //initBubblePicker(getView());
+        initBubblePicker(getV());
+        bubblePicker.onResume();
+
+
     }
 
     @Override
@@ -419,5 +423,9 @@ public class ProfileFragment extends Fragment implements TrackCallback, UserCall
         else{
         }
 
+    }
+
+    public View getV() {
+        return v;
     }
 }
