@@ -38,6 +38,8 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
 
     public static Track currentSong;
     public static ArrayList<Track> queue;
+    public static ArrayList<Track> songs;
+    public static int currentSongIndex;
     public static MediaPlayer mediaPlayer;
     public static boolean random;
     public static boolean repeat;
@@ -124,6 +126,8 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
         random = false;
         repeat = false;
         queue = new ArrayList<Track>();
+        songs = new ArrayList<Track>();
+        currentSongIndex = -1;
 
         tvTitle = (TextView) findViewById(R.id.track_title);
         tvAuthor = (TextView) findViewById(R.id.track_author);
@@ -179,7 +183,6 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
     }
 
     public static void updateTrack(Track track){
-        //updateSessionMusicData(offset);
         MainActivity.tvAuthor.setText(track.getUserLogin());
         MainActivity.tvTitle.setText(track.getName());
         //TODO: Add image
@@ -197,30 +200,53 @@ public class MainActivity extends FragmentActivity implements BottomSheetDialog.
 
     public static void nextTrack() {
         Random ran = new Random();
-        if (queue.size() == 0) return;
-        if (queue.size() == 1){
-            updateTrack(queue.get(0));
-            return;
+
+        if (repeat) {
+            MainActivity.updateTrack(currentSong);
         }
-        if (repeat){
-            updateTrack(queue.get(0));
-        } else if (random){
-            int aux = ran.nextInt(queue.size());
-            queue.add(0, queue.get(aux));
-            queue.remove(1);
-            queue.remove(aux+1);
-        } else {
-            queue.remove(0);
-            updateTrack(queue.get(0));
+        else{
+            //If there are songs in queue we play them first in order.
+            if (queue.size() > 0) {
+                MainActivity.updateTrack(queue.get(0));
+                queue.remove(0);
+            }
+            //If there are no songs in the queue we will check the size of the song list and random
+            else{
+                if (random){
+                    MainActivity.currentSongIndex = ran.nextInt(songs.size());
+                }
+                else {
+                    if (MainActivity.currentSongIndex + 1 == MainActivity.songs.size()){
+                        MainActivity.currentSongIndex = 0;
+                    }
+                    else{
+                        MainActivity.currentSongIndex += 1;
+                    }
+                }
+                MainActivity.updateTrack(MainActivity.songs.get(currentSongIndex));
+            }
         }
     }
 
-    public static void previousTrack() {
-        updateTrack(queue.get(0));
-    }
+    public static void previousTrack() { MainActivity.updateTrack(currentSong);}
 
     public static void addTrackToQueue(Track track){
-        queue.add(track);
+        MainActivity.queue.add(track);
+    }
+
+    public static void addSongList(ArrayList<Track> list, int currentSongIndex){
+        MainActivity.songs = list;
+        MainActivity.currentSongIndex = currentSongIndex;
+        updateTrack(MainActivity.songs.get(MainActivity.currentSongIndex));
+    }
+
+    public static void addSongList(Track track){
+        ArrayList<Track> aux = new ArrayList<Track>();
+        aux.add(track);
+        MainActivity.songs = aux;
+        MainActivity.songs.add(track);
+        MainActivity.currentSongIndex = 0;
+        updateTrack(MainActivity.songs.get(MainActivity.currentSongIndex));
     }
 
     @Override

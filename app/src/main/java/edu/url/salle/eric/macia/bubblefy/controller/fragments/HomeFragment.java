@@ -1,16 +1,12 @@
 package edu.url.salle.eric.macia.bubblefy.controller.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.url.salle.eric.macia.bubblefy.R;
+import edu.url.salle.eric.macia.bubblefy.controller.activity.MainActivity;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.BubbleTrackListAdapter;
 import edu.url.salle.eric.macia.bubblefy.model.Confirmation;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
@@ -55,6 +52,11 @@ public class HomeFragment extends Fragment implements TrackCallback {
 
         initListenAgain(v);
         initBubblePicker(v);
+
+        if (MainActivity.mediaPlayer.isPlaying()){
+            MainActivity.showNavigation(true);
+            MainActivity.showPlayback(true);
+        }
 
         return v;
     }
@@ -116,7 +118,8 @@ public class HomeFragment extends Fragment implements TrackCallback {
     }
 
     public void trackClicked(int position){
-        //TODO Position de la canço triada del mTracks
+        //TODO
+        //MainActivity.addSongList(mTracks.get(position));
     }
 
     @Override

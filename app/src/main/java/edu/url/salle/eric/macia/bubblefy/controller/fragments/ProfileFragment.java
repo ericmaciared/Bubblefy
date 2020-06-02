@@ -86,6 +86,11 @@ public class ProfileFragment extends Fragment implements PlaylistCallback, UserC
         v =  inflater.inflate(R.layout.fragment_profile, container, false);
         login = getArguments().getString("login");
 
+        if (MainActivity.mediaPlayer.isPlaying()){
+            MainActivity.showNavigation(true);
+            MainActivity.showPlayback(true);
+        }
+
         colors = getResources().obtainTypedArray(R.array.colors);
         getUserData(login);
 

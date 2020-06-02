@@ -89,7 +89,6 @@ public class PlaybackFragment extends Fragment{
             }
         });
 
-
         setupSeekBar();
 
         this.ibArrowDown = (ImageButton) v.findViewById(R.id.arrow_down);
@@ -136,7 +135,7 @@ public class PlaybackFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 MainActivity.nextTrack();
-                updateTrack();
+                //updateTrack();
             }
         });
 
@@ -145,7 +144,7 @@ public class PlaybackFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 MainActivity.previousTrack();
-                updateTrack();
+                //updateTrack();
             }
         });
 

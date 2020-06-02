@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import edu.url.salle.eric.macia.bubblefy.R;
+import edu.url.salle.eric.macia.bubblefy.controller.activity.MainActivity;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.TrackListAdapter;
 import edu.url.salle.eric.macia.bubblefy.controller.callbacks.TrackListCallback;
 import edu.url.salle.eric.macia.bubblefy.model.Playlist;
@@ -45,6 +46,10 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =  inflater.inflate(R.layout.fragment_playlist, container, false);
 
+        if (MainActivity.mediaPlayer.isPlaying()){
+            MainActivity.showNavigation(true);
+            MainActivity.showPlayback(true);
+        }
 
         ivProfileImage = (ImageView) v.findViewById(R.id.playlist_image);
         tPlaylistName = (TextView) v.findViewById(R.id.playlist_name_text);
@@ -124,17 +129,18 @@ public class PlaylistFragment extends Fragment implements TrackListCallback, Pla
     }
 
     public void trackClicked(int position){
-        //TODO Position de la canço triada dins de l'array de tracks de la playlist
+        //MainActivity.addSongList((ArrayList<Track>) playlist.getTracks(), position);
     }
 
     @Override
     public void onTrackSelected(Track track) {
-
+        MainActivity.addSongList((ArrayList<Track>) playlist.getTracks(),
+                playlist.getTracks().indexOf(track));
     }
 
     @Override
     public void onTrackSelected(int index) {
-
+        MainActivity.addSongList((ArrayList<Track>) playlist.getTracks(), index);
     }
 
     public void followFunction(){

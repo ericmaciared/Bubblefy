@@ -72,6 +72,11 @@ public class SearchFragment extends Fragment
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =  inflater.inflate(R.layout.fragment_search, container, false);
 
+        if (MainActivity.mediaPlayer.isPlaying()){
+            MainActivity.showNavigation(true);
+            MainActivity.showPlayback(true);
+        }
+
         initViews(v);
         return v;
     }
@@ -99,56 +104,6 @@ public class SearchFragment extends Fragment
         genresView = (LinearLayout) v.findViewById(R.id.genresView);
         genresView.setVisibility(View.VISIBLE);
 
-        /*
-        btnBackward = (ImageButton)findViewById(R.id.dynamic_backward_btn);
-        btnBackward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                currentTrack = ((currentTrack-1)%(mTracks.size()));
-                currentTrack = currentTrack < 0 ? (mTracks.size()-1):currentTrack;
-                updateTrack(mTracks.get(currentTrack));
-            }
-        });
-
-        btnForward = (ImageButton)findViewById(R.id.dynamic_forward_btn);
-        btnForward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                currentTrack = ((currentTrack+1)%(mTracks.size()));
-                currentTrack = currentTrack >= mTracks.size() ? 0:currentTrack;
-
-                updateTrack(mTracks.get(currentTrack));
-            }
-        });
-
-         */
-
-        /*
-        mSeekBar = (SeekBar) findViewById(R.id.dynamic_seekBar);
-        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
-                    mPlayer.seekTo(progress);
-                }
-                if (mDuration > 0) {
-                    int newProgress = ((progress*100)/mDuration);
-                    System.out.println("New progress: " + newProgress);
-                }
-            }
-
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-         */
     }
 
     /************************SEARCH IMPLEMENTATION**********************/
@@ -468,13 +423,12 @@ public class SearchFragment extends Fragment
 
     @Override
     public void onTrackSelected(Track track) {
-        updateTrack(track);
+        MainActivity.addSongList(track);
     }
 
     @Override
     public void onTrackSelected(int index) {
-        currentTrack = index;
-        updateTrack(mTracks.get(currentTrack));
+        MainActivity.addSongList(mTracks.get(index));
     }
 
     @Override
