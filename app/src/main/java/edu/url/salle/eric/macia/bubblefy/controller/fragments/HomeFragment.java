@@ -191,6 +191,13 @@ public class HomeFragment extends Fragment implements TrackCallback, GenreCallba
         mTracks = (ArrayList<Track>) tracks;
         mAdapter = new BubbleTrackListAdapter(getActivity(), mTracks);
         recyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new BubbleTrackListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                trackClicked(position);
+            }
+        });
     }
 
     @Override

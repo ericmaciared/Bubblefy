@@ -83,7 +83,7 @@ public class BubbleTrackListAdapter extends RecyclerView.Adapter<BubbleTrackList
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(listener != null){
+                    if (listener != null){
                         int position = getAdapterPosition();
                         if(position != RecyclerView.NO_POSITION){
                             listener.onItemClick(position);

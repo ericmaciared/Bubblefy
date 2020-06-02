@@ -27,4 +27,7 @@ public interface PlaylistService {
 
     @PUT("playlists/{id}/follow")
     Call<ResponseBody> followPlaylist(@Path("id") int id, @Header("Authorization") String token);
+
+    @GET("users/{login}/playlists")
+    Call<ArrayList<Playlist>> getUserIdPlaylists(@Path("login") String id, @Header("Authorization") String token);
 }

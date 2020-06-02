@@ -339,10 +339,17 @@ public class ProfileFragment extends Fragment implements PlaylistCallback, UserC
     }
 
     @Override
+    public void onExternalUserPlaylistReceived(ArrayList<Playlist> playlist) {
+
+    }
+
+    @Override
     public void onUserFollowingPlaylistReceived(ArrayList<Playlist> playlist) {
         mPlaylist.addAll(playlist);
-        initBubblePicker(getV());
-        bubblePicker.onResume();
+        if(mPlaylist.size() != 0){
+            initBubblePicker(getV());
+            bubblePicker.onResume();
+        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package edu.url.salle.eric.macia.bubblefy.controller.fragments;
 
+import android.content.res.TypedArray;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -18,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.igalata.bubblepicker.BubblePickerListener;
@@ -45,26 +47,21 @@ import edu.url.salle.eric.macia.bubblefy.model.Playlist;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
 import edu.url.salle.eric.macia.bubblefy.model.User;
 import edu.url.salle.eric.macia.bubblefy.model.UserToken;
+import edu.url.salle.eric.macia.bubblefy.restapi.callback.PlaylistCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.TrackCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.UserCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.ImageManager;
+import edu.url.salle.eric.macia.bubblefy.restapi.manager.PlaylistManager;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.TrackManager;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.UserManager;
 
-public class UserFragment extends Fragment implements TrackCallback, UserCallback {
+public class UserFragment extends Fragment implements PlaylistCallback, UserCallback {
 
     private static final String TAG = "UserFragment";
 
     //BubblePicker
     private BubblePicker bubblePicker;
-    private ArrayList<Playlist> mPlaylists;
-    private String[] name = {
-            "Colores",
-            "YHLQMDLG",
-            "Blue",
-            "Chill",
-            "Party"
-    };
+    private ArrayList<Playlist> mPlaylist;
 
     //Profile
     private ImageView ivProfileImage;
@@ -74,6 +71,7 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
     private Button btnFollow;
 
     private User mUser;
+    private TypedArray colors;
     private ArrayList<Track> mTracks;
     private int followers;
     private ImageManager imageManager;
@@ -84,8 +82,6 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
         String login = getArguments().getString("login");
         getUserData(login);
         imageManager = new ImageManager();
-        initUserListened(v);
-        initBubblePicker(v);
 
         try {
             initViews(v);
@@ -96,41 +92,45 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
         return v;
     }
 
-    private void initUserListened(View v) {
-        TrackManager.getInstance(getActivity()).getUserLikedTracks(this);
+    private void initUserListened() {
+        PlaylistManager.getInstance(getActivity()).getUserIdPlaylist(mUser.getLogin(), this);
     }
 
-    private void initBubblePicker(View v) {
-        bubblePicker = (BubblePicker) v.findViewById(R.id.user_picker);
+    private void initBubblePicker() {
 
         bubblePicker.setAdapter(new BubblePickerAdapter() {
             @Override
             public int getTotalCount() {
-                return (name.length);
+                return mPlaylist.size();
             }
 
             @NotNull
             @Override
             public PickerItem getItem(int i) {
+                Playlist playlist = mPlaylist.get(i);
                 PickerItem item = new PickerItem();
-                item.setTitle(name[i]);
-                item.setGradient(new BubbleGradient(android.R.color.white,
-                        android.R.color.black, BubbleGradient.VERTICAL));
-                item.setColor(android.R.color.black);
+                item.setTitle(playlist.getName());
+                item.setGradient(new BubbleGradient(colors.getColor((i * 2) % 8, 0),
+                        colors.getColor((i * 2) % 8 + 1, 0), BubbleGradient.VERTICAL));
                 item.setTextColor(ContextCompat.getColor(getContext(),android.R.color.white));
-                item.setBackgroundImage(getResources().getDrawable(R.drawable.colores));
+                if(playlist.getThumbnail() != null) {
+                    ImageManager im = new ImageManager();
+                    item.setBackgroundImage(im.getDrawable(Objects.requireNonNull(getActivity()).getApplicationContext(), playlist.getThumbnail()));
+                }
                 item.setTypeface(Typeface.DEFAULT);
                 return item;
             }
-
         });
+
+
 
         bubblePicker.setListener(new BubblePickerListener() {
             @Override
             public void onBubbleSelected(@NotNull PickerItem pickerItem) {
                 if (pickerItem.isSelected()){
-                    pickerItem.setTitle("TEST");
+                    goToPlaylist(pickerItem);
                 }
+                goToPlaylist(pickerItem);
             }
 
             @Override
@@ -142,10 +142,25 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
         bubblePicker.setCenterImmediately(true);
     }
 
+    public void goToPlaylist(PickerItem pickerItem){
+        Playlist selectedPlaylist;
+        for(int i = 0; i < mPlaylist.size(); i++){
+            if(pickerItem.getTitle() == mPlaylist.get(i).getName()){
+                selectedPlaylist = mPlaylist.get(i);
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, new PlaylistFragment(selectedPlaylist));
+                transaction.addToBackStack(null);
+                transaction.commit();
+                break;
+            }
+        }
+
+    }
+
     @Override
     public void onResume() {
         super.onResume();
-        bubblePicker.onResume();
+        bubblePicker.onPause();
     }
 
     @Override
@@ -161,6 +176,8 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
         tvFollowing = (TextView) v.findViewById(R.id.num_following_text);
         tvUsername = (TextView) v.findViewById(R.id.username_text);
         btnFollow = (Button) v.findViewById(R.id.follow_button);
+        bubblePicker = (BubblePicker) v.findViewById(R.id.user_picker);
+        colors = getResources().obtainTypedArray(R.array.colors);
 
         btnFollow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,77 +195,6 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
                 .getUserData(login, this);
     }
 
-    @Override
-    public void onTracksReceived(List<Track> tracks) {
-
-    }
-
-    @Override
-    public void onNoTracks(Throwable throwable) {
-
-    }
-
-    @Override
-    public void onPersonalTracksReceived(List<Track> tracks) {
-
-    }
-
-    @Override
-    public void onUserTracksReceived(List<Track> tracks) {
-
-    }
-
-    @Override
-    public void onUserLikedTracksReceived(List<Track> tracks) {
-        mTracks = (ArrayList<Track>) tracks;
-        bubblePicker.setAdapter(new BubblePickerAdapter() {
-            @Override
-            public int getTotalCount() {
-                return mTracks.size();
-            }
-
-            @NotNull
-            @Override
-            public PickerItem getItem(int i) {
-                Track track = mTracks.get(i);
-                PickerItem item = new PickerItem();
-                item.setTitle(track.getName());
-                item.setGradient(new BubbleGradient(android.R.color.white,
-                        android.R.color.holo_red_dark, BubbleGradient.VERTICAL));
-                item.setColor(android.R.color.black);
-                item.setTextColor(ContextCompat.getColor(getContext(),android.R.color.white));
-                if(track.getThumbnail() != null) {
-                    item.setBackgroundImage(imageManager.getDrawable(Objects.requireNonNull(getActivity()).getApplicationContext(), track.getThumbnail()));
-                }
-                return item;
-            }
-        });
-    }
-
-    @Override
-    public void onLikeOperationSuccess(Confirmation confirmation) {
-
-    }
-
-    @Override
-    public void onLikeOperationFailure(Throwable throwable) {
-
-    }
-
-    @Override
-    public void onReceiveLikeSuccess(Confirmation confirmation) {
-
-    }
-
-    @Override
-    public void onReceiveLikeFailure(Throwable throwable) {
-
-    }
-
-    @Override
-    public void onCreateTrack() {
-
-    }
 
     @Override
     public void onFailure(Throwable throwable) {
@@ -281,6 +227,7 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
         mUser = userData;
         followers = mUser.getFollowers();
         setUserFields();
+        initUserListened();
     }
 
     @Override
@@ -340,5 +287,47 @@ public class UserFragment extends Fragment implements TrackCallback, UserCallbac
             UserManager.getInstance(getActivity().getApplicationContext()).checkUserFollowed(mUser.getLogin(), this);
 
         }
+    }
+
+    @Override
+    public void onPlaylistCreated(Playlist playlist) {
+
+    }
+
+    @Override
+    public void onPlaylistFailure(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onUserPlaylistReceived(ArrayList<Playlist> playlist) {
+
+    }
+
+    @Override
+    public void onExternalUserPlaylistReceived(ArrayList<Playlist> playlist) {
+        mPlaylist = playlist;
+        initBubblePicker();
+        bubblePicker.onResume();
+    }
+
+    @Override
+    public void onUserFollowingPlaylistReceived(ArrayList<Playlist> playlist) {
+
+    }
+
+    @Override
+    public void onPlaylistUpdated(Playlist playlist) {
+
+    }
+
+    @Override
+    public void onNoPlaylist(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onFollowSuccess() {
+
     }
 }
