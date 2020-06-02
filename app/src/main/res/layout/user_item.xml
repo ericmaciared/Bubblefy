@@ -1,59 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:layout_margin="0.75dp"
-    android:gravity="center_vertical">
+android:id="@+id/track_item_layout"
+android:orientation="horizontal" android:layout_width="match_parent"
+android:layout_height="90dp"
+android:layout_margin="5dp"
+android:gravity="center_vertical">
 
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:layout_margin="5dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="30dp">
+
+    <ImageView
+        android:id="@+id/track_img"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginLeft="6dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="0.75dp"
-        android:background="@color/black"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="15dp"
+        android:layout_marginRight="25dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_weight="1">
 
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/track_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="30dp"
-            android:paddingStart="15dp"
-            android:layout_marginRight="25dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:layout_weight="1">
+            android:ellipsize="end"
+            android:fontFamily="@font/open_sans"
+            android:singleLine="true"
+            android:text="@string/default_track_title"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/text_size_smallmedium" />
 
-            <TextView
-                android:id="@+id/track_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:fontFamily="@font/open_sans"
-                android:singleLine="true"
-                android:text="@string/default_track_title"
-                android:textAlignment="textStart"
-                android:textColor="@color/colorTextPrimary"
-                android:textSize="@dimen/text_size_smallmedium" />
-
-            <TextView
-                android:id="@+id/track_author"
-                style="@style/SongArtistTheme"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:ellipsize="end"
-                android:fontFamily="@font/open_sans"
-                android:singleLine="true"
-                android:text="@string/default_track_author"
-                android:textColor="@color/colorTextPrimary"
-                android:textSize="@dimen/text_size_small" />
-
-        </LinearLayout>
-
+        <TextView
+            android:id="@+id/track_author"
+            style="@style/SongArtistTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/open_sans"
+            android:singleLine="true"
+            android:text="@string/default_track_author"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/text_size_small" />
 
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/option_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="20dp"
+        android:adjustViewBounds="true"
+        android:background="#0000"
+        android:scaleType="centerCrop"
+        android:src="@drawable/three_dots_horizontal" />
+</LinearLayout>
 
 </LinearLayout>

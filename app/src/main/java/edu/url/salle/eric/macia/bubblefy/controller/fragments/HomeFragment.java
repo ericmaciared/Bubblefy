@@ -118,8 +118,7 @@ public class HomeFragment extends Fragment implements TrackCallback {
     }
 
     public void trackClicked(int position){
-        //TODO
-        //MainActivity.addSongList(mTracks.get(position));
+        MainActivity.addSongList(mTracks.get(position));
     }
 
     @Override

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="@color/colorBackground"
     android:orientation="vertical">
     <LinearLayout
         android:id="@+id/layout1"
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:text="User"
+            android:text="Playlist"
             android:textSize="@dimen/text_size_medium"
             android:fontFamily="@font/open_sans_bold"
             android:textColor="@color/colorTextPrimary"/>
@@ -88,7 +88,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="150dp"
                 android:layout_height="40dp"
-                app:cardCornerRadius="10dp"
+                app:cardCornerRadius="20dp"
                 app:cardBackgroundColor="@color/colorPrimary">
                 <Button
                     android:id="@+id/follow_button"
@@ -96,6 +96,7 @@
                     android:layout_height="40dp"
                     android:text="@string/follow"
                     android:textColor="@color/white"
+                    android:fontFamily="@font/open_sans"
                     android:background="#0000"
                     android:layout_gravity="center"
                     android:scaleType="fitCenter">
@@ -116,7 +117,6 @@
         android:layout_centerHorizontal="true"
         android:visibility="visible"
         />
-
 
 </RelativeLayout>
 
