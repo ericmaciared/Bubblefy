@@ -159,6 +159,13 @@ public class HomeFragment extends Fragment implements TrackCallback {
 
         mAdapter = new BubbleTrackListAdapter(getActivity(), mTracks);
         recyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new BubbleTrackListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                trackClicked(position);
+            }
+        });
     }
 
     @Override

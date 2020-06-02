@@ -397,6 +397,11 @@ public class SearchFragment extends Fragment
     }
 
     @Override
+    public void onExternalUserPlaylistReceived(ArrayList<Playlist> playlist) {
+
+    }
+
+    @Override
     public void onUserFollowingPlaylistReceived(ArrayList<Playlist> playlist) {
 
     }

@@ -61,14 +61,7 @@ public class UploadFragment extends Fragment implements GenreCallback, TrackCall
         getData();
         return v;
     }
-    /*@Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_song);
-        mContext = getApplicationContext();
-        initViews();
-        getData();
-    }*/
+
 
     private void initViews(View v) {
         etTitle = (EditText) v.findViewById(R.id.create_song_title);
