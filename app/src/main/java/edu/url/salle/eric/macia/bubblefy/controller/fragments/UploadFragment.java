@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import edu.url.salle.eric.macia.bubblefy.R;
+import edu.url.salle.eric.macia.bubblefy.controller.activity.MainActivity;
 import edu.url.salle.eric.macia.bubblefy.controller.dialogs.StateDialog;
 import edu.url.salle.eric.macia.bubblefy.model.Confirmation;
 import edu.url.salle.eric.macia.bubblefy.model.Genre;
@@ -56,6 +57,9 @@ public class UploadFragment extends Fragment implements GenreCallback, TrackCall
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =  inflater.inflate(R.layout.fragment_upload, container, false);
+
+        MainActivity.showPlayback(false);
+        MainActivity.showNavigation(false);
 
         initViews(v);
         getData();
