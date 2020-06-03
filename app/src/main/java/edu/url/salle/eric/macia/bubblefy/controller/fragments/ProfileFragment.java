@@ -141,15 +141,17 @@ public class ProfileFragment extends Fragment implements PlaylistCallback, UserC
         bubblePicker.setListener(new BubblePickerListener() {
             @Override
             public void onBubbleSelected(@NotNull PickerItem pickerItem) {
+                /*
                 if (pickerItem.isSelected()){
                     goToPlaylist(pickerItem);
                 }
                 goToPlaylist(pickerItem);
+                */
             }
 
             @Override
             public void onBubbleDeselected(@NotNull PickerItem pickerItem) {
-
+                goToPlaylist(pickerItem);
             }
         });
 

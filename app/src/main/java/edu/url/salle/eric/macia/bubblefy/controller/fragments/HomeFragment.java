@@ -30,6 +30,7 @@ import java.util.Objects;
 import edu.url.salle.eric.macia.bubblefy.R;
 import edu.url.salle.eric.macia.bubblefy.controller.activity.MainActivity;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.BubbleTrackListAdapter;
+import edu.url.salle.eric.macia.bubblefy.controller.music.TrendingSorter;
 import edu.url.salle.eric.macia.bubblefy.model.Confirmation;
 import edu.url.salle.eric.macia.bubblefy.model.Genre;
 import edu.url.salle.eric.macia.bubblefy.model.Playlist;
@@ -40,18 +41,19 @@ import edu.url.salle.eric.macia.bubblefy.restapi.manager.GenreManager;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.ImageManager;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.TrackManager;
 
-public class HomeFragment extends Fragment implements TrackCallback, GenreCallback {
+public class HomeFragment extends Fragment implements TrackCallback {
+
+    private static final String TAG = "HomeFragment";
 
     //Bubble Picker
     private BubblePicker bubblePicker;
-    private ArrayList<Genre> mGenres;
+    private ArrayList<Track> mTrendingTracks;
     private TypedArray colors;
 
     private View v;
     private RecyclerView recyclerView;
     private BubbleTrackListAdapter mAdapter;
     private ArrayList<Track> mTracks;
-
 
     @Nullable
     @Override
@@ -60,7 +62,7 @@ public class HomeFragment extends Fragment implements TrackCallback, GenreCallba
 
         initListenAgain(v);
 
-        if (MainActivity.mediaPlayer.isPlaying()){
+        if (MainActivity.mediaPlayer.isPlaying()) {
             MainActivity.showNavigation(true);
             MainActivity.showPlayback(true);
         }
@@ -81,7 +83,7 @@ public class HomeFragment extends Fragment implements TrackCallback, GenreCallba
         recyclerView.setAdapter(mAdapter);
 
         TrackManager.getInstance(getActivity()).getUserLikedTracks(this);
-        GenreManager.getInstance(getActivity()).getAllGenres(this);
+        TrackManager.getInstance(getActivity()).getAllTracks(this);
 
         mAdapter.setOnItemClickListener(new BubbleTrackListAdapter.OnItemClickListener() {
             @Override
@@ -95,45 +97,54 @@ public class HomeFragment extends Fragment implements TrackCallback, GenreCallba
         bubblePicker.setAdapter(new BubblePickerAdapter() {
             @Override
             public int getTotalCount() {
-                return mGenres.size();
+                return Math.min(mTrendingTracks.size(), 30);
             }
 
             @NotNull
             @Override
             public PickerItem getItem(int i) {
-                Genre genre = mGenres.get(i);
+                Track track = mTrendingTracks.get(i);
                 PickerItem item = new PickerItem();
-                item.setTitle(genre.getName());
-                item.setGradient(new BubbleGradient(colors.getColor((i * 2) % 8, 0),
-                        colors.getColor((i * 2) % 8 + 1, 0), BubbleGradient.VERTICAL));
-                item.setTextColor(ContextCompat.getColor(getContext(),android.R.color.white));
+                item.setTitle(track.getName());
+                item.setGradient(new BubbleGradient(colors.getColor((i * 2) % 15, 0),
+                        colors.getColor((i * 2) % 15 + 1, 0), BubbleGradient.VERTICAL));
+                item.setTextColor(ContextCompat.getColor(getContext(), android.R.color.white));
+                if(track.getThumbnail() != null) {
+                    ImageManager im = new ImageManager();
+                    item.setBackgroundImage(im.getDrawable(Objects.requireNonNull(getActivity()).getApplicationContext(), track.getThumbnail()));
+                }
                 item.setTypeface(Typeface.DEFAULT);
                 return item;
             }
         });
 
 
-
         bubblePicker.setListener(new BubblePickerListener() {
             @Override
             public void onBubbleSelected(@NotNull PickerItem pickerItem) {
-                if (pickerItem.isSelected()){
-                    goToGenre(pickerItem);
+                /*
+                if (pickerItem.isSelected()) {
+                    trendingTrackClicked(pickerItem);
                 }
-                goToGenre(pickerItem);
+                trendingTrackClicked(pickerItem);
+                */
             }
 
             @Override
             public void onBubbleDeselected(@NotNull PickerItem pickerItem) {
-
+                trendingTrackClicked(pickerItem);
             }
         });
 
         bubblePicker.setCenterImmediately(true);
     }
 
-    public void trackClicked(int position){
+    public void trackClicked(int position) {
         MainActivity.addSongList(mTracks.get(position));
+    }
+
+    public void trendingTrackClicked(PickerItem pickerItem) {
+        //TODO: Implement Playing the track
     }
 
     @Override
@@ -148,27 +159,13 @@ public class HomeFragment extends Fragment implements TrackCallback, GenreCallba
         bubblePicker.onPause();
     }
 
-    public void goToGenre(PickerItem pickerItem){
-        Genre selectedGenre;
-        for(int i = 0; i < mGenres.size(); i++){
-            if(pickerItem.getTitle() == mGenres.get(i).getName()){
-                selectedGenre = mGenres.get(i);
-                /*
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                transaction.replace(R.id.fragment_container, new PlaylistFragment(selectedGenre));
-                transaction.addToBackStack(null);
-                transaction.commit();
-                break;
-                 */
-            }
-        }
-
-    }
-
     @Override
     public void onTracksReceived(List<Track> tracks) {
-
+        mTrendingTracks = new ArrayList<>();
+        mTrendingTracks.addAll(tracks);
+        mTrendingTracks.sort(new TrendingSorter());
+        initBubblePicker(v);
+        bubblePicker.onResume();
     }
 
     @Override
@@ -232,18 +229,5 @@ public class HomeFragment extends Fragment implements TrackCallback, GenreCallba
 
     public View getV() {
         return v;
-    }
-
-    @Override
-    public void onGenresReceive(ArrayList<Genre> genres) {
-        mGenres = new ArrayList<>();
-        mGenres.addAll(genres);
-        initBubblePicker(getV());
-        bubblePicker.onResume();
-    }
-
-    @Override
-    public void onTracksByGenre(ArrayList<Track> tracks) {
-
     }
 }

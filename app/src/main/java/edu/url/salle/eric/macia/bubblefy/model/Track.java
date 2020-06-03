@@ -3,6 +3,7 @@ package edu.url.salle.eric.macia.bubblefy.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.List;
 
@@ -25,6 +26,9 @@ public class Track implements Serializable {
 
     @SerializedName("owner")
     private User user;
+
+    @SerializedName("plays")
+    private Integer plays;
 
     @SerializedName("released")
     private String released;
@@ -133,5 +137,9 @@ public class Track implements Serializable {
 
     public void setSelected(boolean selected) {
         this.selected = selected;
+    }
+
+    public Integer getPlays() {
+        return plays;
     }
 }

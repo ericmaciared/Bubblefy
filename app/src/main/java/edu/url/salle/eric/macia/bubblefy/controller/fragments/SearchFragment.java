@@ -1,13 +1,11 @@
 package edu.url.salle.eric.macia.bubblefy.controller.fragments;
 
-import android.media.AudioManager;
-import android.media.MediaPlayer;
+import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -17,10 +15,19 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.igalata.bubblepicker.BubblePickerListener;
+import com.igalata.bubblepicker.adapter.BubblePickerAdapter;
+import com.igalata.bubblepicker.model.BubbleGradient;
+import com.igalata.bubblepicker.model.PickerItem;
+import com.igalata.bubblepicker.rendering.BubblePicker;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,56 +35,69 @@ import java.util.List;
 
 import edu.url.salle.eric.macia.bubblefy.R;
 import edu.url.salle.eric.macia.bubblefy.controller.activity.MainActivity;
+import edu.url.salle.eric.macia.bubblefy.controller.adapters.BubbleTrackListAdapter;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.PlaylistListAdapter;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.TrackListAdapter;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.UserListAdapter;
 import edu.url.salle.eric.macia.bubblefy.controller.callbacks.TrackListCallback;
 import edu.url.salle.eric.macia.bubblefy.model.Confirmation;
+import edu.url.salle.eric.macia.bubblefy.model.Genre;
 import edu.url.salle.eric.macia.bubblefy.model.Playlist;
 import edu.url.salle.eric.macia.bubblefy.model.Search;
 import edu.url.salle.eric.macia.bubblefy.model.Track;
 import edu.url.salle.eric.macia.bubblefy.model.User;
+import edu.url.salle.eric.macia.bubblefy.restapi.callback.GenreCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.PlaylistCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.SearchCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.TrackCallback;
+import edu.url.salle.eric.macia.bubblefy.restapi.manager.GenreManager;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.SearchManager;
 
 
 public class SearchFragment extends Fragment
         implements TrackCallback, TrackListCallback, SearchCallback,
         RadioGroup.OnCheckedChangeListener, PlaylistCallback,
-        BottomSheetDialog.BottomSheetListener {
+        BottomSheetDialog.BottomSheetListener, GenreCallback {
 
-    private static final String TAG = "TestPlaybackActivity";
-    private static final String PLAY_VIEW = "PlayIcon";
-    private static final String STOP_VIEW = "StopIcon";
+    private static final String TAG = "SearchFragment";
+
+    //Bubble Picker
+    private BubblePicker bubblePicker;
+    private ArrayList<Genre> mGenres;
+    private TypedArray colors;
 
     RadioGroup radioGroup;
     RadioButton radioButton1;
     RadioButton radioButton2;
     RadioButton radioButton3;
+
     private RecyclerView mRecyclerView;
     private ArrayList<Track> mTracks;
     private ArrayList<Playlist> mPlay;
     private ArrayList<User> mUsers;
+
+
+
     private ImageButton buttonLogin;
     private EditText searchText;
     private boolean searchPerformed = false;
     private LinearLayout genresView;
-
-    private int currentTrack = 0;
+    private View v;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =  inflater.inflate(R.layout.fragment_search, container, false);
+        v =  inflater.inflate(R.layout.fragment_search, container, false);
 
-        if (MainActivity.mediaPlayer.isPlaying()){
+        initViews(v);
+
+        if (MainActivity.mediaPlayer.isPlaying()) {
             MainActivity.showNavigation(true);
             MainActivity.showPlayback(true);
         }
 
-        initViews(v);
+        colors = getResources().obtainTypedArray(R.array.colors);
+
         return v;
     }
 
@@ -85,15 +105,21 @@ public class SearchFragment extends Fragment
         mTracks = new ArrayList<>();
         mPlay = new ArrayList<>();
         mUsers = new ArrayList<>();
+        mGenres = new ArrayList<>();
 
+        bubblePicker = (BubblePicker) v.findViewById(R.id.genre_picker);
         radioGroup = v.findViewById(R.id.group_buttons);
         radioButton1 = v.findViewById(R.id.radio_song);
         radioButton2 = v.findViewById(R.id.radio_playlists);
         radioButton3 = v.findViewById(R.id.radio_users);
+
+
         buttonLogin = v.findViewById(R.id.search_button);
         radioGroup.setOnCheckedChangeListener(this);
         searchText = v.findViewById(R.id.search_text);
         buttonLogin.setOnClickListener(v1 -> getSearch());
+
+        getAllGenres();
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
@@ -120,6 +146,7 @@ public class SearchFragment extends Fragment
         searchPerformed = true;
         String text;
 
+        genresView.setVisibility(View.GONE);
         mRecyclerView.setVisibility(View.VISIBLE);
 
         if(radioButton1.isChecked()){
@@ -200,59 +227,62 @@ public class SearchFragment extends Fragment
         }
     }
 
+    private void initBubblePicker(View v) {
+        bubblePicker.setAdapter(new BubblePickerAdapter() {
+            @Override
+            public int getTotalCount() {
+                return mGenres.size();
+            }
+
+            @NotNull
+            @Override
+            public PickerItem getItem(int i) {
+                Genre genre = mGenres.get(i);
+                PickerItem item = new PickerItem();
+                item.setTitle(genre.getName());
+                item.setGradient(new BubbleGradient(colors.getColor((i * 2) % 8, 0),
+                        colors.getColor((i * 2) % 8 + 1, 0), BubbleGradient.VERTICAL));
+                item.setTextColor(ContextCompat.getColor(getContext(),android.R.color.white));
+                item.setTypeface(Typeface.DEFAULT);
+                return item;
+            }
+        });
+
+
+
+        bubblePicker.setListener(new BubblePickerListener() {
+            @Override
+            public void onBubbleSelected(@NotNull PickerItem pickerItem) {
+                if (pickerItem.isSelected()){
+                    goToGenre(pickerItem);
+                }
+                goToGenre(pickerItem);
+            }
+
+            @Override
+            public void onBubbleDeselected(@NotNull PickerItem pickerItem) {
+
+            }
+        });
+
+        bubblePicker.setCenterImmediately(true);
+    }
+
 
 
     /******************************MUSIC PLAYBACK******************************/
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        bubblePicker.onPause();
+    }
+
     @Override
     public void onPause() {
         super.onPause();
+        bubblePicker.onPause();
     }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
-    private void playAudio() {
-        MainActivity.playAudio();
-    }
-
-    private void pauseAudio() {
-        MainActivity.pauseAudio();
-    }
-
-    private void prepareMediaPlayer(final String url) {
-        Thread connection = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    MainActivity.mediaPlayer.setDataSource(url);
-                    MainActivity.mediaPlayer.prepare(); // might take long! (for buffering, etc)
-                } catch (IOException e) {
-                    Toast.makeText(getActivity(),"Error, couldn't play the music\n"
-                            + e.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-        connection.start();
-    }
-
-
-    private void updateTrack(Track track) {
-        //updateSessionMusicData(offset);
-        MainActivity.queue.add(0, track);
-        MainActivity.updateTrack(track);
-    }
-
-    public void updateSessionMusicData(int offset) {
-        /*int oldIndex = Session.getInstance(getApplicationContext()).getIndex();
-        int size = Session.getInstance(getApplicationContext()).getTracks().size();
-        int newIndex = (oldIndex + offset)%size;
-        Session.getInstance(getApplicationContext()).setIndex(newIndex);
-        Track newTrack = Session.getInstance(getApplicationContext()).getTracks().get(newIndex);
-        Session.getInstance(getApplicationContext()).setTrack(newTrack);*/
-    }
-
 
 
     public void trackClicked(int position){
@@ -486,5 +516,40 @@ public class SearchFragment extends Fragment
     @Override
     public void onCreateTrack() {
 
+    }
+
+    @Override
+    public void onGenresReceive(ArrayList<Genre> genres) {
+        mGenres = new ArrayList<>();
+        mGenres.addAll(genres);
+        initBubblePicker(v);
+        bubblePicker.onResume();
+    }
+
+    @Override
+    public void onTracksByGenre(ArrayList<Track> tracks) {
+
+    }
+
+    public void goToGenre(PickerItem pickerItem){
+        Genre selectedGenre;
+        for(int i = 0; i < mGenres.size(); i++){
+            if(pickerItem.getTitle() == mGenres.get(i).getName()){
+                selectedGenre = mGenres.get(i);
+                /* TODO: CREATE GenreFragment or Adapt the Playlist one to open all the tracks from the Genre API call
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+                transaction.replace(R.id.fragment_container, new PlaylistFragment(selectedGenre));
+                transaction.addToBackStack(null);
+                transaction.commit();
+                break;
+                 */
+            }
+        }
+
+    }
+
+    public void getAllGenres(){
+        GenreManager.getInstance(getActivity()).getAllGenres(this);
     }
 }
