@@ -13,11 +13,20 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97a12188-3dce-46c6-bb20-f90b641f8550" name="Default Changelist" comment="Items clickable on main screen and playlist">
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+    <list default="true" id="97a12188-3dce-46c6-bb20-f90b641f8550" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_cloudinary_cloudinary_android_1_25_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_cloudinary_cloudinary_android_1_25_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_evernote_android_job_1_2_6_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_evernote_android_job_1_2_6_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_9_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_9_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_9_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_9_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_igalata_Bubble_Picker_v0_2_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_igalata_Bubble_Picker_v0_2_4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_71828_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_71828_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/NewPlaylistFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/NewPlaylistFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/UploadFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/edu/url/salle/eric/macia/bubblefy/controller/fragments/UploadFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_add_song_to_playlist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_add_song_to_playlist.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_newplaylist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_newplaylist.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_upload.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_upload.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +72,7 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
-    <option name="UPDATE_TYPE" value="MERGE" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="1YyVZzgNonpNGcdFKzBq5PNsB8f" />
   <component name="ProjectLevelVcsManager">
@@ -431,7 +440,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591088845081</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Hide navigation and playback on Upload Fragment">
+      <created>1591171338870</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1591171338870</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -463,7 +479,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="RELOAD_CONTEXT" value="false" />
-    <MESSAGE value="Update xml login.&#10;Canviat values a dimens.xml.&#10;Afegit tags per text-size-(small/medium/big)" />
     <MESSAGE value="first branch commit eric" />
     <MESSAGE value="commit user.java" />
     <MESSAGE value="user.java class finished" />
@@ -488,7 +503,8 @@
     <MESSAGE value="Implemented Search Bar movement and data of time." />
     <MESSAGE value="Items clickable on main screen and playlist" />
     <MESSAGE value="Impemented Playback Complete, adding song list and adding song to queue." />
-    <option name="LAST_COMMIT_MESSAGE" value="Impemented Playback Complete, adding song list and adding song to queue." />
+    <MESSAGE value="Hide navigation and playback on Upload Fragment" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hide navigation and playback on Upload Fragment" />
   </component>
   <component name="WindowStateProjectService">
     <state x="286" y="144" key="#PSD" timestamp="1591170969648">
@@ -509,11 +525,11 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="576" y="222" key="AndroidProcessChooserDialog/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591033992959" />
-    <state x="313" y="13" key="CommitChangelistDialog2" timestamp="1591088843771">
+    <state x="313" y="13" key="CommitChangelistDialog2" timestamp="1591171337828">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="293" y="52" key="CommitChangelistDialog2/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591030421059" />
-    <state x="313" y="13" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1591088843771" />
+    <state x="313" y="13" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1591171337828" />
     <state width="1872" height="473" key="GridCell.Tab.0.bottom" timestamp="1591144316435">
       <screen x="1920" y="0" width="1920" height="1160" />
     </state>
@@ -584,25 +600,25 @@
     <state x="430" y="173" key="MultipleFileMergeDialog/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591033417875" />
     <state x="458" y="158" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1591085880492" />
     <state x="573" y="200" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591047552151" />
-    <state x="341" y="163" key="Vcs.Push.Dialog.v2" timestamp="1591085894481">
+    <state x="341" y="163" key="Vcs.Push.Dialog.v2" timestamp="1591171347438">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="320" y="178" key="Vcs.Push.Dialog.v2/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591030426506" />
-    <state x="341" y="163" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1591085894481" />
+    <state x="341" y="163" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1591171347438" />
     <state x="100" y="100" width="1336" height="624" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1591087280649">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="100" y="100" width="1336" height="624" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1536.824@0.0.1536.824" timestamp="1591087280649" />
-    <state x="930" y="144" key="com.intellij.ide.util.TipDialog" timestamp="1591088830832">
+    <state x="930" y="144" key="com.intellij.ide.util.TipDialog" timestamp="1591172017311">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="2257" y="144" key="com.intellij.ide.util.TipDialog/0.0.1280.680/1920.0.1920.1160@1920.0.1920.1160" timestamp="1591028571592" />
-    <state x="930" y="144" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1591088830832" />
-    <state x="534" y="342" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1591085870198">
+    <state x="930" y="144" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1591172017311" />
+    <state x="534" y="342" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1591172040177">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="500" y="374" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900/-1920.-180.1920.1080@0.0.1440.900" timestamp="1591033406279" />
-    <state x="534" y="342" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1591085870198" />
+    <state x="534" y="342" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1591172040177" />
     <state x="667" y="432" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1591047538702" />
     <state x="130" y="193" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1591038410017">
       <screen x="0" y="0" width="1440" height="900" />

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -43,6 +44,7 @@ public class UploadFragment extends Fragment implements GenreCallback, TrackCall
     private TextView mFilename;
     private TextView mImagename;
     private Button btnFind, btnFindImg, btnCancel, btnAccept;
+    private ImageButton btnArrowDown;
 
     private ArrayList<String> mGenres;
     private ArrayList<Genre> mGenresObjs;
@@ -51,7 +53,6 @@ public class UploadFragment extends Fragment implements GenreCallback, TrackCall
     private boolean hasImage = false;
 
     private Context mContext;
-
 
     @Nullable
     @Override
@@ -94,7 +95,9 @@ public class UploadFragment extends Fragment implements GenreCallback, TrackCall
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //getActivity().finish();
+                MainActivity.showNavigation(true);
+                if (MainActivity.currentSong != null) MainActivity.showPlayback(true);
+                getParentFragmentManager().popBackStackImmediate();
             }
         });
 
@@ -112,6 +115,18 @@ public class UploadFragment extends Fragment implements GenreCallback, TrackCall
                 }
             }
         });
+
+        btnArrowDown = (ImageButton) v.findViewById(R.id.arrow_down);
+        btnArrowDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.showNavigation(true);
+                if (MainActivity.currentSong != null) MainActivity.showPlayback(true);
+                getParentFragmentManager().popBackStackImmediate();
+            }
+        });
+
+
 
     }
 

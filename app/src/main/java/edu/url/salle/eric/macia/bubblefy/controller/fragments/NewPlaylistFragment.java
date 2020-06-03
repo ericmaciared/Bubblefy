@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,7 @@ import java.util.List;
 
 import edu.url.salle.eric.macia.bubblefy.R;
 import edu.url.salle.eric.macia.bubblefy.controller.activity.LoginActivity;
+import edu.url.salle.eric.macia.bubblefy.controller.activity.MainActivity;
 import edu.url.salle.eric.macia.bubblefy.controller.adapters.SelectTrackAdapter;
 import edu.url.salle.eric.macia.bubblefy.model.Confirmation;
 import edu.url.salle.eric.macia.bubblefy.model.Playlist;
@@ -56,6 +58,8 @@ public class NewPlaylistFragment extends Fragment
     private Button btnFindImg;
     private Uri mImageUri = null;
     private boolean hasImage = false;
+    private ImageButton ibArrowDown;
+    private Button btnDismiss;
 
     private int currentTrack = 0;
 
@@ -63,6 +67,9 @@ public class NewPlaylistFragment extends Fragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view =  inflater.inflate(R.layout.fragment_newplaylist, container, false);
+
+        MainActivity.showNavigation(false);
+        MainActivity.showPlayback(false);
 
         getData();
 
@@ -74,8 +81,6 @@ public class NewPlaylistFragment extends Fragment
     }
 
     private void initViews(View v) {
-
-
         buttonCreate = v.findViewById(R.id.search_button);
         playlistName = v.findViewById(R.id.search_text);
         checkBox = v.findViewById(R.id.checkbox);
@@ -98,6 +103,26 @@ public class NewPlaylistFragment extends Fragment
             public void onClick(View v) {
                 tracksSelected = adapter.getSelectedTracks();
                 createPlaylist();
+            }
+        });
+
+        ibArrowDown = (ImageButton) v.findViewById(R.id.arrow_down);
+        ibArrowDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.showNavigation(true);
+                if (MainActivity.currentSong != null) MainActivity.showPlayback(true);
+                getParentFragmentManager().popBackStackImmediate();
+            }
+        });
+
+        btnDismiss = (Button) v.findViewById(R.id.cancel);
+        btnDismiss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.showNavigation(true);
+                if (MainActivity.currentSong != null) MainActivity.showPlayback(true);
+                getParentFragmentManager().popBackStackImmediate();
             }
         });
     }

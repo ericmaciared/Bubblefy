@@ -7,43 +7,58 @@
     android:background="@color/colorBackground"
     android:layout_centerVertical="true">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="Create your playlists"
-        android:fontFamily="@font/open_sans_bold"
-        android:textSize="@dimen/text_size_medium"
-        android:textColor="@color/colorTextPrimary"
-        android:layout_centerHorizontal="true"/>
+    <LinearLayout
+        android:id="@+id/text_above"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:gravity="center"
+        android:padding="10dp">
+
+        <ImageButton
+            android:id="@+id/arrow_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:background="#0000"
+            android:src="@drawable/ic_arrow_down"
+            android:layout_weight="2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_bold"
+            android:paddingTop="20dp"
+            android:text="New Playlist"
+            android:textAlignment="center"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/text_size_medium"
+            android:layout_weight="4"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#0000"
+            android:src="@drawable/ic_queue"
+            android:layout_weight="2"
+            android:visibility="invisible"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/textView"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/text_above"
         android:id="@+id/linearLayout1"
         android:layout_centerHorizontal="true">
         <EditText
-            android:layout_width="200dp"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:hint="Name"
             android:textSize="@dimen/text_size_medium"
             android:id="@+id/search_text"
-            android:textColor="@color/colorTextPrimary"
-            android:textColorHint="@color/colorTextPrimary"/>
-        <Button
-            android:id="@+id/search_button"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Create"
-            android:layout_marginLeft="20dp"
-            android:background="@drawable/round_button"
             android:fontFamily="@font/open_sans"
             android:textColor="@color/colorTextPrimary"
-            android:textSize="@dimen/text_size_medium"
-            />
+            android:textColorHint="@color/colorTextPrimary"/>
     </LinearLayout>
 
     <LinearLayout
@@ -54,13 +69,12 @@
         android:id="@+id/linearLayout2"
         android:layout_centerHorizontal="true">
         <TextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans"
             android:textColor="@color/colorTextPrimary"
-            android:textSize="@dimen/text_size_smallmedium"
-            android:text="Make public"/>
+            android:textSize="18sp"
+            android:text="Public"/>
 
         <CheckBox
             android:layout_marginLeft="7dp"
@@ -72,10 +86,12 @@
 
         <Button
             android:id="@+id/create_image_file"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="Search Cover"
+            android:text="Add Cover"
+            android:background="@drawable/round_button"
+            android:backgroundTint="@android:color/white"
             android:textColor="@color/black"
             android:textSize="15dp"/>
     </LinearLayout>
@@ -88,5 +104,40 @@
         android:orientation="vertical"
         android:layout_below="@+id/linearLayout2"
         android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/search_button"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="Create"
+            android:background="@drawable/round_button"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/text_size_smallmedium"/>
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/action_decline"
+            android:background="#0000"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/text_size_smallmedium"/>
+    </LinearLayout>
+
+
 
 </RelativeLayout>
