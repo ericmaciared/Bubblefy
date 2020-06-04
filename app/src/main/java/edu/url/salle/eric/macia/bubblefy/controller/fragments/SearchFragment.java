@@ -52,6 +52,7 @@ import edu.url.salle.eric.macia.bubblefy.restapi.callback.SearchCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.callback.TrackCallback;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.GenreManager;
 import edu.url.salle.eric.macia.bubblefy.restapi.manager.SearchManager;
+import edu.url.salle.eric.macia.bubblefy.utils.Session;
 
 
 public class SearchFragment extends Fragment
@@ -536,14 +537,17 @@ public class SearchFragment extends Fragment
         for(int i = 0; i < mGenres.size(); i++){
             if(pickerItem.getTitle() == mGenres.get(i).getName()){
                 selectedGenre = mGenres.get(i);
-                /* TODO: CREATE GenreFragment or Adapt the Playlist one to open all the tracks from the Genre API call
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
-                transaction.replace(R.id.fragment_container, new PlaylistFragment(selectedGenre));
+                Bundle bundle = new Bundle();
+                bundle.putString("genre_name", selectedGenre.getName());
+                bundle.putInt("id", selectedGenre.getId());
+                GenreFragment fragGenre = new GenreFragment();
+                fragGenre.setArguments(bundle);
+
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, fragGenre);
                 transaction.addToBackStack(null);
                 transaction.commit();
-                break;
-                 */
             }
         }
 
