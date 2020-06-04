@@ -182,3 +182,5 @@ local.properties
 .gradle/buildOutputCleanup/buildOutputCleanup.lock
 app/src/main/res/layout/fragment_search.xml
 .idea/workspace.xml
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+.idea/workspace.xml

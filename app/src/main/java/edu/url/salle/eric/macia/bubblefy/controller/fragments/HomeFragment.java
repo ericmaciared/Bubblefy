@@ -122,12 +122,7 @@ public class HomeFragment extends Fragment implements TrackCallback {
         bubblePicker.setListener(new BubblePickerListener() {
             @Override
             public void onBubbleSelected(@NotNull PickerItem pickerItem) {
-                /*
-                if (pickerItem.isSelected()) {
-                    trendingTrackClicked(pickerItem);
-                }
-                trendingTrackClicked(pickerItem);
-                */
+
             }
 
             @Override
@@ -144,7 +139,13 @@ public class HomeFragment extends Fragment implements TrackCallback {
     }
 
     public void trendingTrackClicked(PickerItem pickerItem) {
-        //TODO: Implement Playing the track
+        Track selectedTrack;
+        for(int i = 0; i < mTrendingTracks.size(); i++){
+            if(pickerItem.getTitle() == mTrendingTracks.get(i).getName()){
+                selectedTrack = mTrendingTracks.get(i);
+                MainActivity.addSongList(selectedTrack);
+            }
+        }
     }
 
     @Override
